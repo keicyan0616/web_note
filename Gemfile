@@ -16,6 +16,7 @@ gem 'turbolinks',   '~> 5'
 gem 'jbuilder',     '~> 2.5'
 gem 'devise'
 gem 'omniauth-twitter'
+# gem 'bootstrap-sass'
 
 # 日付と時間のフォーム用
 gem "bootstrap4-datetime-picker-rails"
