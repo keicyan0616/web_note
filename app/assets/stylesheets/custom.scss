@@ -31,6 +31,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
+  // font-family: 'Meiryo UI', sans-serif;
   font-size: 3em;
   letter-spacing: -2px;
   margin-bottom: 30px;
@@ -69,11 +70,16 @@ p {
   text-decoration: none;
 }
 
-.main-container {
+// .main-container {
+.top {
   /*background-image: url("<%= asset-path("images/notebook.jpg") %>");*/
   // background-image: url("/images/notebook.jpg");
   background-image: image-url("notebook.jpg");
   // background-image: url("<%= asset-path("notebook.jpg") %>")
   // height: 800px;
   background-size:cover;
+}
+
+.container {
+  font-family: 'Meiryo UI', sans-serif;
 }
