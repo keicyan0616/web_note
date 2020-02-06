@@ -11,38 +11,27 @@
     <%#= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%#= csrf_meta_tags %>
     
-    <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js">
-    </script>
-    <![endif]-->
+    <%= render 'layouts/shim' %>
   </head>
   
   <body class="top">
-    <header class="navbar navbar-expand navbar-dark fixed-top" style="background-color: #75A9FF;">
-      <div class="container">
-        <%= link_to "Smart Web Notebook", '/', id: "logo" %>
-        <nav>
-        <!--<nav class="navbar navbar-fixed-top navbar-expand-lg navbar-light bg-white mt-3 helvetica row">-->
-          <ul class="nav navbar-nav ml-auto mt-2 mt-lg-0">
-            <% if user_signed_in? %>
-              <!--<li><strong><%#= link_to current_user.username, pages_show_path %></strong></li>-->
-              <li class="nav-item px-2"><strong><%= link_to 'スケジュール', schdule_show_path, class: "nav-link" %></strong></li>
-              <li class="nav-item px-2"><strong><%= link_to 'プロフィール変更', edit_user_registration_path, class: "nav-link" %></strong></li>
-              <li class="nav-item px-2"><strong><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "nav-link" %></strong></li>
-            <% else %>
-              <li class="nav-item px-2"><strong><%= link_to 'サインアップ', new_user_registration_path, class: "nav-link" %></strong></li>
-              <li class="nav-item px-2"><strong><%= link_to 'ログイン', new_user_session_path, class: "nav-link" %></strong></li>
-            <% end %>
-          </ul>
-        </nav>
-      </div>
-    </header>
+    <%= render 'layouts/header' %>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    
     <div class="container">
+      <% if notice.presence %>
+        <p></p>
+        <p class="notice bg-success"><%= notice %></p>
+      <% end %>
+      <% if alert.presence %>
+        <p class="alert alert-danger"><%= alert %></p>
+      <% end %>
+      <!--<%# flash.each do |message_type, msg| %>-->
+      <!--  <div class="alert alert-<%#= message_type %>"><%#= msg %></div>-->
+      <!--<%# end %>-->
       <%= yield %>
+      <!--<div class="bg-white">-->
+        <%= debug(params) if Rails.env.development? %>
+      <!--</div>-->
     </div>
 
   </body>

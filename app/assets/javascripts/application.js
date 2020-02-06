@@ -19,4 +19,20 @@
 //= require moment/ja
 //= require tempusdominus-bootstrap-4.js
 //= require popper
+//= require fullcalendar
 //= require_tree .
+
+/* global $ */
+$(function () {
+    function eventCalendar() {
+        return $('#calendar').fullCalendar({});
+    };
+    function clearCalendar() {
+        $('#calendar').html('');
+    };
+
+    $(document).on('turbolinks:load', function () {
+      eventCalendar();
+    });
+    $(document).on('turbolinks:before-cache', clearCalendar);
+});

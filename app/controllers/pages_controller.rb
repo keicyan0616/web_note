@@ -5,5 +5,7 @@ class PagesController < ApplicationController
   end
 
   def show
+    #flash.now[:success] = 'ログインしました。'
+    # @user = User.find(params[:id])
   end
 end

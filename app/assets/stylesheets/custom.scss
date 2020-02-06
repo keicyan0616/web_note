@@ -70,6 +70,18 @@ p {
   text-decoration: none;
 }
 
+/* debug */
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+}
+
 // .main-container {
 .top {
   /*background-image: url("<%= asset-path("images/notebook.jpg") %>");*/
@@ -82,4 +94,25 @@ p {
 
 .container {
   font-family: 'Meiryo UI', sans-serif;
+  // padding-top: 60px;
+  //margin-top: 10px;
+}
+
+.main-container {
+  margin-top: 35px;
+}
+
+.jumbotron {
+  margin-top: 35px;
+}
+
+
+// flashのバックカラー
+.notice {
+  color: white;
+  // background-color: blue;
+}
+.alert {
+  color: white;
+//   background-color: red;
 }

@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
 
   root 'pages#index'
-  get 'pages/show', as: :schdule_show
+  get 'pages/show', to: 'pages#show', as: :schdule_show
+  #get 'pages/:id/show', to: 'pages#show', as: :schdule_show
+
+  #resources :users
 
   devise_for :users, :controllers => {
     :omniauth_callbacks => "omniauth_callbacks",
