@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :events
   root 'pages#index'
   get 'pages/show', to: 'pages#show', as: :schdule_show
   #get 'pages/:id/show', to: 'pages#show', as: :schdule_show

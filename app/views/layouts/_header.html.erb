@@ -1,12 +1,27 @@
     <header class="navbar navbar-expand navbar-dark fixed-top" style="background-color: #75A9FF;">
       <div class="container">
-        <%= link_to "Smart Web Notebook", '/', id: "logo" %>
+        <% if user_signed_in? %>
+          <%= link_to "Smart Web Notebook", schdule_show_path, id: "logo" %>
+        <% else %>
+          <%= link_to "Smart Web Notebook", '/', id: "logo" %>
+        <% end %>
         <nav>
         <!--<nav class="navbar navbar-fixed-top navbar-expand-lg navbar-light bg-white mt-3 helvetica row">-->
           <ul class="nav navbar-nav ml-auto mt-2 mt-lg-0">
             <% if user_signed_in? %>
               <!--<li><strong><%#= link_to current_user.username, pages_show_path %></strong></li>-->
-              <li class="nav-item px-2"><strong><%= link_to 'スケジュール', schdule_show_path, class: "nav-link" %></strong></li>
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  アカウント<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <!--<li class="divider"></li>-->
+                  <li><%= link_to 'スケジュール', schdule_show_path %></li>
+                  <!--<li class="nav-item px-2"><strong><%= link_to 'スケジュール', schdule_show_path, class: "nav-link" %></strong></li>-->
+                </ul>
+              </li>
+              
               <li class="nav-item px-2"><strong><%= link_to 'プロフィール変更', edit_user_registration_path, class: "nav-link" %></strong></li>
               <li class="nav-item px-2"><strong><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "nav-link" %></strong></li>
             <% else %>

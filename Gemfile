@@ -19,6 +19,7 @@ gem 'omniauth-twitter'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'fullcalendar-rails'
+gem 'jquery-turbolinks'
 # gem 'bootstrap-sass'
 
 # 日付と時間のフォーム用

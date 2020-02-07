@@ -10,11 +10,12 @@
     <%#= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%#= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%#= csrf_meta_tags %>
-    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= render 'layouts/shim' %>
   </head>
   
-  <body class="top">
+  <body class="top" data-turbolinks="false">
     <%= render 'layouts/header' %>
 
     <div class="container">
