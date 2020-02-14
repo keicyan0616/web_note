@@ -5,19 +5,78 @@
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all',
                                'data-turbolinks-track': 'reload' %>
+                               <!--'admin/dashboard', media: 'all' %>-->
     <%= javascript_include_tag 'application',
                                'data-turbolinks-track': 'reload' %>
+                               <!--'admin/dashboard' %>-->
+
     <%#= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%#= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-    <%#= csrf_meta_tags %>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- 削除可-->
+    <!--<meta name="description" content="">-->
+    <!--<meta name="author" content="">-->
+    <!-- 削除可-->
+    
     <%= render 'layouts/shim' %>
   </head>
   
   <body class="top" data-turbolinks="false">
     <%= render 'layouts/header' %>
 
+    
+    <!-- ナビゲーションメニュー -->
+    <!--<nav class="navbar navbar-fixed-top navbar-expand-lg navbar-light bg-white mt-3 helvetica row">-->
+    <!--  <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="レスポンシブ・ナビゲーションバー">-->
+    <!--    <span class="navbar-toggler-icon"></span>-->
+    <!--  </button>-->
+    <!--  <div class="collapse navbar-collapse" id="Navber">-->
+    <!--    <ul class="nav navbar-nav ml-auto mt-2 mt-lg-0">-->
+              <!-- スマホ用のメニュー部分 -->
+    <!--          <%#= sidebar_list_items() %>-->
+    <!--    </ul>-->
+    <!--  </div><!-- /.navbar-collapse -->
+    <!--</nav>-->
+
+    <% if user_signed_in? %>
+    <!-- ナビゲーションメニュー -->
+    <!--<nav class="navbar navbar-fixed-top navbar-expand-lg navbar-light mt-3 helvetica row" id="navbar-list-menu">-->
+    <nav class="navbar navbar-inverse navbar-fixed-top navbar-light" role="navigation" id="navbar-list-menu" style="background-color: powderblue;">
+    <!--<nav class="navbar navbar-expand-lg">-->
+      <!--<div class="container-fluid">-->
+        <!--<div class="navbar-header">-->
+          <!--<a class="navbar-brand" href="#">ブランド</a>-->
+          <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションの切替" style="background-color: white;">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        <!--</div>-->
+        
+        <div id="Navber" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+          <!--<ul class="nav navbar-nav ml-auto mt-2 mt-lg-0">-->
+             <!--スマホ用のメニュー部分 -->
+            <%= sidebar_list_items() %>
+          </ul>
+        </div>
+      <!--</div>-->
+    </nav>
+
+
+    <!-- サイドバーの表示 -->
+    
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-3 col-md-2 sidebar" style="background-color: powderblue;">
+            <ul class="nav nav-sidebar">
+              <!-- PC用のメニュー部分 -->
+              <%= sidebar_list_items() %>
+            </ul>
+          </div>
+          <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <% end %>
+    
     <div class="container">
       <% if alert.presence %>
         <p></p>
@@ -47,6 +106,12 @@
       <%= debug(params) if Rails.env.development? %>
       <!--</div>-->
     </div>
+            
+    <% if user_signed_in? %>
+          </div>
+        </div>  
+      </div>
+    <% end %>
 
   </body>
 </html>

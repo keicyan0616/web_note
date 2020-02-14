@@ -109,6 +109,7 @@ p {
 .schdule {
   margin-left: 20px;
   margin-right: 20px;
+  padding: 10px 10px;
 }
 
 // flashのバックカラー
@@ -119,4 +120,136 @@ p {
 .alert {
   color: white;
 //   background-color: red;
+}
+
+
+/*
+* Global add-ons
+*/
+.sub-header {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+/*
+* Top navigation
+* Hide default border to remove 1px line.
+*/
+.navbar-fixed-top {
+  border: 0;
+}
+
+/*
+* Sidebar
+*/
+/* Hide for mobile, show later */
+.sidebar {
+  display: none;
+}
+#navbar-list-menu {
+  display: block;
+  // top: 40px;
+  margin-top: 40px;
+}
+@media (min-width: 576px) {
+  .sidebar {
+    position: fixed;
+    top: 1px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    background-color: #f5f5f5;
+    border-right: 1px solid #eee;
+  }
+  #navbar-list-menu {
+    display: none;
+  }
+}
+
+/*
+* Main content
+*/
+.main {
+  padding: 20px;
+}
+@media (min-width: 768px) {
+  .main {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+}
+.main .page-header {
+  margin-top: 0;
+}
+
+/* Sidebar navigation */
+.nav-sidebar {
+  // margin-right: -21px; /* 20px padding + 1px border */
+  // margin-bottom: 20px;
+  margin-left: -16px;
+}
+.nav-sidebar > li > a {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+  color: #fff;
+  background-color: #4F78A4;
+}
+
+ /* サイドバーカスタマイズ関係 */ 
+.nav-sidebar {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.nav-sidebar li {
+  width: 100%;
+  padding-right: -20px;
+}
+
+.nav-sidebar li a {
+	display: block;
+	padding: .4em 1.5em;
+	text-decoration: none;
+	background: #fff;
+	color: #333;
+	text-align: left;
+	margin: .2em 0;
+}
+
+.nav-sidebar li a:hover {
+	background: #eee;
+}
+
+.side-item-custom {
+  // display: list-item;
+  // list-style-type: none;
+  padding: 0.5em;
+  font-size: 1.0em;
+}
+
+/*
+* Placeholder dashboard ideas
+*/
+.placeholders {
+  margin-bottom: 30px;
+  text-align: center;
+}
+.placeholders h4 {
+  margin-bottom: 0;
+}
+.placeholder {
+  margin-bottom: 20px;
+}
+.placeholder img {
+  display: inline-block;
+  border-radius: 50%;
 }

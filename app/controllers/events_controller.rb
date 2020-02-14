@@ -15,6 +15,7 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
+    render plain: render_to_string(partial: 'form_new', layout: false, locals: { event: @event })
   end
 
   # GET /events/1/edit
