@@ -3,8 +3,11 @@
     <p>ユーザー用ページです。</p>
     
     <div class="text-left">
-        <%= link_to '予定登録', new_event_path, class: "btn ml-4 mb-3 btn-primary" %>
+        <%= link_to '予定登録', new_event_path, remote: true, class: "btn ml-4 mb-3 btn-primary" %>
     </div>
     
     <div id="calendar" class="schdule bg-white"></div>
 </div>
+
+<!--モーダルウインドウ表示-->
+<div id="edit-new" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>

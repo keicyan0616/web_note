@@ -21,6 +21,8 @@
 //= require tempusdominus-bootstrap-4.js
 //= require popper
 //= require fullcalendar
+//= require jquery
+//= require jquery-ui
 //= require_tree .
 
 /* global $ */
@@ -71,6 +73,7 @@ $(function () {
         //イベントの文字色を変える
         eventTextColor: '#000000',
         selectable: true,
+        
         dayClick: function (start, end, jsEvent, view) {
           //クリックした日付情報を取得
           const year = moment(start).year();
@@ -79,20 +82,23 @@ $(function () {
           //イベント登録のためnewアクションを発火
           $.ajax({
             type: 'GET',
-            url: '/shops/events/new',
+            url: '/events/new',
+            data: 'year_value=' + year + '&month_value=' + month + '&day_value=' + day
           }).done(function (res) {
+            // alert(year + ' ' + month + ' ' + day);
+            // alert(res);
             //イベント登録用のhtmlを作成
-            $('.modal-body').html(res);
+            // $('.modal-body').html(res);
             //イベント登録フォームの日付をクリックした日付とする
-            $('#event_start_time_1i').val(year);
-            $('#event_start_time_2i').val(month);
-            $('#event_start_time_3i').val(day);
+            // $('#event_start_time_1i').val(year);
+            // $('#event_start_time_2i').val(month);
+            // $('#event_start_time_3i').val(day);
             //イベント登録フォームのモーダル表示
-            $('#modal').modal();
+            // $('#sampleModal').modal();
             // 成功処理
           }).fail(function (result) {
             // 失敗処理
-            alert('エラーが発生しました。管理者(テスト)に問い合わせてください。')
+            alert('エラーが発生しました。管理者(テスト)に問い合わせてください。');
           });
         },
     });

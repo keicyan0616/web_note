@@ -20,6 +20,7 @@ gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'fullcalendar-rails'
 gem 'jquery-turbolinks'
+gem 'jquery-ui-rails'
 # gem 'bootstrap-sass'
 
 # 日付と時間のフォーム用

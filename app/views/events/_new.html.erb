@@ -1,0 +1,18 @@
+<div class="modal-dialog modal-lg modal-dialog-center">
+  <div class="modal-content">
+    <div class="modal-body">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+
+      <div class="center jumbotron jumbotron-fluid" style="background-color: #FFFFCC;">
+        <h1>New Event(<%= @year %>年<%= @month %>月<%= @day %>日)</h1>
+        
+        <%= render 'form', {event: @event, year: @year, month: @month, day: @day} %>
+        
+        <%= link_to 'Back', events_path %>
+      </div>
+
+    </div>
+  </div>
+</div>

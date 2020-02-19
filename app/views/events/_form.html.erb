@@ -23,7 +23,11 @@
 
   <div class="field">
     <%= form.label :start_date %>
-    <%= form.datetime_select :start_date, id: :event_start_date %>
+    <% if year == nil %>
+      <%= form.datetime_select :start_date, id: :event_start_date %>
+    <% else %>
+      <%= form.datetime_select :start_date, {default: Date.new(year.to_i, month.to_i, day.to_i)}, id: :event_start_date %>
+    <% end %>
   </div>
 
   <div class="field">

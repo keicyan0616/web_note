@@ -1,15 +1,15 @@
 <div class="center jumbotron jumbotron-fluid" style="background-color: #FFFFCC;">
   <p id="notice"><%= notice %></p>
   
-  <h1>Events</h1>
+  <h1>スケジュール表</h1>
   
-  <table>
+  <table class="table-bordered table-striped table-condensed bg-white ml-3 mr-3">
     <thead>
       <tr>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Start date</th>
-        <th>End date</th>
+        <th>タイトル</th>
+        <th>内容</th>
+        <th>開始日時</th>
+        <th>終了日時</th>
         <th colspan="3"></th>
       </tr>
     </thead>
@@ -31,5 +31,5 @@
   
   <br>
   
-  <%= link_to 'New Event', new_event_path %>
+  <%#= link_to 'New Event', new_event_path %>
 </div>

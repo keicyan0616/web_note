@@ -55,4 +55,6 @@ Rails.application.configure do
   # mailer setting
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   #config.action_mailer.default_url_options = { host: 'https://c2da00c43ff04315a8b3b99768292ad0.vfs.cloud9.us-west-2.amazonaws.com/', port: 8080 }
+  
+  config.web_console.whitelisted_ips = '0.0.0.0/0'
 end
