@@ -1,0 +1,33 @@
+<!-- ToDo登録ページ(パーシャル) -->
+<%= form_with(model: todo, url: todolist_create_path, local: true) do |form| %>
+  <% if todo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(todo.errors.count, "error") %> prohibited this todo from being saved:</h2>
+
+      <ul>
+      <% todo.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field">
+    <%= form.label :todo %>
+    <%= form.text_field :todo, id: :todo %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :start_date %>
+    <%# if year == nil || month == nil || day == nil %>
+      <%= form.datetime_select :start_date, id: :start_date %>
+    <%# else %>
+      <%#= form.datetime_select :start_date, {default: Date.new(year.to_i, month.to_i, day.to_i)}, id: :event_start_date %>
+    <%# end %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

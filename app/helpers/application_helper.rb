@@ -25,9 +25,10 @@ module ApplicationHelper
     items = [
       {:text => 'スケジュール',       :path => schdule_show_path},
       {:text => '(イベントリスト)',   :path => events_path},
-      {:text => 'ToDoリスト',         :path => '#'},
+      {:text => 'ToDoリスト',         :path => todolist_show_path},
+      {:text => '目標設定',           :path => goalset_show_path},
+      {:text => 'メモ帳',             :path => '#'},
       {:text => 'PDCA入力',           :path => '#'},
-      {:text => '目標設定',           :path => '#'},
       {:text => 'プロフィール変更',   :path => edit_user_registration_path}
     ]
 

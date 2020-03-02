@@ -1,0 +1,57 @@
+<!-- 目標設定 表示ページ -->
+<div class="center jumbotron jumbotron-fluid" style="background-color: #FFFFCC;">
+  <p id="notice"><%= notice %></p>
+  
+  <h1>目標設定</h1>
+  
+  <%= link_to '目標登録', '#', remote: true, class: "btn ml-4 mb-3 btn-primary" %>
+  <h2 class="text-left ml-4">＜ミッション＞</h2>
+  <table class="table table-bordered table-condensed bg-white ml-auto mr-auto" style="width: 95%">
+    <!--<thead>-->
+    <!--  <tr>-->
+    <!--    <th style="width: 100px;"></th>-->
+    <!--  </tr>-->
+    <!--</thead>-->
+    <tbody>
+        <tr>
+          <td class="text-left"><%= @goalData.mission %></td>
+        </tr>
+    </tbody>
+  </table>
+  
+  <br></br>
+  
+  <h2 class="text-left ml-4">＜長期目標＞</h2>
+  <table class="table table-bordered table-condensed bg-white ml-auto mr-auto" style="width: 95%">
+    <tbody>
+        <tr>
+          <td class="text-left"><%= @goalData.long_goal %></td>
+        </tr>
+    </tbody>
+  </table>
+  
+  <br></br>
+  
+  <h2 class="text-left ml-4">＜中期目標＞</h2>
+  <table class="table table-bordered table-condensed bg-white ml-auto mr-auto" style="width: 95%">
+    <tbody>
+        <tr>
+          <td class="text-left"><%= @goalData.middle_goal %></td>
+        </tr>
+    </tbody>
+  </table>
+  
+  <br></br>
+  
+  <h2 class="text-left ml-4">＜短期目標＞</h2>
+  <table class="table table-bordered table-condensed bg-white ml-auto mr-auto" style="width: 95%">
+    <tbody>
+        <tr>
+          <td class="text-left"><%= @goalData.short_goal %></td>
+        </tr>
+    </tbody>
+  </table>
+</div>
+
+<!--モーダルウインドウ表示-->
+<!--<div id="todo-new" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>-->

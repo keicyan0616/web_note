@@ -7,6 +7,16 @@ Rails.application.routes.draw do
 
   #resources :users
 
+  # ＜ToDoリスト関係＞
+  get 'todolist/show', to: 'todolist#show', as: :todolist_show
+  get 'todolist/new', to: 'todolist#new', as: :todolist_new
+  post 'todolist/create', to: 'todolist#create', as: :todolist_create
+  get 'todolist/:id/finish', to: 'todolist#finish', as: :todolist_finish
+  get 'todolist/:id/delete', to: 'todolist#delete', as: :todolist_delete
+
+  # ＜目標設定関係＞
+  get 'goalset/show', to: 'goalset#show', as: :goalset_show
+
   devise_for :users, :controllers => {
     :omniauth_callbacks => "omniauth_callbacks",
     :registrations => 'users/registrations',

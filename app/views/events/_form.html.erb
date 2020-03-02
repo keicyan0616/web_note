@@ -16,14 +16,14 @@
     <%= form.text_field :title, id: :event_title %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :description %>
-    <%= form.text_area :description, id: :event_description %>
+    <%= form.text_area :description, id: :event_description, class: "w-50" %>
   </div>
 
   <div class="field">
     <%= form.label :start_date %>
-    <% if year == nil %>
+    <% if year == nil || month == nil || day == nil %>
       <%= form.datetime_select :start_date, id: :event_start_date %>
     <% else %>
       <%= form.datetime_select :start_date, {default: Date.new(year.to_i, month.to_i, day.to_i)}, id: :event_start_date %>
@@ -32,7 +32,11 @@
 
   <div class="field">
     <%= form.label :end_date %>
-    <%= form.datetime_select :end_date, id: :event_end_date %>
+    <% if year == nil || month == nil || day == nil %>
+      <%= form.datetime_select :end_date, id: :event_end_date %>
+    <% else %>
+      <%= form.datetime_select :end_date, {default: Date.new(year.to_i, month.to_i, day.to_i)}, id: :event_end_date %>
+    <% end %>
   </div>
 
   <div class="actions">

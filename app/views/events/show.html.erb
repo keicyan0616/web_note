@@ -13,7 +13,7 @@
   
   <p>
     <strong>Start date:</strong>
-    <%= @event.start_date %>
+    <%= @event.start_date.strftime('%Y/%m/%d %H:%M') if @event.start_date.present? %>
   </p>
   
   <p>

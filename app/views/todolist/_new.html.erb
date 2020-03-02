@@ -6,11 +6,12 @@
       </button>
 
       <div class="center jumbotron jumbotron-fluid" style="background-color: #FFFFCC;">
-        <h1>新規イベント登録(<%= @year %>年<%= @month %>月<%= @day %>日)</h1>
+        <h1>ToDo登録</h1>
         
-        <%= render 'form', {event: @event, year: @year, month: @month, day: @day} %>
+        <%= render 'form', {todo: @todoNewData} %>
         
-        <%= link_to 'Back', events_path %>
+        <%#= link_to 'Show', @event %>
+        <%#= link_to 'Back', events_path %>
       </div>
 
     </div>

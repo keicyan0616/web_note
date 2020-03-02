@@ -1,7 +1,8 @@
+<!-- イベント表ページ -->
 <div class="center jumbotron jumbotron-fluid" style="background-color: #FFFFCC;">
   <p id="notice"><%= notice %></p>
   
-  <h1>スケジュール表</h1>
+  <h1>イベント表</h1>
   
   <table class="table-bordered table-striped table-condensed bg-white ml-3 mr-3">
     <thead>
@@ -19,8 +20,8 @@
         <tr>
           <td><%= event.title %></td>
           <td><%= event.description %></td>
-          <td><%= event.start_date %></td>
-          <td><%= event.end_date %></td>
+          <td><%= event.start_date.strftime('%Y/%m/%d %H:%M') if event.start_date.present? %></td>
+          <td><%= event.end_date.strftime('%Y/%m/%d %H:%M') if event.end_date.present? %></td>
           <td><%= link_to 'Show', event %></td>
           <td><%= link_to 'Edit', edit_event_path(event) %></td>
           <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>

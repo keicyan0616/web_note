@@ -1,6 +1,8 @@
-<h1>Editing Event</h1>
-
-<%= render 'form', {event: @event, year: @year, month: @month, day: @day} %>
-
-<%= link_to 'Show', @event %> |
-<%= link_to 'Back', events_path %>
+<div class="center jumbotron jumbotron-fluid" style="background-color: #FFFFCC;">
+    <h1>スケジュール編集</h1>
+    
+    <%= render 'form', {event: @event, year: @year, month: @month, day: @day} %>
+    
+    <%= link_to 'Show', @event %> |
+    <%= link_to 'Back', events_path %>
+</div>

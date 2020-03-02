@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200206170744) do
+ActiveRecord::Schema.define(version: 20200301165110) do
 
   create_table "events", force: :cascade do |t|
     t.string "title"
@@ -19,6 +19,30 @@ ActiveRecord::Schema.define(version: 20200206170744) do
     t.datetime "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "goalsets", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "mission"
+    t.string "short_goal"
+    t.datetime "s_goal_deadline_at"
+    t.string "middle_goal"
+    t.datetime "m_goal_deadline_at"
+    t.string "long_goal"
+    t.datetime "l_goal_deadline_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_goalsets_on_user_id"
+  end
+
+  create_table "todolists", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "todo"
+    t.datetime "start_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "delflag"
+    t.index ["user_id"], name: "index_todolists_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,0 +1,72 @@
+<!-- ToDoリスト 表示ページ -->
+<div class="center jumbotron jumbotron-fluid" style="background-color: #FFFFCC;">
+  <p id="notice"><%= notice %></p>
+  
+  <h1>ToDoリスト</h1>
+  
+  <%= link_to 'ToDo登録', todolist_new_path, remote: true, class: "btn ml-4 mb-3 btn-primary" %>
+  <table class="table table-bordered table-striped table-condensed bg-white ml-auto mr-auto" style="width: 95%">
+    <thead>
+      <tr>
+        <th style="width: 100px;">日付</th>
+        <th style="width: 80px;">時間</th>
+        <th class="text-left">ToDo</th>
+        <th style="width: 80px;"></th>
+        <!--<th colspan="3"></th>-->
+      </tr>
+    </thead>
+  
+    <tbody>
+      <!-- ToDoリスト本体作成 -->
+      <% @todoData.each do |todolist| %>
+        <tr>
+          <td><%= todolist.start_date.strftime('%Y/%m/%d') if todolist.start_date.present? %></td>
+          <td><%= todolist.start_date.strftime('%H:%M') if todolist.start_date.present? %></td>
+          <td class="text-left"><%= todolist.todo %></td>
+          <!--<td><%#= link_to 'Show', event %></td>-->
+          <!--<td><%#= link_to 'Edit', edit_event_path(event) %></td>-->
+          <td><%= link_to '完了', todolist_finish_path(id: todolist.id), class: "btn btn-primary", data: { confirm: 'ToDoを完了にしてもよろしいですか？' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+  <!-- ToDo（完了）リスト作成 -->
+  <% loopCount = 0 %>
+  <% @todoFinishData.each do |todofinishlist| %>
+    <% loopCount += 1 %>
+    <% if loopCount == 1 %>
+      <br></br>
+      <h2>ToDo完了リスト</h2>
+      <table class="table table-bordered table-striped table-condensed bg-white ml-auto mr-auto" style="width: 95%">
+        <thead>
+          <tr>
+            <th style="width: 100px;">日付</th>
+            <th style="width: 80px;">時間</th>
+            <th class="text-left">ToDo</th>
+            <th style="width: 80px;"></th>
+            <!--<th colspan="3"></th>-->
+          </tr>
+        </thead>
+        <tbody>
+    <% end %>
+      
+          <!-- ToDo(完了)リスト本体作成 -->
+          <tr>
+            <td><%= todofinishlist.start_date.strftime('%Y/%m/%d') if todofinishlist.start_date.present? %></td>
+            <td><%= todofinishlist.start_date.strftime('%H:%M') if todofinishlist.start_date.present? %></td>
+            <td class="text-left"><%= todofinishlist.todo %></td>
+            <td><%= link_to '削除', todolist_delete_path(id: todofinishlist.id), class: "btn btn-primary", data: { confirm: 'ToDoを削除してもよろしいですか？' } %></td>
+          </tr>
+  <% end %>
+  
+  <% if loopCount > 0 %>
+        </tbody>
+      </table>
+  <% end %>
+  
+  <%#= link_to 'New Event', new_event_path %>
+</div>
+
+<!--モーダルウインドウ表示-->
+<div id="todo-new" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
