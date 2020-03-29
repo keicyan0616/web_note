@@ -44,6 +44,12 @@ $(function () {
 
     $('#calendar').fullCalendar({
         events: '/events.json',
+        // eventSources: [
+        //     '/events.json',
+        //     {url: 'http://www.google.com/calendar/feeds/ja.japanese%23holiday%40group.v.calendar.google.com/public/full/',
+        //      color: 'red'
+        //     }
+        // ],
         //カレンダー上部を年月で表示させる
         titleFormat: 'YYYY年 M月',
         //曜日を日本語表示
@@ -72,7 +78,29 @@ $(function () {
         eventColor: '#63ceef',
         //イベントの文字色を変える
         eventTextColor: '#000000',
+        //選択した日を色付け
         selectable: true,
+        
+        eventClick: function(item, jsEvent, view){
+            const id = item.id;
+            $.ajax({
+            type: 'GET',
+            url: '/events/' + id + '/edit'
+
+          }).done(function (res) {
+          }).fail(function (result) {
+            // 失敗処理
+            alert('エラーが発生しました。管理者に問い合わせてください。');
+          });
+        },
+        
+        eventMouseover: function(event, allDay, jsEvent){
+            $(this).css('background-color', '#FF9933');
+        },
+        
+        eventMouseout: function(event, allDay, jsEvent){
+            $(this).css('background-color', '#63ceef');
+        },
         
         dayClick: function (start, end, jsEvent, view) {
           //クリックした日付情報を取得
@@ -98,7 +126,7 @@ $(function () {
             // 成功処理
           }).fail(function (result) {
             // 失敗処理
-            alert('エラーが発生しました。管理者(テスト)に問い合わせてください。');
+            alert('エラーが発生しました。管理者に問い合わせてください。');
           });
         },
     });

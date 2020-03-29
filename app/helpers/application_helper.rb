@@ -23,20 +23,21 @@ module ApplicationHelper
   # サイドメニューの項目を出力する
   def sidebar_list_items
     items = [
-      {:text => 'スケジュール',       :path => schdule_show_path},
-      {:text => '(イベントリスト)',   :path => events_path},
-      {:text => 'ToDoリスト',         :path => todolist_show_path},
-      {:text => '目標設定',           :path => goalset_show_path},
-      {:text => 'メモ帳',             :path => '#'},
-      {:text => 'PDCA入力',           :path => '#'},
-      {:text => 'プロフィール変更',   :path => edit_user_registration_path}
+      {:text => 'スケジュール',       :path => schdule_show_path,     :icon => 'icon_calender01.jpg' },
+      {:text => '(イベントリスト)',   :path => events_path,           :icon => ''},
+      {:text => 'ToDoリスト',         :path => todolist_show_path,    :icon => ''},
+      {:text => '目標設定',           :path => goalset_show_path,     :icon => ''},
+      {:text => 'メモ帳',             :path => memopad_show_path,     :icon => ''},
+      {:text => 'PDCA入力',           :path => '#',                   :icon => ''},
+      {:text => 'プロフィール変更',   :path => edit_user_registration_path, :icon => 'icon_profile.jpg'}
     ]
 
     html = ''
     items.each do |item|
       text = item[:text]
       path = item[:path]
-      html = html + %Q(<li#{sidebar_activate(path)}><a href="#{path}">#{text}</a></li>)
+      icon = item[:icon]
+      html = html + %Q(<li#{sidebar_activate(path)}><a href="#{path}">) + image_tag(icon, :size => '21x21', class: "mr-2") + %Q(#{text}</a></li>)
     end
 
     raw(html)

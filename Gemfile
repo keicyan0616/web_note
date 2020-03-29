@@ -22,6 +22,8 @@ gem 'fullcalendar-rails'
 gem 'jquery-turbolinks'
 gem 'jquery-ui-rails'
 # gem 'bootstrap-sass'
+gem 'whenever', require: false
+gem 'line-bot-api'
 
 # 日付と時間のフォーム用
 gem "bootstrap4-datetime-picker-rails"

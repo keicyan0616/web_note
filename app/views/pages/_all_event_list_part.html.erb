@@ -1,0 +1,52 @@
+<!-- 全イベント一覧表(部分表示部) -->
+  <table class="table table-bordered table-striped bg-white ml-3 mr-3" style="width: 95%;">
+    <!--text-nowrap-->
+    <thead class="thead-color lead">
+      <tr style="background-color: #FFFFCC;">
+        <th>カテゴリ</th>
+        <th>日時</th>
+        <th>タイトル</th>
+        <th>内容</th>
+        <!--<th colspan="3"></th>-->
+      </tr>
+    </thead>
+  
+    <tbody>
+      <% @events.each do |event| %>
+        <tr>
+          <td><%= event._category %></td>
+          <td>
+            <!-- 開始日時の表示内容を調整 -->
+            <% if event.start_date.present? %>
+              <%= event.start_date.strftime('%Y/%m/%d') %>
+              <% if event.end_date.present? %>
+                <% if event.start_date.strftime('%Y/%m/%d') == event.end_date.strftime('%Y/%m/%d') %>
+                  <br>
+                <% end %>
+              <% else %>
+                <br>
+              <% end %>
+              <%= event.start_date.strftime('%H:%M')  %>
+            <% end %>
+            <!-- 終了日時の表示内容を調整 -->
+            <% if event.end_date.present? %>
+              <% if event.start_date.strftime('%Y/%m/%d') == event.end_date.strftime('%Y/%m/%d') %>
+                <%= " ～ " + event.end_date.strftime('%H:%M') %>
+              <% else %>
+                <br>
+                <%= " ～ " + event.end_date.strftime('%Y/%m/%d %H:%M') %>
+              <% end %>
+            <% end %>
+          </td>
+          <td align="left"><%= event.title %></td>
+          <td align="left"><%= event.description %></td>
+          <!--<td><%#= link_to 'Show', event %></td>-->
+          <!--<td><%#= link_to 'Edit', edit_event_path(event) %></td>-->
+          <!--<td><%#= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%#= link_to 'New Event', new_event_path %>
+<!--</div>-->

@@ -23,7 +23,7 @@
           <td><%= event.start_date.strftime('%Y/%m/%d %H:%M') if event.start_date.present? %></td>
           <td><%= event.end_date.strftime('%Y/%m/%d %H:%M') if event.end_date.present? %></td>
           <td><%= link_to 'Show', event %></td>
-          <td><%= link_to 'Edit', edit_event_path(event) %></td>
+          <td><%= link_to 'Edit', edit_event_path(event), remote: true %></td>
           <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
@@ -34,3 +34,6 @@
   
   <%#= link_to 'New Event', new_event_path %>
 </div>
+
+<!--モーダルウインドウ表示-->
+<div id="event-edit" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>

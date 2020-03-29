@@ -11,35 +11,35 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title, id: :event_title %>
+  <div class="field" style="padding-right: 10px;">
+    <%= form.label :スケジュール名 %>
+    <%= form.text_field :title, id: :event_title, size: "35" %>
   </div>
 
   <div class="field form-group">
-    <%= form.label :description %>
-    <%= form.text_area :description, id: :event_description, class: "w-50" %>
+    <span style="vertical-align: top;"><%= form.label :スケジュール内容 %></span>
+    <%= form.text_area :description, id: :event_description, size: "40x2" %>
   </div>
 
-  <div class="field">
-    <%= form.label :start_date %>
+  <div class="field" style="padding-right: 30px;">
+    <%= form.label :開始日時 %>
     <% if year == nil || month == nil || day == nil %>
-      <%= form.datetime_select :start_date, id: :event_start_date %>
+      <%= form.datetime_select :start_date, {:use_month_numbers => true}, id: :event_start_date %>
     <% else %>
-      <%= form.datetime_select :start_date, {default: Date.new(year.to_i, month.to_i, day.to_i)}, id: :event_start_date %>
+      <%= form.datetime_select :start_date, {:use_month_numbers => true, default: Date.new(year.to_i, month.to_i, day.to_i)}, id: :event_start_date %>
     <% end %>
   </div>
 
-  <div class="field">
-    <%= form.label :end_date %>
+  <div class="field" style="padding-right: 30px;">
+    <%= form.label :終了日時 %>
     <% if year == nil || month == nil || day == nil %>
-      <%= form.datetime_select :end_date, id: :event_end_date %>
+      <%= form.datetime_select :end_date, {:use_month_numbers => true}, id: :event_end_date %>
     <% else %>
-      <%= form.datetime_select :end_date, {default: Date.new(year.to_i, month.to_i, day.to_i)}, id: :event_end_date %>
+      <%= form.datetime_select :end_date, {:use_month_numbers => true, default: Date.new(year.to_i, month.to_i, day.to_i)}, id: :event_end_date %>
     <% end %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions mt-3">
+    <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>

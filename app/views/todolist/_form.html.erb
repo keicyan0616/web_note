@@ -13,21 +13,21 @@
   <% end %>
 
 
-  <div class="field">
-    <%= form.label :todo %>
-    <%= form.text_field :todo, id: :todo %>
+  <div class="field" style="padding-right: 30px;">
+    <%= form.label :ToDo %>
+    <%= form.text_field :todo, id: :todo, size: "30" %>
   </div>
   
-  <div class="field">
-    <%= form.label :start_date %>
+  <div class="field" style="padding-right: 30px;">
+    <%= form.label :日時 %>
     <%# if year == nil || month == nil || day == nil %>
-      <%= form.datetime_select :start_date, id: :start_date %>
+      <%= form.datetime_select :start_date, {:use_month_numbers => true}, id: :start_date %>
     <%# else %>
       <%#= form.datetime_select :start_date, {default: Date.new(year.to_i, month.to_i, day.to_i)}, id: :event_start_date %>
     <%# end %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-primary btn-sm mt-2" %>
   </div>
 <% end %>

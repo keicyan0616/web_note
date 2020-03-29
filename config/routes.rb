@@ -2,8 +2,11 @@ Rails.application.routes.draw do
 
   resources :events
   root 'pages#index'
-  get 'pages/show', to: 'pages#show', as: :schdule_show
+
+  # ＜スケジュール関係＞
   #get 'pages/:id/show', to: 'pages#show', as: :schdule_show
+  get 'pages/show', to: 'pages#show', as: :schdule_show
+  get 'pages/all_event_list_class', to: 'pages#all_event_list_class', as: :all_event_list_class
 
   #resources :users
 
@@ -16,6 +19,15 @@ Rails.application.routes.draw do
 
   # ＜目標設定関係＞
   get 'goalset/show', to: 'goalset#show', as: :goalset_show
+  get 'goalset/edit', to: 'goalset#edit', as: :goalset_edit
+  patch 'goalset/update', to: 'goalset#update', as: :goalset
+  post 'goalset/create', to: 'goalset#create', as: :goalsets
+  
+  # ＜メモ帳＞
+  get 'memopad/show', to: 'memopad#show', as: :memopad_show
+  get 'memopad/new', to: 'memopad#new', as: :memopad_new
+  post 'memopad/create', to: 'memopad#create', as: :memopad_create
+  post 'memopad/delete', to: 'memopad#delete', as: :memopad_delete
 
   devise_for :users, :controllers => {
     :omniauth_callbacks => "omniauth_callbacks",

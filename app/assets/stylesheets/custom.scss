@@ -28,10 +28,11 @@ textarea {
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
+  // font-family: 'Meiryo UI', sans-serif;
+  font-family: 'Helvetica Neue', 'Helvetica', 'Hiragino Kaku Gothic ProN', YuGothic, 'Yu Gothic Medium', Meiryo, sans-serif;
 }
 
 h1 {
-  // font-family: 'Meiryo UI', sans-serif;
   font-size: 3em;
   letter-spacing: -2px;
   margin-bottom: 30px;
@@ -50,6 +51,13 @@ h2 {
 p {
   font-size: 1.1em;
   line-height: 1.7em;
+  // font-family: 'Meiryo UI', sans-serif;
+  font-family: 'Helvetica Neue', 'Helvetica', 'Hiragino Kaku Gothic ProN', YuGothic, 'Yu Gothic Medium', Meiryo, sans-serif;
+}
+
+th, td, tr {
+  // font-family: 'Meiryo UI', sans-serif;
+  font-family: 'Helvetica Neue', 'Helvetica', 'Hiragino Kaku Gothic ProN', YuGothic, 'Yu Gothic Medium', Meiryo, sans-serif;
 }
 
 /* header */
@@ -93,7 +101,9 @@ p {
 }
 
 .container {
-  font-family: 'Meiryo UI', sans-serif;
+  // font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', YuGothic, 'Yu Gothic Medium', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+  font-family: 'Helvetica Neue', 'Helvetica', 'Hiragino Kaku Gothic ProN', YuGothic, 'Yu Gothic Medium', Meiryo, sans-serif;
+  // font-family: 'Meiryo UI', sans-serif;
   // padding-top: 60px;
   //margin-top: 10px;
 }
@@ -106,11 +116,11 @@ p {
   margin-top: 35px;
 }
 
-.schdule {
-  margin-left: 20px;
-  margin-right: 20px;
-  padding: 10px 10px;
-}
+// .schdule {
+//   margin-left: 20px;
+//   margin-right: 20px;
+//   padding: 10px 10px;
+// }
 
 // flashのバックカラー
 .notice {
@@ -168,6 +178,11 @@ p {
   #navbar-list-menu {
     display: none;
   }
+  .schdule {
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 10px 10px;
+  }
 }
 
 /*
@@ -208,6 +223,8 @@ p {
 	list-style: none;
 	margin: 0;
 	padding: 0;
+	font-family: 'Helvetica Neue', 'Helvetica', 'Hiragino Kaku Gothic ProN', YuGothic, 'Yu Gothic Medium', Meiryo, sans-serif;
+// 	font-family: 'Meiryo UI', sans-serif;
 }
 
 .nav-sidebar li {
@@ -252,4 +269,65 @@ p {
 .placeholder img {
   display: inline-block;
   border-radius: 50%;
+}
+
+// #accordion .card-header a[data-toggle="collapse"].collapsed::after {
+//   font-family: 'Font Awesome 5 Free';
+//   font-weight: 900;
+//   content: "\f078";/* chevron-down */
+//   float: right;
+// }
+// #accordion .card-header a[data-toggle="collapse"]::after {
+//   font-family: 'Font Awesome 5 Free';
+//   font-weight: 900;
+//   content: "\f077";/* chevron-up */
+//   float: right;
+// }
+
+.arrow{
+  width: 30px;
+  height: 30px;
+  border: 5px solid;
+  border-color: #565656 #565656 transparent transparent;
+  transform: rotate(45deg);
+}
+.arrow1{
+  width: 30px;
+  height: 30px;
+  border: 5px solid;
+  border-color:  transparent transparent #565656 #565656;
+  margin-top: -5px;
+  margin-right: 10px;
+  transform: rotate(-45deg);
+}
+.arrow2{
+  width: 30px;
+  height: 30px;
+  border: 5px solid;
+  border-color: #565656 #565656 transparent transparent;
+  margin-top: 15px;
+  transform: rotate(-45deg);
+}
+.arrow3{
+  width: 30px;
+  height: 30px;
+  border: 5px solid;
+  border-color:  transparent transparent #565656 #565656;
+  transform: rotate(45deg);
+}
+
+/* 日曜日 */
+.fc-sun {
+  color: red;
+  background-color: #fff0f0;
+}
+
+/* 土曜日 */
+.fc-sat {
+  color: blue;
+  background-color: #f0f0ff;
+}
+
+.schdule-new, .todo-new, .memo-new {
+  margin-bottom: -25px;
 }

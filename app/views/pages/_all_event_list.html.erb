@@ -1,0 +1,105 @@
+<!-- 全イベント一覧ページ -->
+<!--<div class="center jumbotron jumbotron-fluid" style="background-color: #FFFFCC;">-->
+  <!--<p id="notice"><%#= notice %></p>-->
+  
+  <!--<h1>全イベント一覧</h1>-->
+  
+  <div class = "ml-4 mt-3 float-left">
+    <div style="margin-top: 4px;">対象期間：</div>
+  </div>
+  <div class = "ml-3 mt-3 mb-3 float-left">
+    <%= date_field_tag :selectYmd, {}, {:value => Date.today, :onChange => "changeMajor()", class: 'select-ymd'} %>
+    ～
+    <%= date_field_tag :selectEndYmd, {}, {:onChange => "changeMajor()", class: 'select-end-ymd'} %>
+    <!--年：-->
+    <%#= select_tag('year_search', options_for_select([['2018','1'], ['2019','2'], ['2020','3'], ['2021','4'], ['2022','5']], \
+        :selected => "#{@year_no.to_i - 17}"), {:onChange => "changeMajor()", class: 'select-year'}) %>
+  </div>
+  
+  <%#= render 'all_event_list_part' %>
+  <div id="classList" style="display: inline;"></div> 
+  
+  <!--<table class="table-bordered table-striped table-condensed bg-white ml-3 mr-3">-->
+  <!--<table class="table table-striped bg-white ml-3 mr-3" style="width: 95%">-->
+    <!--text-nowrap-->
+  <!--  <thead class="thead-color lead">-->
+  <!--    <tr>-->
+  <!--      <th>日時</th>-->
+  <!--      <th>カテゴリ</th>-->
+  <!--      <th>タイトル</th>-->
+  <!--      <th>内容</th>-->
+        <!--<th colspan="3"></th>-->
+  <!--    </tr>-->
+  <!--  </thead>-->
+  
+  <!--  <tbody>-->
+  <!--    <%# @events.each do |event| %>-->
+  <!--      <tr>-->
+  <!--        <td>-->
+            <!-- 開始日時の表示内容を調整 -->
+  <!--          <%# if event.start_date.present? %>-->
+  <!--            <%#= event.start_date.strftime('%Y/%m/%d') %>-->
+  <!--            <%# if event.end_date.present? %>-->
+  <!--              <%# if event.start_date.strftime('%Y/%m/%d') == event.end_date.strftime('%Y/%m/%d') %>-->
+  <!--                <br>-->
+  <!--              <%# end %>-->
+  <!--            <%# else %>-->
+  <!--              <br>-->
+  <!--            <%# end %>-->
+  <!--            <%#= event.start_date.strftime('%H:%M')  %>-->
+  <!--          <%# end %>-->
+            <!-- 終了日時の表示内容を調整 -->
+  <!--          <%# if event.end_date.present? %>-->
+  <!--            <%# if event.start_date.strftime('%Y/%m/%d') == event.end_date.strftime('%Y/%m/%d') %>-->
+  <!--              <%#= " ～ " + event.end_date.strftime('%H:%M') %>-->
+  <!--            <%# else %>-->
+  <!--              <br>-->
+  <!--              <%#= " ～ " + event.end_date.strftime('%Y/%m/%d %H:%M') %>-->
+  <!--            <%# end %>-->
+  <!--          <%# end %>-->
+  <!--        </td>-->
+  <!--        <td><%#= event._category %></td>-->
+  <!--        <td align="left"><%#= event.title %></td>-->
+  <!--        <td align="left"><%#= event.description %></td>-->
+          <!--<td><%#= link_to 'Show', event %></td>-->
+          <!--<td><%#= link_to 'Edit', edit_event_path(event) %></td>-->
+          <!--<td><%#= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+  <!--      </tr>-->
+  <!--    <%# end %>-->
+  <!--  </tbody>-->
+  <!--</table>-->
+
+  <%#= link_to 'New Event', new_event_path %>
+<!--</div>-->
+
+<script>
+  //イベント発生時
+  function changeMajor(){
+    var YMD_select = document.getElementById('selectYmd').value;
+    var YMD_selectEnd = document.getElementById('selectEndYmd').value;
+    // var year_options = document.getElementById('selectDate').options;
+    // var month_select = document.getElementById('month_search');
+    // var month_options = document.getElementById('month_search').options;
+    // var year_value = year_options.item(year_select.selectedIndex).value;
+    // var month_value = month_options.item(month_select.selectedIndex).value;
+
+    $.ajax({
+      url: "all_event_list_class",
+      type: "GET",
+      data: 'start_ymd=' + YMD_select + '&end_ymd=' + YMD_selectEnd
+    })
+    //alert("イベント発生!" + YMD_select);
+  };
+  
+  //リセットボタン押下時
+  // document.getElementById("reset").onclick = function() {
+  //   document.getElementById("year_search").selectedIndex = <%#= @year_no.to_i - 18 %>;
+  //   document.getElementById("month_search").selectedIndex = <%#= @month_no.to_i - 1 %>;
+  //   changeMajor();
+  // };
+
+  //全イベント一覧ページ ロード時
+  document.addEventListener('turbolinks:load', function() {
+    changeMajor();
+  });
+</script>

@@ -5,12 +5,12 @@
         <span aria-hidden="true">&times;</span>
       </button>
 
-      <div class="center jumbotron jumbotron-fluid" style="background-color: #FFFFCC;">
-        <h1>新規イベント登録(<%= @year %>年<%= @month %>月<%= @day %>日)</h1>
-        
+      <!--<h1 class="schdule-new">スケジュール新規登録(<%#= @year %>年<%#= @month %>月<%#= @day %>日)</h1>-->
+      <h2 class="schdule-new">スケジュール新規登録</h2>
+      <div class="center jumbotron jumbotron-fluid" style="background-color: #FFFFCC; padding: 30px 0px;">
         <%= render 'form', {event: @event, year: @year, month: @month, day: @day} %>
         
-        <%= link_to 'Back', events_path %>
+        <%#= link_to 'Back', events_path %>
       </div>
 
     </div>

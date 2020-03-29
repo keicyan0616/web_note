@@ -1,5 +1,5 @@
-<div class="center jumbotron jumbotron-fluid" style="background-color: #FFFFCC;">
-  <h2>Log in</h2>
+<div class="center jumbotron jumbotron-fluid" style="background-color: #FFFFCC; width: 350px; margin: auto; margin-top: 35px;">
+  <h2>ログイン</h2>
   
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="field">
@@ -20,7 +20,7 @@
     <% end %>
   
     <div class="actions">
-      <%= f.submit "ログイン" %>
+      <%= f.submit "ログイン", class: "btn btn-primary" %>
     </div>
   <% end %>
   
