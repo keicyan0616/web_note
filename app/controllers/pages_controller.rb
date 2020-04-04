@@ -42,7 +42,7 @@ class PagesController < ApplicationController
 
     union_sql = Event.select("id", "title", "'スケジュール' AS _category", "description", "start_date", "end_date")
                 .union(
-                  Todolist.select("id", "'' AS title", "'ToDo' AS _category", "todo AS description", "start_date", "'' AS end_date")
+                  Todolist.select("id", "'' AS title", "'ToDo' AS _category", "todo AS description", "start_date", "'9999-12-31 23:59:59' AS end_date")
                     .where('user_id = ?', current_user.id).where('delflag = ?', 0)
                 ).to_sql
                   
