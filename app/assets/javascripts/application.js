@@ -82,10 +82,10 @@ $(function () {
         selectable: true,
         
         eventClick: function(item, jsEvent, view){
-            const itemId = item.id;
+            // const itemId = item.id;
             $.ajax({
             type: 'GET',
-            url: '/events/' + itemId + '/edit'
+            url: '/events/' + item.id + '/edit'
 
           }).done(function (res) {
           }).fail(function (result) {
