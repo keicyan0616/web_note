@@ -5,7 +5,7 @@
         <span aria-hidden="true">&times;</span>
       </button>
 
-      <h1>目標設定</h1>
+      <h1 class="goal-new">目標設定</h1>
       <div class="center jumbotron jumbotron-fluid" style="background-color: #FFFFCC;">
           <%= form_with(model: @goalData, local: true) do |form| %>
             <% if @goalData.errors.any? %>

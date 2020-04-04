@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   resources :events
   root 'pages#index'
+  post '/callback' => 'linebot#callback'
+  # get '/callback' => 'linebot#callback'
 
   # ＜スケジュール関係＞
   #get 'pages/:id/show', to: 'pages#show', as: :schdule_show
