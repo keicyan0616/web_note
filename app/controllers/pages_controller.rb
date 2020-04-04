@@ -46,7 +46,7 @@ class PagesController < ApplicationController
                     .where('user_id = ?', current_user.id).where('delflag = ?', 0)
                 ).to_sql
                   
-    # @events = Event.from("#{union_sql} events").where('events.start_date >= ? and events.start_date <= ?', @start_YMD, @end_YMD).order(:start_date)
-    @events = Event.from("#{union_sql} events").where(start_date: @start_YMD..@end_YMD).order(:start_date)
+    @events = Event.from("#{union_sql} events").where('events.start_date >= ? and events.start_date <= ?', @start_YMD, @end_YMD).order(:start_date)
+    #@events = Event.from("#{union_sql} events").where(start_date: @start_YMD..@end_YMD).order(:start_date)
   end
 end
