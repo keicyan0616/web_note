@@ -82,10 +82,10 @@ $(function () {
         selectable: true,
         
         eventClick: function(item, jsEvent, view){
-            // const itemId = item.id;
+            var id = item.id;
             $.ajax({
             type: 'GET',
-            url: '/events/' + item.id + '/edit'
+            url: '/events/' + id + '/edit'
 
           }).done(function (res) {
           }).fail(function (result) {
@@ -104,9 +104,9 @@ $(function () {
         
         dayClick: function (start, end, jsEvent, view) {
           //クリックした日付情報を取得
-          const year = moment(start).year();
-          const month = moment(start).month()+1; //1月が0のため+1する
-          const day = moment(start).date();
+          var year = moment(start).year();
+          var month = moment(start).month() + 1; //1月が0のため+1する
+          var day = moment(start).date();
           //イベント登録のためnewアクションを発火
           $.ajax({
             type: 'GET',
