@@ -4,7 +4,8 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    # @events = Event.all
+    @events = Event.where(user_id: current_user.id)
   end
 
   # GET /events/1
@@ -29,10 +30,11 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(event_params)
+    @event.user_id = current_user.id
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.html { redirect_to @event, notice: 'イベントを新規登録しました。' }
         format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new }
@@ -46,7 +48,7 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+        format.html { redirect_to @event, notice: 'イベントを更新しました。' }
         format.json { render :show, status: :ok, location: @event }
       else
         format.html { render :edit }
@@ -60,7 +62,7 @@ class EventsController < ApplicationController
   def destroy
     @event.destroy
     respond_to do |format|
-      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
+      format.html { redirect_to events_url, notice: 'イベントを削除しました。' }
       format.json { head :no_content }
     end
   end
@@ -73,6 +75,6 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:title, :description, :start_date, :end_date)
+      params.require(:event).permit(:title, :description, :start_date, :end_date, :user_id)
     end
 end

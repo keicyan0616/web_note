@@ -41,5 +41,8 @@
 
   <div class="actions mt-3">
     <%= form.submit class: "btn btn-primary" %>
+    <% if event.title != nil %>
+      <%= link_to '削除', event, method: :delete, class: "btn ml-3 btn-danger align-left", data: { confirm: 'イベントを削除してもよろしいですか？' } %>
+    <% end %>
   </div>
 <% end %>

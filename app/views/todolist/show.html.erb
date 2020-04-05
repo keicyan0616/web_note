@@ -44,7 +44,12 @@
           <td class="text-left"><%= todolist.todo %></td>
           <!--<td><%#= link_to 'Show', event %></td>-->
           <!--<td><%#= link_to 'Edit', edit_event_path(event) %></td>-->
-          <td><%= link_to '完了', todolist_finish_path(id: todolist.id), class: "btn btn-primary btn-sm", data: { confirm: 'ToDoを完了にしてもよろしいですか？' } %></td>
+          <td>
+            <div class="btn-group">
+              <%= link_to '編集', '#', class: "btn btn-outline-primary btn-sm" %>
+              <%= link_to '完了', todolist_finish_path(id: todolist.id), class: "btn btn-primary btn-sm", data: { confirm: 'ToDoを完了にしてもよろしいですか？' } %>
+            </div>
+          </td>
         </tr>
       <% end %>
     </tbody>

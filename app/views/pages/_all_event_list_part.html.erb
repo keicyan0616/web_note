@@ -29,7 +29,7 @@
               <%= event.start_date.strftime('%H:%M')  %>
             <% end %>
             <!-- 終了日時の表示内容を調整 -->
-            <% if event.end_date.present? %>
+            <% if event.end_date.present? && event.end_date != "9999-12-31 23:59:59" %>
               <% if event.start_date.strftime('%Y/%m/%d') == event.end_date.strftime('%Y/%m/%d') %>
                 <%= " ～ " + event.end_date.strftime('%H:%M') %>
               <% else %>
