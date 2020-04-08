@@ -26,7 +26,9 @@ class LinebotController < ApplicationController
     events = client.parse_events_from(body)
 
     events.each { |event|
-
+      #userId取得
+      userId = event['source']['userId']
+    
       # event.message['text']でLINEで送られてきた文書を取得
       if event.message['text'].include?("好き")
         response = "んほぉぉぉぉぉぉ！すきすきすきすきすきすきすきすきぃぃぃぃぃ"
@@ -36,6 +38,8 @@ class LinebotController < ApplicationController
         response = "おはよう。なんで今まで連絡くれなかったの？"
       elsif event.message['text'].include?("みーくん")
         response = "みーくん！？" * 50
+      elsif event.message['text'].include?("ユーザーID")
+        response = "あなたのユーザーIDは、[" +  userId + "]です。"
       else
         # response = @post.name
         response = "else処理です"
@@ -56,6 +60,22 @@ class LinebotController < ApplicationController
     }
 
     head :ok
+  end
+
+
+
+  def line_test
+    aaa = "k.kawasaki"
+    message = {
+      type: 'text',
+      text: "SmartWebNoteからLINE Botへのテスト送信です！(#{aaa})"
+    }
+    client = Line::Bot::Client.new { |config|
+        config.channel_secret = "6369bc43d02546586a420d568fe55de8"
+        config.channel_token = "6MEEzyQDZZfFMU/oeABzqg1OpDO29JOZc42Mm+i8G8KpzG6D+V8n+yqBzC3JIC34l8vT5+7YP88PsvdwxikPK9l6EFDclWNdsYWHlfMzIXqzYjl6KTJSKbRvdsTnV4qeOW72NC8OLe0zsynTYkwfEwdB04t89/1O/w1cDnyilFU="
+    }
+    response = client.push_message("U213bcd37c159e91d56615331a1446953", message)
+    p response
   end
 
 end

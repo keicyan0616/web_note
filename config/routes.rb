@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :events
   root 'pages#index'
   post '/callback' => 'linebot#callback'
+  patch '/push' => 'linebot#line_test', as: :line_send_message 
   # get '/callback' => 'linebot#callback'
 
   # ＜スケジュール関係＞
