@@ -12,8 +12,8 @@ class LinebotController < ApplicationController
     }
   end
 
+  # イベント発生時
   def callback
-
     # Postモデルの中身をランダムで@postに格納する
     # @post=Post.offset( rand(Post.count) ).first
     body = request.body.read
@@ -29,6 +29,7 @@ class LinebotController < ApplicationController
       #userId取得
       userId = event['source']['userId']
     
+      # if文でresponseに送るメッセージを格納
       # event.message['text']でLINEで送られてきた文書を取得
       if event.message['text'].include?("好き")
         response = "んほぉぉぉぉぉぉ！すきすきすきすきすきすきすきすきぃぃぃぃぃ"
@@ -44,7 +45,6 @@ class LinebotController < ApplicationController
         # response = @post.name
         response = "else処理です"
       end
-      #if文でresponseに送るメッセージを格納
 
       case event
       when Line::Bot::Event::Message
@@ -63,7 +63,7 @@ class LinebotController < ApplicationController
   end
 
 
-
+  # 能動的メッセージ送信
   def line_test
     aaa = "k.kawasaki"
     message = {
