@@ -1,6 +1,7 @@
 class LinebotController < ApplicationController
   
   require 'line/bot'  # gem 'line-bot-api'
+  require "net/http"
 
   # callbackアクションのCSRFトークン認証を無効
   protect_from_forgery :except => [:callback]
@@ -76,6 +77,23 @@ class LinebotController < ApplicationController
     }
     response = client.push_message("U213bcd37c159e91d56615331a1446953", message)
     p response
+  end
+  
+  #LINE連携関係
+  def relation
+    redirect_to 'https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1654058944&redirect_uri=https%3A%2F%2Frocky-oasis-44209.herokuapp.com%2Frelateback&state=12345abcde&scope=openid'
+    # redirect_to 'https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1654058944&redirect_uri=https%3A%2F%2Frocky-oasis-44209.herokuapp.com&state=12345abcde&scope=openid'
+  end
+  
+  def relateback
+    flash[:success] = params[:code]
+    redirect_to goalset_show_path
+    # params = { title: "my task" }
+    # uri = URI.parse("https://api.line.me/oauth2/v2.1/token")
+    # response = Net::HTTP.post_form(uri, params)
+    
+    # response.code # status code
+    # response.body # response body
   end
 
 end

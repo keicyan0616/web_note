@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   resources :events
   root 'pages#index'
   post '/callback' => 'linebot#callback'
+  get '/relation' => 'linebot#relation', as: :line_relation
+  post '/relateback' => 'linebot#relateback', as: :line_relateback 
   patch '/push' => 'linebot#line_test', as: :line_send_message 
   # get '/callback' => 'linebot#callback'
 
