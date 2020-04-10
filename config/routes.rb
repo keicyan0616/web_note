@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root 'pages#index'
   post '/callback' => 'linebot#callback'
   get '/relation' => 'linebot#relation', as: :line_relation
-  post '/relateback' => 'linebot#relateback', as: :line_relateback 
+  get '/relateback' => 'linebot#relateback', as: :line_relateback 
   patch '/push' => 'linebot#line_test', as: :line_send_message 
   # get '/callback' => 'linebot#callback'
 
