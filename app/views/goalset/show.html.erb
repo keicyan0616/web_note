@@ -55,7 +55,7 @@
       <tbody>
           <tr style="background-color: #FFFFCC;">
             <td class="text-left"><%= @goalData.mission %></td>
-            <td class="text-left w-25">設定日：<%= @goalData.updated_at.strftime('%Y-%m-%d') %></td>
+            <td class="text-left w-25">設定日：<%= @goalData.updated_at.strftime('%Y-%m-%d') if @goalData.updated_at.present? %></td>
           </tr>
       </tbody>
     </table>
@@ -64,12 +64,12 @@
     <hr>
     
     <h2 class="set-goal text-left ml-4">＜長期目標＞(5～10年後)</h2>
-    <h3 class="text-left ml-5">達成予定日：<%= @goalData.l_goal_deadline_at.strftime('%Y-%m-%d') %></h3>
+    <h3 class="text-left ml-5">達成予定日：<%= @goalData.l_goal_deadline_at.strftime('%Y-%m-%d') if @goalData.l_goal_deadline_at.present? %></h3>
     <table class="table table-bordered table-condensed bg-white ml-auto mr-auto" style="width: 95%">
       <tbody>
           <tr style="background-color: #FFFFCC;">
             <td class="text-left"><%= @goalData.long_goal %></td>
-            <td class="text-left w-25">設定日：<%= @goalData.updated_at.strftime('%Y-%m-%d') %></td>
+            <td class="text-left w-25">設定日：<%= @goalData.updated_at.strftime('%Y-%m-%d') if @goalData.updated_at.present? %></td>
           </tr>
       </tbody>
     </table>
@@ -77,12 +77,12 @@
     <h2>↓</h2>
   
     <h2 class="set-goal text-left ml-4">＜中期目標＞(2～3年後)</h2>
-    <h3 class="text-left ml-5">達成予定日：<%= @goalData.m_goal_deadline_at.strftime('%Y-%m-%d') %></h3>
+    <h3 class="text-left ml-5">達成予定日：<%= @goalData.m_goal_deadline_at.strftime('%Y-%m-%d') if @goalData.m_goal_deadline_at.present? %></h3>
     <table class="table table-bordered table-condensed bg-white ml-auto mr-auto" style="width: 95%">
       <tbody>
           <tr style="background-color: #FFFFCC;">
             <td class="text-left"><%= @goalData.middle_goal %></td>
-            <td class="text-left w-25">設定日：<%= @goalData.updated_at.strftime('%Y-%m-%d') %></td>
+            <td class="text-left w-25">設定日：<%= @goalData.updated_at.strftime('%Y-%m-%d') if @goalData.updated_at.present? %></td>
           </tr>
       </tbody>
     </table>
@@ -90,12 +90,12 @@
     <h2>↓</h2>
     
     <h2 class="set-goal text-left ml-4">＜短期目標＞(1年後)</h2>
-    <h3 class="text-left ml-5">達成予定日：<%= @goalData.s_goal_deadline_at.strftime('%Y-%m-%d') %></h3>
+    <h3 class="text-left ml-5">達成予定日：<%= @goalData.s_goal_deadline_at.strftime('%Y-%m-%d') if @goalData.s_goal_deadline_at.present? %></h3>
     <table class="table table-bordered table-condensed bg-white ml-auto mr-auto" style="width: 95%">
       <tbody>
           <tr style="background-color: #FFFFCC;">
             <td class="text-left"><%= @goalData.short_goal %></td>
-            <td class="text-left w-25">設定日：<%= @goalData.updated_at.strftime('%Y-%m-%d') %></td>
+            <td class="text-left w-25">設定日：<%= @goalData.updated_at.strftime('%Y-%m-%d') if @goalData.updated_at.present? %></td>
           </tr>
       </tbody>
     </table>
