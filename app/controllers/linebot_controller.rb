@@ -86,8 +86,8 @@ class LinebotController < ApplicationController
   end
   
   def relateback
-    flash[:success] = params[:code]
-    redirect_to goalset_show_path
+    @code = params[:code]
+    redirect_to goalset_show_path(code: @code)
     # params = { title: "my task" }
     # uri = URI.parse("https://api.line.me/oauth2/v2.1/token")
     # response = Net::HTTP.post_form(uri, params)
