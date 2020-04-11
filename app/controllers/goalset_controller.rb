@@ -7,6 +7,7 @@ class GoalsetController < ApplicationController
     if !@goalData.present?
       @goalData = Goalset.new
     end
+    @showFlag = 1
   end
   
   def edit
