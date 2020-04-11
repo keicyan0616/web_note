@@ -98,7 +98,7 @@ class LinebotController < ApplicationController
 
     req = Net::HTTP::Post.new(uri.path)
     req["Content-Type"] = 'application/x-www-form-urlencoded'
-    req.set_form_data({'grant_type' => 'authorization_code', 'code' => @code, 'redirect_uri' => goalset_show_path(code: 2), 'client_id' => '1654058944', client_secret => '15b56c13ec0fa190259ae9d22b393aae'})
+    req.set_form_data({'grant_type' => 'authorization_code', 'code' => @code, 'redirect_uri' => goalset_show_path(code: 2), 'client_id' => '1654058944', 'client_secret' => '15b56c13ec0fa190259ae9d22b393aae'})
 
     res = http.request(req)
     result = ActiveSupport::JSON.decode(res.body)
