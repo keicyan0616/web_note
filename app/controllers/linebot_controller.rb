@@ -87,7 +87,6 @@ class LinebotController < ApplicationController
   
   def relateback
     @code = params[:code]
-    @showFlag = 0
     redirect_to goalset_show_path(code: @code)
     # params = { title: "my task" }
     # uri = URI.parse("https://api.line.me/oauth2/v2.1/token")

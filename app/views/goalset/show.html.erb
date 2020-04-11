@@ -58,11 +58,9 @@
             <td class="text-left"><%= @goalData.mission %></td>
             <td class="text-left w-25">設定日：<%= @goalData.updated_at.strftime('%Y-%m-%d') if @goalData.updated_at.present? %></td>
           </tr>
-          <% if @showFlag == 0 %>
-            <tr>
-              <%= code if code.present? %>
-            </tr>
-          <% end %>
+          <tr>
+            <td><%= params[:code] %></td>
+          </tr>
       </tbody>
     </table>
     
