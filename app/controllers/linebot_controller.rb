@@ -105,7 +105,7 @@ class LinebotController < ApplicationController
     
     @code = result["access_token"]
     
-    redirect_to goalset_show_path(code: @code)
+    # redirect_to goalset_show_path(code: @code)
     
     
     # params = { title: "my task" }
