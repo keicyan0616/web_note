@@ -1,7 +1,7 @@
 class LinebotController < ApplicationController
   
   require 'line/bot'  # gem 'line-bot-api'
-  require "net/http"
+  require "net/https"
 
   # callbackアクションのCSRFトークン認証を無効
   protect_from_forgery :except => [:callback]
@@ -87,7 +87,27 @@ class LinebotController < ApplicationController
   
   def relateback
     @code = params[:code]
+    
+    
+    
+    uri = URI.parse("https://api.line.me/oauth2/v2.1/token")
+    http = Net::HTTP.new(uri.host, uri.port)
+
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+    req = Net::HTTP::Post.new(uri.path)
+    req["Content-Type"] = 'application/x-www-form-urlencoded'
+    req.set_form_data({'grant_type' => 'authorization_code', 'code' => @code, 'redirect_uri' => goalset_show_path(code: 2), 'client_id' => '1654058944', client_secret => '15b56c13ec0fa190259ae9d22b393aae'})
+
+    res = http.request(req)
+    result = ActiveSupport::JSON.decode(res.body)
+    
+    @code = result["access_token"]
+    
     redirect_to goalset_show_path(code: @code)
+    
+    
     # params = { title: "my task" }
     # uri = URI.parse("https://api.line.me/oauth2/v2.1/token")
     # response = Net::HTTP.post_form(uri, params)
