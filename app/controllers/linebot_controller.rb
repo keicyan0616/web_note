@@ -96,11 +96,16 @@ class LinebotController < ApplicationController
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-    req = Net::HTTP::Post.new(uri.path)
-    req["Content-Type"] = 'application/x-www-form-urlencoded'
+    # req = Net::HTTP::Post.new(uri.path)
+    req = Net::HTTP::Post.new(uri.request_uri, initheader = {'Content-Type' =>'application/x-www-form-urlencoded'})
+    # req["Content-Type"] = 'application/x-www-form-urlencoded'
     req.set_form_data({'grant_type' => 'authorization_code', 'code' => @code, 'redirect_uri' => goalset_show_path(code: 2), 'client_id' => '1654058944', 'client_secret' => '15b56c13ec0fa190259ae9d22b393aae'})
+    # req.body = {name: "web", config: {url: "hogehogehogehoge"}}.to_json
 
     res = http.request(req)
+    
+    http.set_debug_output $stderr
+    
     result = ActiveSupport::JSON.decode(res.body)
     
     @code = result["access_token"]
