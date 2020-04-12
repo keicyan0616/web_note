@@ -110,7 +110,10 @@ class LinebotController < ApplicationController
     
     result = ActiveSupport::JSON.decode(res.body)
     
-    @code2 = result["access_token"]
+    @acsToken = result["access_token"]
+    @expIn = result["expires_in"]
+    @scope = result["scope"]
+    
     
     # redirect_to goalset_show_path(code: 3)
     
