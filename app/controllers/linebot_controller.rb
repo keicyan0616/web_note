@@ -2,6 +2,7 @@ class LinebotController < ApplicationController
   
   require 'line/bot'  # gem 'line-bot-api'
   require "net/https"
+  require 'uri'
 
   # callbackアクションのCSRFトークン認証を無効
   protect_from_forgery :except => [:callback]
@@ -99,7 +100,8 @@ class LinebotController < ApplicationController
     # req = Net::HTTP::Post.new(uri.path)
     req = Net::HTTP::Post.new(uri.request_uri, initheader = {'Content-Type' =>'application/x-www-form-urlencoded'})
     # req["Content-Type"] = 'application/x-www-form-urlencoded'
-    req.set_form_data({'grant_type' => 'authorization_code', 'code' => @code, 'redirect_uri' => goalset_show_path(code: 2), 'client_id' => '1654058944', 'client_secret' => '15b56c13ec0fa190259ae9d22b393aae'})
+    req.set_form_data({'grant_type' => 'authorization_code', 'code' => @code, 'redirect_uri' => 'https://rocky-oasis-44209.herokuapp.com/relateback', 'client_id' => '1654058944', 'client_secret' => '15b56c13ec0fa190259ae9d22b393aae'})
+    # req.set_form_data({'grant_type' => 'authorization_code', 'code' => @code, 'redirect_uri' => goalset_show_path(code: 2), 'client_id' => '1654058944', 'client_secret' => '15b56c13ec0fa190259ae9d22b393aae'})
     # req.body = {name: "web", config: {url: "hogehogehogehoge"}}.to_json
 
     res = http.request(req)
@@ -110,7 +112,7 @@ class LinebotController < ApplicationController
     
     @code = result["access_token"]
     
-    redirect_to goalset_show_path(code: 3)
+    # redirect_to goalset_show_path(code: 3)
     
     
     # params = { title: "my task" }
