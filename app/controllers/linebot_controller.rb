@@ -78,6 +78,7 @@ class LinebotController < ApplicationController
     }
     response = client.push_message("U213bcd37c159e91d56615331a1446953", message)
     p response
+    redirect_to goalset_show_path
   end
   
   #LINE連携関係
@@ -86,11 +87,13 @@ class LinebotController < ApplicationController
     # redirect_to 'https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1654058944&redirect_uri=https%3A%2F%2Frocky-oasis-44209.herokuapp.com&state=12345abcde&scope=openid'
   end
   
+  #LINE連携（コールバック（レスポンス）処理）
   def relateback
+    # 認可コード取得
     @code = params[:code]
     
-    
-    
+
+    #アクセストークン取得（POSTリクエスト（https））
     uri = URI.parse("https://api.line.me/oauth2/v2.1/token")
     http = Net::HTTP.new(uri.host, uri.port)
 
@@ -98,15 +101,16 @@ class LinebotController < ApplicationController
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
     # req = Net::HTTP::Post.new(uri.path)
-    req = Net::HTTP::Post.new(uri.request_uri, initheader = {'Content-Type' =>'application/x-www-form-urlencoded'})
     # req["Content-Type"] = 'application/x-www-form-urlencoded'
+    req = Net::HTTP::Post.new(uri.request_uri, initheader = {'Content-Type' =>'application/x-www-form-urlencoded'})
+
     req.set_form_data({'grant_type' => 'authorization_code', 'code' => @code, 'redirect_uri' => 'https://rocky-oasis-44209.herokuapp.com/relateback', 'client_id' => '1654058944', 'client_secret' => '15b56c13ec0fa190259ae9d22b393aae'})
     # req.set_form_data({'grant_type' => 'authorization_code', 'code' => @code, 'redirect_uri' => goalset_show_path(code: 2), 'client_id' => '1654058944', 'client_secret' => '15b56c13ec0fa190259ae9d22b393aae'})
     # req.body = {name: "web", config: {url: "hogehogehogehoge"}}.to_json
 
     res = http.request(req)
     
-    http.set_debug_output $stderr
+    # http.set_debug_output $stderr
     
     result = ActiveSupport::JSON.decode(res.body)
     
@@ -115,8 +119,9 @@ class LinebotController < ApplicationController
     @scope = result["scope"]
     
     
-    # redirect_to goalset_show_path(code: 3)
     
+    
+    # redirect_to goalset_show_path(code: 3)
     
     # params = { title: "my task" }
     # uri = URI.parse("https://api.line.me/oauth2/v2.1/token")
