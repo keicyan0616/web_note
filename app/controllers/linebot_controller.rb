@@ -116,6 +116,7 @@ class LinebotController < ApplicationController
     
     @acsToken = result["access_token"]
     @expIn = result["expires_in"]
+    @idToken = result["id_token"]
     @scope = result["scope"]
     
     
