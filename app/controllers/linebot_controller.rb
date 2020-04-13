@@ -83,7 +83,7 @@ class LinebotController < ApplicationController
   
   #LINE連携関係
   def relation
-    redirect_to 'https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1654058944&redirect_uri=https%3A%2F%2Frocky-oasis-44209.herokuapp.com%2Frelateback&state=12345abcde&scope=openid'
+    redirect_to 'https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1654058944&redirect_uri=https%3A%2F%2Frocky-oasis-44209.herokuapp.com%2Frelateback&state=12345abcde&scope=profile%20openid'
     # redirect_to 'https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1654058944&redirect_uri=https%3A%2F%2Frocky-oasis-44209.herokuapp.com&state=12345abcde&scope=openid'
   end
   
@@ -145,6 +145,41 @@ class LinebotController < ApplicationController
     # response.code # status code
     # response.body # response body
   end
+
+  # def relateback
+  #   #アクセストークンからプロフィール情報（UserID）を取得
+  #   uri = URI.parse("https://api.line.me/oauth2/v2.1/verify")
+  #   http = Net::HTTP.new(uri.host, uri.port)
+
+  #   http.use_ssl = true
+  #   http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+  #   req = Net::HTTP::Post.new(uri.request_uri)
+  #   req.set_form_data({'id_token' => 'eyJhbGciOiJIUzI1NiJ9.BQVRHbNGvtml0k5okx2jPQTB-IdMTEkslv-nu-yX9bOWccnmOxvsM9Z44Y9CpO_AtoS9vFXQY9vYnR6kRGgh8NHXeZfMDb28Xq3OZmaMsjqLOktFsDNtB_wduyEtkqkdTQEvihZ6kvJheSXMymOcvVbNRcD2FluXxEGFoLxjoTE.XjH37sQLirpwRbfrXCNsnXMYjFlfc_EiQbfy9ZkkkIQ', 'client_id' => '1654058944'})
+ 
+  #   res = http.request(req)
+  #   result = ActiveSupport::JSON.decode(res.body)
+
+  #   @userId = result["sub"]
+  #   @displayName = result["name"]
+  # end
+  
+  # def relateback
+  #   #アクセストークンからプロフィール情報（UserID）を取得
+  #   uri = URI.parse("https://api.line.me/v2/profile")
+  #   http = Net::HTTP.new(uri.host, uri.port)
+
+  #   http.use_ssl = true
+  #   http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+  #   req = Net::HTTP::Get.new(uri.request_uri, initheader = {'Authorization' => 'Bearer {eyJhbGciOiJIUzI1NiJ9.BQVRHbNGvtml0k5okx2jPQTB-IdMTEkslv-nu-yX9bOWccnmOxvsM9Z44Y9CpO_AtoS9vFXQY9vYnR6kRGgh8NHXeZfMDb28Xq3OZmaMsjqLOktFsDNtB_wduyEtkqkdTQEvihZ6kvJheSXMymOcvVbNRcD2FluXxEGFoLxjoTE.XjH37sQLirpwRbfrXCNsnXMYjFlfc_EiQbfy9ZkkkIQ}'})
+  #   res = http.request(req)
+  #   result = ActiveSupport::JSON.decode(res.body)
+
+  #   @userId = result["userId"]
+  #   @displayName = result["displayName"]
+  # end
+
 
 end
 
