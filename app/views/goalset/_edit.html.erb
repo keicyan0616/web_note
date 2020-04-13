@@ -28,7 +28,7 @@
             <div class="field mt-3">
               <%= form.label :'達成予定日(長期):' %>
               <%# if year == nil || month == nil || day == nil %>
-                <%= form.datetime_select :l_goal_deadline_at, {:use_month_numbers => true}, id: :goal_l_deadline %>
+                <%= form.datetime_select :l_goal_deadline_at, {:use_month_numbers => true, :start_year => Time.now.year, :end_year => Time.now.year + 10}, id: :goal_l_deadline %>
               <%# else %>
                 <%#= form.datetime_select :start_date, {default: Date.new(year.to_i, month.to_i, day.to_i)}, id: :event_start_date %>
               <%# end %>
@@ -41,7 +41,7 @@
             <div class="field">
               <%= form.label :'達成予定日(中期):' %>
               <%# if year == nil || month == nil || day == nil %>
-                <%= form.datetime_select :m_goal_deadline_at, {:use_month_numbers => true}, id: :goal_m_deadline %>
+                <%= form.datetime_select :m_goal_deadline_at, {:use_month_numbers => true, :start_year => Time.now.year, :end_year => Time.now.year + 10}, id: :goal_m_deadline %>
               <%# else %>
                 <%#= form.datetime_select :start_date, {default: Date.new(year.to_i, month.to_i, day.to_i)}, id: :event_start_date %>
               <%# end %>
@@ -54,7 +54,7 @@
             <div class="field">
               <%= form.label :'達成予定日(短期):' %>
               <%# if year == nil || month == nil || day == nil %>
-                <%= form.datetime_select :s_goal_deadline_at, {:use_month_numbers => true}, id: :goal_s_deadline %>
+                <%= form.datetime_select :s_goal_deadline_at, {:use_month_numbers => true, :start_year => Time.now.year, :end_year => Time.now.year + 10}, id: :goal_s_deadline %>
               <%# else %>
                 <%#= form.datetime_select :start_date, {default: Date.new(year.to_i, month.to_i, day.to_i)}, id: :event_start_date %>
               <%# end %>

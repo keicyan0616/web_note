@@ -18,12 +18,16 @@ class GoalsetController < ApplicationController
   end
   
   def update
-    @goalData = Goalset.update(goalset_params)
+    @goalData = Goalset.find_by(user_id: current_user.id)
+    @goalData.update(goalset_params)
     redirect_to goalset_show_path
   end
   
   def create
-    
+    @goalData = Goalset.new(goalset_params)
+    @goalData.user_id = current_user.id
+    @goalData.save
+    redirect_to goalset_show_path
   end
 
 private
