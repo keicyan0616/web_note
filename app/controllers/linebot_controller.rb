@@ -118,8 +118,22 @@ class LinebotController < ApplicationController
     @expIn = result["expires_in"]
     @idToken = result["id_token"]
     @scope = result["scope"]
+
     
-    
+    #アクセストークンからプロフィール情報（UserID）を取得
+    uri = URI.parse("https://api.line.me/v2/profile")
+    http = Net::HTTP.new(uri.host, uri.port)
+
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+    req = Net::HTTP::Get.new(uri.request_uri, initheader = {'Authorization' => "Bearer {#{@acsToken}}"})
+    res = http.request(req)
+
+    result = ActiveSupport::JSON.decode(res.body)
+
+    @userId = result["userId"]
+    @displayName = result["displayName"]
     
     
     # redirect_to goalset_show_path(code: 3)
