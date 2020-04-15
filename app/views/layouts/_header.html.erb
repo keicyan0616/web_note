@@ -28,9 +28,15 @@
               <%= link_to edit_user_registration_path, class: "nav-link" do %>
                 <%= image_tag('icon_profile.jpg', :size => '25x25', class: "mr-1") %>プロフィール変更
               <% end %>
-              </strong>
+            </strong>
           </li>
-          <li class="nav-item px-2"><strong><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "nav-link" %></strong></li>
+          <li class="nav-item px-2">
+            <strong>
+              <%= link_to destroy_user_session_path, method: :delete, class: "nav-link" do %>
+                <%= image_tag('icon_logout.jpg', :size => '27x24', class: "mr-1") %>ログアウト
+              <% end %>
+            </strong>
+          </li>
         <% else %>
           <li class="nav-item px-2"><strong><%= link_to 'サインアップ', new_user_registration_path, class: "nav-link" %></strong></li>
           <li class="nav-item px-2"><strong><%= link_to 'ログイン', new_user_session_path, class: "nav-link" %></strong></li>

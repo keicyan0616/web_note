@@ -135,33 +135,35 @@ class LinebotController < ApplicationController
 
     @userId = result["sub"]
     @displayName = result["name"]
-
-    
-    # #アクセストークンからプロフィール情報（UserID）を取得
-    # uri = URI.parse("https://api.line.me/v2/profile")
-    # http = Net::HTTP.new(uri.host, uri.port)
-
-    # http.use_ssl = true
-    # http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-
-    # req = Net::HTTP::Get.new(uri.request_uri, initheader = {'Authorization' => "Bearer {#{@acsToken}}"})
-    # res = http.request(req)
-
-    # result = ActiveSupport::JSON.decode(res.body)
-
-    # @userId = result["userId"]
-    # @displayName = result["displayName"]
-    
-    
-    # redirect_to goalset_show_path(code: 3)
-    
-    # params = { title: "my task" }
-    # uri = URI.parse("https://api.line.me/oauth2/v2.1/token")
-    # response = Net::HTTP.post_form(uri, params)
-    
-    # response.code # status code
-    # response.body # response body
   end
+
+end
+
+  # #アクセストークンからプロフィール情報（UserID）を取得
+  # uri = URI.parse("https://api.line.me/v2/profile")
+  # http = Net::HTTP.new(uri.host, uri.port)
+
+  # http.use_ssl = true
+  # http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+  # req = Net::HTTP::Get.new(uri.request_uri, initheader = {'Authorization' => "Bearer {#{@acsToken}}"})
+  # res = http.request(req)
+
+  # result = ActiveSupport::JSON.decode(res.body)
+
+  # @userId = result["userId"]
+  # @displayName = result["displayName"]
+  
+  
+  # redirect_to goalset_show_path(code: 3)
+  
+  # params = { title: "my task" }
+  # uri = URI.parse("https://api.line.me/oauth2/v2.1/token")
+  # response = Net::HTTP.post_form(uri, params)
+  
+  # response.code # status code
+  # response.body # response body
+
 
   # def relateback
   #   #アクセストークンからプロフィール情報（UserID）を取得
@@ -196,9 +198,6 @@ class LinebotController < ApplicationController
   #   @userId = result["userId"]
   #   @displayName = result["displayName"]
   # end
-
-
-end
 
 # class LinebotController < ApplicationController
   
