@@ -25,11 +25,11 @@ module ApplicationHelper
     items = [
       {:text => 'スケジュール',       :path => schdule_show_path,     :icon => 'icon_calender01.jpg' },
       {:text => '(イベントリスト)',   :path => events_path,           :icon => ''},
-      {:text => 'ToDoリスト',         :path => todolist_show_path,    :icon => ''},
-      {:text => '目標設定',           :path => goalset_show_path,     :icon => ''},
+      {:text => 'ToDoリスト',         :path => todolist_show_path,    :icon => 'icon_todolist.jpg'},
+      {:text => '目標設定',           :path => goalset_show_path,     :icon => 'icon_goal.jpg'},
       {:text => 'メモ帳',             :path => memopad_show_path,     :icon => ''},
       {:text => 'PDCA入力',           :path => '#',                   :icon => ''},
-      {:text => 'プロフィール変更',   :path => edit_user_registration_path, :icon => ''}
+      {:text => 'プロフィール変更',   :path => edit_user_registration_path, :icon => 'icon_profile02.jpg'}
     ]
 
     html = ''
