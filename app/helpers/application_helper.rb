@@ -29,7 +29,7 @@ module ApplicationHelper
       {:text => '目標設定',           :path => goalset_show_path,     :icon => ''},
       {:text => 'メモ帳',             :path => memopad_show_path,     :icon => ''},
       {:text => 'PDCA入力',           :path => '#',                   :icon => ''},
-      {:text => 'プロフィール変更',   :path => edit_user_registration_path, :icon => 'icon_profile02.jpg'}
+      {:text => 'プロフィール変更',   :path => edit_user_registration_path, :icon => ''}
     ]
 
     html = ''
