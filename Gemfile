@@ -22,7 +22,7 @@ gem 'fullcalendar-rails'
 gem 'jquery-turbolinks'
 gem 'jquery-ui-rails'
 # gem 'bootstrap-sass'
-# gem 'whenever', require: false
+gem 'whenever', require: false
 gem 'line-bot-api'
 gem 'dotenv-rails'
 
