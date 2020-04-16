@@ -97,7 +97,12 @@ th, td, tr {
   background-image: image-url("notebook.jpg");
   // background-image: url("<%= asset-path("notebook.jpg") %>")
   // height: 800px;
+  // background-size:contain;
   background-size:cover;
+}
+
+.top2{
+  background-color: #FFFFCC;
 }
 
 .container {

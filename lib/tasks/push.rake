@@ -1,8 +1,9 @@
 # namespace :push_line do 
 #   desc "push_line"
+  require "date"
   
   task :push_line_message => :environment do
-    aaa = "k.kawasaki(from Task)"
+    aaa = "k.kawasaki(#{Date.today})"
     message = {
       type: 'text',
       text: "SmartWebNoteからLINE Botへの自動テスト送信です！(#{aaa})"
