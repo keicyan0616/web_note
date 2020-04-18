@@ -21,7 +21,7 @@ module ApplicationHelper
   end
 
   # サイドメニューの項目を出力する
-  def sidebar_list_items
+  def sidebar_list_items(type)
     items = [
       {:text => 'スケジュール',       :path => schdule_show_path,     :icon => 'icon_calender01.jpg' },
       {:text => '(イベントリスト)',   :path => events_path,           :icon => ''},
@@ -31,13 +31,19 @@ module ApplicationHelper
       {:text => 'PDCA入力',           :path => '#',                   :icon => ''},
       {:text => 'プロフィール変更',   :path => edit_user_registration_path, :icon => 'icon_profile02.jpg'}
     ]
-
+    
+    if type == "sumaho"
+      setClass = "btn btn-outline-light bt-sm"
+    else
+      setClass = ""
+    end
+    
     html = ''
     items.each do |item|
       text = item[:text]
       path = item[:path]
       icon = item[:icon]
-      html = html + %Q(<li#{sidebar_activate(path)}><a href="#{path}">) + image_tag(icon, :size => '21x21', class: "mr-2") + %Q(#{text}</a></li>)
+      html = html + %Q(<li#{sidebar_activate(path)}><a href="#{path}" class="#{setClass}">) + image_tag(icon, :size => '21x21', class: "mr-2") + %Q(#{text}</a></li>)
     end
 
     raw(html)

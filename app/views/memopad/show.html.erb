@@ -26,19 +26,19 @@
 </head>
 
 <!-- メモ帳 表示ページ -->
-<div class="center jumbotron" style="background-color: #FFFFCC; padding: 5px 20px;">
+<div class="center jumbotron border" style="background-color: #FFFFFF; padding: 5px 20px;">
   <!--<p id="notice"><%#= notice %></p>-->
   
   <h1 class="memo-title">メモ帳</h1>
 
   <%= form_with(model: @memoData, url: memopad_delete_path, local: true) do |f| %>
     <div class="text-left">
-      <%= link_to 'メモ追加', memopad_new_path, remote: true, class: "btn ml-4 mb-1 mt-2 btn-primary btn-sm" %>
-      <%= f.submit "メモ削除", class: "btn btn-primary ml-2 mb-1 mt-2 btn-sm" %> <!--, data: { confirm: 'メモを削除してもよろしいですか？' } %>-->
+      <%= link_to 'メモ追加', memopad_new_path, remote: true, class: "btn ml-4 mb-1 mt-2 btn-outline-primary btn-sm" %>
+      <%= f.submit "メモ削除", class: "btn btn-outline-primary ml-2 mb-1 mt-2 btn-sm" %> <!--, data: { confirm: 'メモを削除してもよろしいですか？' } %>-->
     </div>
     
     <% @memoData.each do |memolist| %>
-      <div class="center jumbotron jumbotron-fluid" style="background-color: white; margin: 25px; padding: 5px 0px 1px 0px;">
+      <div class="center jumbotron border" style="background-color: #FFFFCC; margin: 25px; padding: 5px 0px 1px 0px;">
         <div class="panel-group">
           <div class="panel panel-default">
             <div class="panel-heading">
@@ -57,9 +57,11 @@
               </h3>
             </div>
             <div id="collapse<%= memolist.orderno %>" class="panel-collapse collapse">
-              <div class="panel-body text-left ml-4 mt-3 mb-3">
-                <hr>
-                <h4><%= memolist.memo %></h4>
+              <div class="panel-body text-left mt-3 mb-3">
+                <!--<hr class="mr-3">-->
+                <div class="jumbotron jumbotron-fluid border" style="background-color: #FFFFFF; margin: 25px; padding: 20px 20px;">
+                  <h4><%= memolist.memo %></h4>
+                </div>
               </div>
             </div>
           </div>

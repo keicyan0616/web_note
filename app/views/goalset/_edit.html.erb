@@ -1,12 +1,12 @@
 <div class="modal-dialog modal-lg modal-dialog-center">
   <div class="modal-content">
-    <div class="modal-body">
+    <div class="modal-body" style="background-color: #FFFFCC;">
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
 
       <h1 class="goal-new">目標設定</h1>
-      <div class="center jumbotron jumbotron-fluid" style="background-color: #FFFFCC;">
+      <div class="center jumbotron jumbotron-fluid border" style="background-color: #FFFFFF;">
           <%= form_with(model: @goalData, local: true) do |form| %>
             <% if @goalData.errors.any? %>
               <div id="error_explanation">
@@ -65,7 +65,7 @@
             </div>
 
             <div class="actions">
-              <%= form.submit class: "btn btn-primary btn-sm" %>
+              <%= form.submit class: "btn btn-primary" %>
             </div>
           <% end %>
 
