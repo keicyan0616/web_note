@@ -73,6 +73,20 @@ th, td, tr {
   font-weight: bold;
 }
 
+@media (max-width: 370px) {
+  #logo {
+    font-size: 1.6em;
+    padding-top: 10px;
+  }
+}
+@media (max-width: 345px) {
+  #logo {
+    font-size: 1.3em;
+    padding-top: 17px;
+  }
+}
+
+
 #logo:hover {
   color: #fff;
   text-decoration: none;
@@ -102,7 +116,7 @@ th, td, tr {
 }
 
 .top2{
-  background-color: #EEEEEE;
+  background-color: #FFFFFF;
 }
 
 .container {
@@ -335,4 +349,51 @@ th, td, tr {
 
 .schdule-new, .todo-new, .memo-new, .goal-new {
   margin-bottom: -25px;
+}
+
+// jumbotronレスポンシブ
+@media (min-width: 10px) {
+  .jumbotron-extend {
+    position: relative;
+    left: -7%;
+    width: 114%;
+  }
+}
+@media (min-width: 415px) {
+  .jumbotron-extend {
+    position: relative;
+    left:  0%;
+    width: 100%;
+  }
+}
+@media (min-width: 576px) {
+  .jumbotron-extend {
+    position: relative;
+    left:  -2%;
+    width: 100%;
+  }
+}
+@media (min-width: 1480px) {
+  .jumbotron-extend {
+    position: relative;
+    left: -5%;
+    width: 100%;
+  }
+}
+@media (min-width: 1555px) {
+  .jumbotron-extend {
+    position: relative;
+    left: -7%;
+    width: 100%;
+  }
+}
+@media (min-width: 1625px) {
+  .jumbotron-extend {
+    position: relative;
+    left: -10%;
+    width: 100%;
+  }
+}
+.jumbotron-schdule {
+  margin-top: -15px;
 }

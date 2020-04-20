@@ -21,7 +21,6 @@
 //= require tempusdominus-bootstrap-4.js
 //= require popper
 //= require fullcalendar
-//= require jquery
 //= require jquery-ui
 //= require_tree .
 
