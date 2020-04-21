@@ -27,7 +27,7 @@
 </head>
 
 <!-- 目標設定 表示ページ -->
-<div class="center jumbotron jumbotron-extend border" style="background-color: #FFFFFF; padding: 0px 20px;">
+<div class="center jumbotron jumbotron-extend border" style="background-color: #FFFFFF; padding: 0px 20px; margin-top: 15px;">
   <p id="notice"><%= notice %></p>
 
   <%= form_with(model: @goalData, url: line_send_message_path, local: true) do |form| %>
@@ -37,7 +37,7 @@
       <%#= link_to '目標登録', goalset_edit_path, class: "btn ml-4 mb-3 btn-primary" %>
       <%#= link_to '目標登録', goalset_edit_path, remote: true, class: "btn mt-2 ml-4 mb-3 btn-sm btn-outline-primary" %>
       <%= link_to '目標登録', goalset_edit_path, remote: true, class: "btn mt-2 ml-4 mb-4 btn-outline-primary btn-sm" %>
-      <%= link_to 'LINE連携', line_relation_path, class: "btn mt-2 ml-2 mb-4 btn-outline-primary btn-sm" %>
+      <%#= link_to 'LINE連携', line_relation_path, class: "btn mt-2 ml-2 mb-4 btn-outline-primary btn-sm" %>
       <%= form.submit 'LINEメッセージ送信',class: "btn mt-2 ml-2 mb-4 btn-outline-primary btn-sm" %>
       <%#= link_to 'LINE送信', line_send_message_path, class: "btn mt-2 ml-2 mb-4 btn-outline-primary btn-sm" %>
     </div>

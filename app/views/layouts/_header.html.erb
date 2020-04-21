@@ -3,7 +3,7 @@
     <% if user_signed_in? %>
       <%= link_to "Smart Web Notebook", schdule_show_path, id: "logo" %>
     <% else %>
-      <%= link_to "Smart Web Notebook", '/', id: "logo" %>
+      <%= link_to "Smart Web Notebook", new_user_session_path, id: "logo" %>
     <% end %>
 
     <nav>
@@ -35,6 +35,11 @@
             
             <ul class="dropdown-menu dropdown-menu-right">
               <li>
+                <%= link_to line_setnotice_path, :style => "color: black; text-decoration: none;"  do %>
+                    <%= image_tag('icon_profile.jpg', :size => '20x20', class: "ml-1 mb-2") %>LINE通知設定
+                <% end %>
+              </li>
+              <li>
                 <!--<strong>-->
                   <%= link_to edit_user_registration_path, :style => "color: black; text-decoration: none;"  do %>
                     <%= image_tag('icon_profile.jpg', :size => '20x20', class: "ml-1 mb-2") %>プロフィール変更
@@ -56,8 +61,8 @@
 
 
         <% else %>
-          <li class="nav-item px-2"><strong><%= link_to 'サインアップ', new_user_registration_path, class: "nav-link" %></strong></li>
-          <li class="nav-item px-2"><strong><%= link_to 'ログイン', new_user_session_path, class: "nav-link" %></strong></li>
+          <!--<li class="nav-item px-2"><strong><%#= link_to 'サインアップ', new_user_registration_path, class: "nav-link" %></strong></li>-->
+          <!--<li class="nav-item px-2"><strong><%= link_to 'ログイン', new_user_session_path, class: "nav-link" %></strong></li>-->
         <% end %>
       </ul>
     </nav>

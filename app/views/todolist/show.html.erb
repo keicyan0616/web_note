@@ -16,18 +16,18 @@
 </head>
 
 <!-- ToDoリスト 表示ページ -->
-<div class="center jumbotron jumbotron-extend border" style="background-color: white; padding: 0px 20px 20px;">
+<div class="center jumbotron jumbotron-extend border" style="background-color: white; padding: 0px 20px 20px; margin-top: 15px;">
   <p id="notice"><%= notice %></p>
   
-  <h1 class="title-bar">ToDoリスト</h1>
+  <h2 class="title-bar">ToDoリスト</h2>
   
-  <div class="text-left">
-    <%= link_to 'ToDo登録', todolist_new_path, remote: true, class: "btn btn-outline-primary btn-sm ml-4 mb-3 mt-2" %>
+  <div class="text-left" style="margin-top: 40px;">
+    <%= link_to 'ToDo登録', todolist_new_path, remote: true, class: "btn btn-outline-primary btn-sm ml-4 mb-3" %>
   </div>
-  <table class="table table-striped table-condensed bg-white ml-auto mr-auto" style="width: 95%;">
+  <table class="table table-striped table-condensed bg-white ml-auto mr-auto" style="width: 98%;">
     <thead>
       <tr style="background-color: #FFFFCC;">
-        <th style="width: 100px;">日付</th>
+        <th style="width: 80px;">日付</th>
         <th style="width: 80px;">時間</th>
         <th class="text-left">ToDo</th>
         <th style="width: 80px;"></th>
@@ -45,9 +45,9 @@
           <!--<td><%#= link_to 'Show', event %></td>-->
           <!--<td><%#= link_to 'Edit', edit_event_path(event) %></td>-->
           <td>
-            <div class="btn-group">
-              <%= link_to '編集', '#', class: "btn btn-outline-primary btn-sm" %>
+            <div class="btn-group-vertical">
               <%= link_to '完了', todolist_finish_path(id: todolist.id), class: "btn btn-primary btn-sm", data: { confirm: 'ToDoを完了にしてもよろしいですか？' } %>
+              <%= link_to '編集', '#', class: "btn btn-outline-primary btn-sm" %>
             </div>
           </td>
         </tr>
@@ -63,8 +63,8 @@
     <% loopCount += 1 %>
     <% if loopCount == 1 %>
       <br></br>
-      <h2 class="title-bar" style="margin-top: -70px; margin-bottom: -20px;">ToDo完了リスト</h2>
-      <table class="table table-striped table-condensed bg-white ml-auto mr-auto" style="width: 95%; margin-top: 50px;">
+      <h3 class="title-bar" style="margin-top: -70px; margin-bottom: -20px;">ToDo完了リスト</h3>
+      <table class="table table-striped table-condensed bg-white ml-auto mr-auto" style="width: 98%; margin-top: 50px;">
         <thead>
           <tr style="background-color: #FFFFCC;">
             <th style="width: 100px;">日付</th>

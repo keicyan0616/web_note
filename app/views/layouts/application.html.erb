@@ -28,9 +28,9 @@
   <% else %>
     <body class="top" data-turbolinks="false">
   <% end %>
+  
     <%= render 'layouts/header' %>
 
-    
     <!-- ナビゲーションメニュー -->
     <!--<nav class="navbar navbar-fixed-top navbar-expand-lg navbar-light bg-white mt-3 helvetica row">-->
     <!--  <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="レスポンシブ・ナビゲーションバー">-->
@@ -94,7 +94,11 @@
         </div>
       <% elsif notice.presence %>
         <p></p>
-        <div class="alert alert-success">
+        <% if user_signed_in? %>
+          <div class="alert alert-success jumbotron-extend">
+        <% else %>
+          <div class="alert alert-success">
+        <% end %>
           <button type="button" class="close" data-dismiss="alert">
             <span aria-hidden="true">&times;</span>
             <span class="sr-only">close</span>

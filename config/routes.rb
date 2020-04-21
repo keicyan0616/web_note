@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   resources :events
   root 'pages#index'
+  # root 'users/sessions#new'
   
   # ＜LINE処理関係＞
   post '/callback' => 'linebot#callback'
@@ -10,6 +11,7 @@ Rails.application.routes.draw do
   get '/relateback' => 'linebot#relateback', as: :line_relateback
   patch '/push' => 'linebot#line_test', as: :line_send_message
   # post '/push' => 'linebot#line_test', as: :line_send_message
+  get '/setnotice' => 'linebot#setnotice', as: :line_setnotice
 
   # ＜スケジュール関係＞
   #get 'pages/:id/show', to: 'pages#show', as: :schdule_show
