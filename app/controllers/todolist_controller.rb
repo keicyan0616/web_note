@@ -34,6 +34,11 @@ class TodolistController < ApplicationController
     redirect_to todolist_show_path
   end
   
+  # ToDo編集
+  def edit
+    @todoData = Todolist.find(params[:id])
+  end
+  
   # ToDo削除処理
   def delete
     @todoData = Todolist.find(params[:id])

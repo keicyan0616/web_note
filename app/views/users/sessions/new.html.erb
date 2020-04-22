@@ -1,25 +1,27 @@
-<div class="center jumbotron jumbotron-fluid" style="background-color: #FFFFCC; width: 350px; margin: auto; margin-top: 35px; padding: 3rem 2rem;">
-  <h2 class="mb-5">スマートWeb手帳</h2>
+<div class="center jumbotron jumbotron-fluid" style="background-color: #FFFFCC; width: 300px; margin: auto; margin-top: 35px; padding: 2rem 2rem;">
+  <h4 class="mb-4 px-3 py-2 card border-primary rounded-0" style="background-color: #75A9FF; color: white;">
+    <strong>スマートWeb手帳</strong>
+  </h4>
   
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="field">
-      <%= f.label :email, "メールアドレス" %><br />
+      <strong><%= f.label :email, "メールアドレス" %><br /></strong>
       <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
     </div>
   
     <div class="field mt-3">
-      <%= f.label :password, "パスワード" %><br />
+      <strong><%= f.label :password, "パスワード" %><br /></strong>
       <%= f.password_field :password, autocomplete: "current-password" %>
     </div>
   
     <% if devise_mapping.rememberable? %>
-      <div class="field">
+      <div class="field mt-1 mb-1">
         <%= f.check_box :remember_me %>
         <%= f.label :remember_me, "パスワードを記憶する" %>
       </div>
     <% end %>
   
-    <div class="actions mt-3">
+    <div class="actions ml-2 mr-2 mt-3" style="float: left;">
       <%= f.submit "ログイン", class: "btn btn-primary" %>
     </div>
   <% end %>

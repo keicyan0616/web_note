@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   get 'todolist/new', to: 'todolist#new', as: :todolist_new
   post 'todolist/create', to: 'todolist#create', as: :todolist_create
   get 'todolist/:id/finish', to: 'todolist#finish', as: :todolist_finish
+  get 'todolist/:id/edit', to: 'todolist#edit', as: :todolist_edit
   get 'todolist/:id/delete', to: 'todolist#delete', as: :todolist_delete
 
   # ＜目標設定関係＞
