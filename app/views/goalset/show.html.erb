@@ -14,7 +14,7 @@
       
       .set-goal  {
         color: white;
-        padding: 0;
+        padding: 2px 3px;
         /*margin: -21px;*/
         background-color: #4F78A4;
         box-shadow: 0 2px 6px rgba(0, 0, 0, .15);
@@ -23,15 +23,22 @@
         transition: .4s;
       }
       
+      .title-custom {
+        padding: 0.2em 0.5em;/*文字の上下 左右の余白*/
+        color: #FFFFFF;/*文字色*/
+        background: #4F78A4;/*背景色*/
+        border-left: solid 5px #75A9FF; /*#7db4e6;左線*/
+        border-bottom: solid 3px #d7d7d7;/*下線*/
+      }
 	  </style>
 </head>
 
 <!-- 目標設定 表示ページ -->
-<div class="center jumbotron jumbotron-extend border" style="background-color: #FFFFFF; padding: 0px 20px; margin-top: 15px;">
+<div class="jumbotron-extend" style="background-color: #FFFFFF; margin-top: 5px;">
   <p id="notice"><%= notice %></p>
 
   <%= form_with(model: @goalData, url: line_send_message_path, local: true) do |form| %>
-    <h1 class="goal-title">目標設定</h1>
+    <h4 class="title-custom">目標設定</h4>
     
     <div class="text-left">
       <%#= link_to '目標登録', goalset_edit_path, class: "btn ml-4 mb-3 btn-primary" %>
@@ -43,8 +50,8 @@
     </div>
   
     <div class="center jumbotron border" style="background-color: #FFFFCC; padding: 0px; margin: 0px 20px;">
-      <h2 class="set-goal text-left">ミッション</h2>
-      <h3 class="text-left ml-4">自分の軸となる考え・言葉</h3>
+      <h4 class="set-goal text-left">ミッション</h4>
+      <h5 class="text-left ml-4">自分の軸となる考え・言葉</h5>
       <!--<h2 class="text-left ml-1">ミッション（テーマ・モットー・信条）</h2>-->
       <!--<h5 class="text-left ml-2">自分が行動する上で指針となる考え・言葉</h5>-->
       <table class="table table-bordered table-condensed bg-white ml-auto mr-auto" style="width: 95%">
@@ -70,9 +77,9 @@
     <hr style="height: 2px; background-color: silver; border: none;">
     
     <div class="center jumbotron border" style="background-color: #FFFFCC; padding: 0px; margin: 0px 20px;">
-      <h2 class="set-goal text-left">＜長期目標＞(5～10年後)</h2>
-      <h3 class="text-left ml-4">達成予定日：<%= @goalData.l_goal_deadline_at.strftime('%Y-%m-%d') if @goalData.l_goal_deadline_at.present? %></h3>
-      <table class="table table-bordered table-condensed bg-white ml-auto mr-auto" style="width: 95%">
+      <h4 class="set-goal text-left">長期目標（5～10年後）</h4>
+      <h5 class="text-left ml-4">目標達成日：<%= @goalData.l_goal_deadline_at.strftime('%Y-%m-%d') if @goalData.l_goal_deadline_at.present? %></h5>
+      <table class="table table-bordered table-condensed bg-white ml-auto mr-auto" style="width: 97%">
         <tbody>
             <tr style="background-color: #FFFFFF;">
               <td class="text-left"><%= @goalData.long_goal %></td>
@@ -82,12 +89,12 @@
       </table>
     </div>
     
-    <h2 class="mt-2"><%= image_tag('yajirushi.png', :size => '45x50', class: "mr-1") %></h2>
+    <h2 class="mt-2"><%= image_tag('yajirushi.png', :size => '36x40', class: "mr-1") %></h2>
   
     <div class="center jumbotron border" style="background-color: #FFFFCC; padding: 0px; margin: 0px 20px;">
-      <h2 class="set-goal text-left">＜中期目標＞(2～3年後)</h2>
-      <h3 class="text-left ml-4">達成予定日：<%= @goalData.m_goal_deadline_at.strftime('%Y-%m-%d') if @goalData.m_goal_deadline_at.present? %></h3>
-      <table class="table table-bordered table-condensed bg-white ml-auto mr-auto" style="width: 95%">
+      <h4 class="set-goal text-left">中期目標（2～3年後）</h4>
+      <h5 class="text-left ml-4">目標達成日：<%= @goalData.m_goal_deadline_at.strftime('%Y-%m-%d') if @goalData.m_goal_deadline_at.present? %></h5>
+      <table class="table table-bordered table-condensed bg-white ml-auto mr-auto" style="width: 97%">
         <tbody>
             <tr style="background-color: #FFFFFF;">
               <td class="text-left"><%= @goalData.middle_goal %></td>
@@ -97,12 +104,12 @@
       </table>
     </div>
     
-    <h2 class="mt-2"><%= image_tag('yajirushi.png', :size => '45x50', class: "mr-1") %></h2>
+    <h2 class="mt-2"><%= image_tag('yajirushi.png', :size => '36x40', class: "mr-1") %></h2>
     
     <div class="center jumbotron border" style="background-color: #FFFFCC; padding: 0px; margin: 0px 20px;">
-      <h2 class="set-goal text-left">＜短期目標＞(1年後)</h2>
-      <h3 class="text-left ml-4">達成予定日：<%= @goalData.s_goal_deadline_at.strftime('%Y-%m-%d') if @goalData.s_goal_deadline_at.present? %></h3>
-      <table class="table table-bordered table-condensed bg-white ml-auto mr-auto" style="width: 95%">
+      <h4 class="set-goal text-left">短期目標（1年後）</h4>
+      <h5 class="text-left ml-4">目標達成日：<%= @goalData.s_goal_deadline_at.strftime('%Y-%m-%d') if @goalData.s_goal_deadline_at.present? %></h5>
+      <table class="table table-bordered table-condensed bg-white ml-auto mr-auto" style="width: 97%">
         <tbody>
             <tr style="background-color: #FFFFFF;">
               <td class="text-left"><%= @goalData.short_goal %></td>
@@ -115,8 +122,8 @@
   
   <br></br>
   <hr>
-  <div style="padding: 20px 20px;">
-   <h2>目標設定履歴</h2>
+  <div>
+   <h4 class="title-custom">目標設定履歴</h4>
   </div>
 </div>
 

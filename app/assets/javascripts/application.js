@@ -128,5 +128,10 @@ $(function () {
             alert('エラーが発生しました。管理者に問い合わせてください。');
           });
         },
+        // カレンダー高さ調整
+        height: window.innerHeight - 100, 
+        windowResize: function () {
+            $('#calendar').fullCalendar('option', 'height', window.innerHeight - 100);
+        },
     });
 });
