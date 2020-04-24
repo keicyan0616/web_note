@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   # post '/push' => 'linebot#line_test', as: :line_send_message
   get '/setnotice' => 'linebot#setnotice', as: :line_setnotice
 
+  # ＜ユーザー一覧関係＞
+  get 'pages/editusers', to: 'pages#editusers', as: :users_show
+
   # ＜スケジュール関係＞
   #get 'pages/:id/show', to: 'pages#show', as: :schdule_show
   get 'pages/show', to: 'pages#show', as: :schdule_show

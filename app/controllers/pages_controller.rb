@@ -53,4 +53,9 @@ class PagesController < ApplicationController
     # @events = Event.from("#{union_sql} events").where('"events"."start_date" >= ? and "events"."start_date" <= ?', @start_YMD, @end_YMD).order(:start_date)
     @events = Event.from("#{union_sql} events").where(start_date: @start_YMD..@end_YMD).order(:start_date)
   end
+  
+  #ユーザー一覧表示
+  def editusers
+    @users = User.all
+  end
 end
