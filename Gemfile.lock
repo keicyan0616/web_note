@@ -138,7 +138,7 @@ GEM
     orm_adapter (0.5.0)
     pg (0.20.0)
     popper_js (1.16.0)
-    puma (3.12.2)
+    puma (3.12.4)
     rack (2.1.1)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -255,7 +255,7 @@ DEPENDENCIES
   momentjs-rails (>= 2.9.0)
   omniauth-twitter
   pg (= 0.20.0)
-  puma (~> 3.7)
+  puma (~> 3.12)
   rails (~> 5.1.6)
   rails-i18n
   sass-rails (~> 5.0)
