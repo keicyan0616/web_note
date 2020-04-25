@@ -1,6 +1,6 @@
-<%# provide(:title, 'ユーザー一覧') %>
+<% provide(:title, 'ユーザー一覧') %>
 <div class="container text-center mb-5">
-  <h2 class="d-inline-block border-bottom border-dark my-5">USERS</h2>
+  <h2 class="d-inline-block border-bottom border-dark my-5">ユーザー一覧</h2>
   <!--<p class="mb-5">登録されているユーザーの検索・確認・更新・削除ができます。</p>-->
 
 <!-- 検索機能 -->
@@ -18,10 +18,10 @@
   <div class="table-responsive">
     <table class="table table-striped text-nowrap" id="table-users">
       <thead class="thead-color lead">
-        <tr>
+        <tr style="background-color: #FFFFCC;">
           <th class="center">名前</th>
           <th class="center">メールアドレス</th>
-          <!--<th class="center">編集・削除</th>-->
+          <th class="center">編集・削除</th>
         </tr>
       </thead>
       <tbody>
@@ -29,17 +29,16 @@
           <tr>
             <td class="center"><%= user.username %></td>
             <td class="center"><%= user.email %></td>
-          <!-- ユーザー情報モーダル -->
-          <!--<td class="center">-->
+          <td class="center">
           <!--  <%# if current_user.admin? && !current_user?(user) %>-->
-          <!--    <%#= link_to(edit_info_user_path(user), remote: true, class: "btn btn-outline-primary d-block d-md-inline-block rounded-circle px-2 py-1 mx-2") do %>-->
-          <!--      <i class="fas fa-pen"></i>-->
-          <!--    <%# end %>-->
-          <!--    <%#= link_to(user, class: "btn btn-outline-danger d-block d-md-inline-block rounded-circle px-2 py-1 mx-2", method: :delete, data: { confirm: "削除してよろしいですか？" }) do %>-->
-          <!--      <i class="fas fa-trash-alt"></i>-->
-          <!--    <%# end %>-->
+              <%= link_to('#', class: "btn btn-outline-info d-block d-md-inline-block rounded-circle px-2 py-1 mx-2") do %>
+                <i class="far fa-edit"></i>
+              <% end %>
+              <%= link_to('#', class: "btn btn-outline-danger d-block d-md-inline-block rounded-circle px-2 py-1 mx-2", method: :delete, data: { confirm: "削除してよろしいですか？" }) do %>
+                <i class="fas fa-trash-alt"></i>
+              <% end %>
           <!--  <%# end %>-->
-          <!--  </td>-->
+            </td>
           </tr>
         <% end %>
       </tbody>
