@@ -35,4 +35,13 @@ class User < ActiveRecord::Base
       super
     end
   end
+  
+  # ユーザーを絞り込み検索します。
+  def self.search(search)
+    if search && search != ""
+      where(['username LIKE ?', "%#{search}%"])
+    else
+      all
+    end
+  end
 end

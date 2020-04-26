@@ -43,6 +43,18 @@ class PagesController < ApplicationController
   
   #ユーザー一覧表示
   def editusers
-    @users = User.all.order(:id)
+    @users = User.paginate(page: params[:page], per_page: 5).search(params[:search]).order(id: :asc)
+  end
+  
+  #ユーザー一覧(対象ユーザー削除)
+  def destroy
+    if current_user.id.to_s != params[:id]
+      @user = User.find(params[:id])
+      @user.destroy
+      flash.notice = '削除しました。'
+    else
+      flash.alert = 'ユーザー一覧からは自分のアカウントを削除できません。プロフィール変更から行ってください。'
+    end
+    redirect_to users_show_path
   end
 end

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   # ＜ユーザー一覧関係＞
   get 'pages/editusers', to: 'pages#editusers', as: :users_show
+  delete 'pages/:id/destroy', to: 'pages#destroy', as: :users_delete
 
   # ＜スケジュール関係＞
   #get 'pages/:id/show', to: 'pages#show', as: :schdule_show

@@ -1,52 +1,53 @@
 <% provide(:title, 'ユーザー一覧') %>
-<div class="container text-center mb-5">
-  <h2 class="d-inline-block border-bottom border-dark my-5">ユーザー一覧</h2>
-  <!--<p class="mb-5">登録されているユーザーの検索・確認・更新・削除ができます。</p>-->
-
-<!-- 検索機能 -->
-  <div>
-    <!--<%#= form_tag(users_path, method: :get, class: "form-inline") do %>-->
-    <!--  <div class="input-group mx-auto mb-5 w-50">-->
-    <!--    <%#= text_field_tag :search, params[:search], placeholder: "キーワード検索", class: "form-control", 'aria-describedby': "button-addon" %>-->
-    <!--    <span class="input-group-append">-->
-    <!--      <%#= submit_tag '検索', name: :nil, class: "btn btn-primary", id: "button-addon" %>-->
-    <!--    </span>-->
-    <!--  </div>-->
-    <!--<%# end %>-->
-  </div>
-
-  <div class="table-responsive">
-    <table class="table table-striped text-nowrap" id="table-users">
-      <thead class="thead-color lead">
-        <tr style="background-color: #FFFFCC;">
-          <th class="center">名前</th>
-          <th class="center">メールアドレス</th>
-          <th class="center">編集・削除</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @users.each do |user| %>
-          <tr>
-            <td class="center"><%= user.username %></td>
-            <td class="center"><%= user.email %></td>
-          <td class="center">
-          <!--  <%# if current_user.admin? && !current_user?(user) %>-->
-              <%= link_to('#', class: "btn btn-outline-info d-block d-md-inline-block rounded-circle px-2 py-1 mx-2") do %>
-                <i class="far fa-edit"></i>
-              <% end %>
-              <%= link_to('#', class: "btn btn-outline-danger d-block d-md-inline-block rounded-circle px-2 py-1 mx-2", method: :delete, data: { confirm: "削除してよろしいですか？" }) do %>
-                <i class="fas fa-trash-alt"></i>
-              <% end %>
-          <!--  <%# end %>-->
-            </td>
+<div class="jumbotron-extend" style="background-color: white; margin-top: 15px;">
+  <div class="container text-center mb-5">
+    <h2 class="d-inline-block border-bottom border-dark my-5">ユーザー一覧</h2>
+    <!--<p class="mb-5">登録されているユーザーの検索・確認・更新・削除ができます。</p>-->
+  
+  <!-- 検索機能 -->
+    <div>
+      <%= form_tag(users_show_path, method: :get, class: "form-inline") do %>
+        <div class="input-group mx-auto mb-5 w-50">
+          <%= text_field_tag :search, params[:search], placeholder: "キーワード検索", class: "form-control", 'aria-describedby': "button-addon" %>
+          <span class="input-group-append">
+            <%= submit_tag '検索', username: :nil, class: "btn btn-primary", id: "button-addon" %>
+          </span>
+        </div>
+      <% end %>
+    </div>
+  
+    <div class="table-responsive">
+      <table class="table table-striped" id="table-users">
+        <thead class="thead-color">
+          <tr style="background-color: #FFFFCC;">
+            <th class="center">名前</th>
+            <th class="center">メールアドレス</th>
+            <th class="center">編集・削除</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr style="border-bottom:solid 1px silver;">
+              <td class="center"><%= user.username %></td>
+              <td class="center"><%= user.email %></td>
+              <td class="center">
+              <!--  <%# if current_user.admin? && !current_user?(user) %>-->
+                <%= link_to(edit_user_registration_path, class: "btn btn-outline-info d-block d-md-inline-block rounded-circle px-2 py-1 mx-2") do %>
+                  <i class="far fa-edit"></i>
+                <% end %>
+                <%= link_to(users_delete_path(id: user.id), class: "btn btn-danger d-block d-md-inline-block rounded-circle px-2 py-1 mx-2", method: :delete, data: { confirm: "削除してよろしいですか？" }) do %>
+                  <i class="fas fa-trash-alt"></i>
+                <% end %>
+              <!--  <%# end %>-->
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <%= will_paginate(@users, renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer, class: "pagination") %>
   </div>
-  <%#= will_paginate(@users, renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer, class: "pagination pagination-lg") %>
 </div>
-
 <!-- ユーザー情報モーダル表示 -->
 <!--<div id="edit-info" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>-->
 
