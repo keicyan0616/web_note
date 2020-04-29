@@ -1,0 +1,42 @@
+<% provide(:title, 'プロフィール編集') %>
+<div class="modal-dialog modal-dialog-center">
+  <div class="modal-content">
+    <div class="modal-body" style="background-color: #FFFFCC; padding-bottom: 0px;">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+
+      <h2 class="border-bottom border-dark text-center">プロフィール編集</h2>
+      
+      <div class="center jumbotron jumbotron-fluid border" style="background-color: #FFFFFF; padding: 20px;">
+        <div class="container text-center">
+      
+          <%= form_with(model: @profile, url: memopad_create_path, local: true) do |f| %>
+            <%= render "devise/shared/error_messages", resource: @profile %>
+      
+            <div class="field mb-3">
+              <strong><%= f.label '名前' %></strong><br />
+              <%= f.text_field :username, autofocus: true, autocomplete: "username" %>
+            </div>
+          
+            <div class="field mb-4">
+              <strong><%= f.label :email %></strong><br />
+              <%= f.email_field :email, autocomplete: "email" %>
+            </div>
+      
+            <div class="actions mb-3">
+              <%= f.submit "更新", class:"btn btn-primary mr-2" %>
+              <%= link_to "キャンセル", schdule_show_path, class: "btn btn-outline-primary" %>
+            </div>
+          <% end %>
+          
+          
+          <!--<h3>アカウントの削除</h3>-->
+          <%= button_to "アカウント削除", registration_path(@profile), data: { confirm: "アカウントを削除しますか？" }, method: :delete, class:"btn btn-danger" %>
+          
+          <%#= link_to "Back", :back %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

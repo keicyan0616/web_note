@@ -1,0 +1,36 @@
+<div class="modal-dialog modal-dialog-center">
+  <div class="modal-content">
+    <div class="modal-body" style="background-color: #FFFFCC; padding-bottom: 0px;">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+
+      <h1 class="goal-new">ミッション設定</h1>
+      <div class="center jumbotron jumbotron-fluid border" style="background-color: #FFFFFF; padding: 20px;">
+          <%= form_with(model: @goalData, local: true) do |form| %>
+            <% if @goalData.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(@goalData.errors.count, "error") %> 保存ができませんでした:</h2>
+          
+                <ul>
+                <% @goalData.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+                </ul>
+              </div>
+            <% end %>
+          
+            <div class="field mb-2">
+              <span style="vertical-align: top;"><%= form.label :ミッション %></span>
+              <%= form.text_area :mission, id: :goal_mission, size: "30" %>
+            </div>
+
+            <div class="actions">
+              <%= form.submit class: "btn btn-primary", name: "mission" %>
+            </div>
+          <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>

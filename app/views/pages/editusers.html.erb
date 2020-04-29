@@ -32,7 +32,7 @@
               <td class="center"><%= user.email %></td>
               <td class="center">
               <!--  <%# if current_user.admin? && !current_user?(user) %>-->
-                <%= link_to(edit_user_registration_path, class: "btn btn-outline-info d-block d-md-inline-block rounded-circle px-2 py-1 mx-2") do %>
+                <%= link_to(profile_show_path(id: user.id), remote: true, class: "btn btn-outline-info d-block d-md-inline-block rounded-circle px-2 py-1 mx-2") do %>
                   <i class="far fa-edit"></i>
                 <% end %>
                 <%= link_to(users_delete_path(id: user.id), class: "btn btn-danger d-block d-md-inline-block rounded-circle px-2 py-1 mx-2", method: :delete, data: { confirm: "削除してよろしいですか？" }) do %>
@@ -49,5 +49,5 @@
   </div>
 </div>
 <!-- ユーザー情報モーダル表示 -->
-<!--<div id="edit-info" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>-->
+<div id="edit-profile" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
 

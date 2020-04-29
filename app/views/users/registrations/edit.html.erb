@@ -10,7 +10,7 @@
 
       <div class="field mb-3">
         <strong><%= f.label '名前' %></strong><br />
-        <%= f.email_field :username, autofocus: true, autocomplete: "username" %>
+        <%= f.text_field :username, autofocus: true, autocomplete: "username" %>
       </div>
     
       <div class="field mb-3">
@@ -24,8 +24,8 @@
     
       <div class="field mb-3">
         <strong><%= f.label :password %></strong><br />
-        <%= f.password_field :password, autocomplete: "new-password" %><br>
-        <i>変更したくない場合は空欄のままにしてください。</i>
+        <%= f.password_field :password, autocomplete: "new-password" %>
+        <!--<i>変更したくない場合は空欄のままにしてください。</i>-->
         <% if @minimum_password_length %>
           <br />
           <em><%= @minimum_password_length %> 文字以上</em>
@@ -44,7 +44,7 @@
       </div>
     
       <div class="actions mb-3">
-        <%= f.submit "Update", class:"btn btn-primary mr-2" %>
+        <%= f.submit "更新", class:"btn btn-primary mr-2" %>
         <%= link_to "キャンセル", schdule_show_path, class: "btn btn-outline-primary" %>
       </div>
     <% end %>

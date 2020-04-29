@@ -43,7 +43,7 @@
     <div class="text-left">
       <%#= link_to '目標登録', goalset_edit_path, class: "btn ml-4 mb-3 btn-primary" %>
       <%#= link_to '目標登録', goalset_edit_path, remote: true, class: "btn mt-2 ml-4 mb-3 btn-sm btn-outline-primary" %>
-      <%= link_to '目標登録', goalset_edit_path, remote: true, class: "btn mt-2 ml-4 mb-4 btn-outline-primary rounded-pill btn-sm" %>
+      <%= link_to 'ミッション登録', goalset_editm_path, remote: true, class: "btn mt-2 ml-4 mb-4 btn-outline-primary rounded-pill btn-sm" %>
       <%#= link_to 'LINE連携', line_relation_path, class: "btn mt-2 ml-2 mb-4 btn-outline-primary btn-sm" %>
       <%= form.submit 'LINEメッセージ送信',class: "btn mt-2 ml-2 mb-4 btn-outline-primary rounded-pill btn-sm" %>
       <%#= link_to 'LINE送信', line_send_message_path, class: "btn mt-2 ml-2 mb-4 btn-outline-primary btn-sm" %>
@@ -75,6 +75,10 @@
     
     <br></br>
     <hr style="height: 2px; background-color: silver; border: none;">
+    
+    <div class="text-left">
+      <%= link_to '目標登録', goalset_editg_path, remote: true, class: "btn mt-2 ml-4 mb-4 btn-outline-primary rounded-pill btn-sm" %>
+    </div>
     
     <div class="center jumbotron border" style="background-color: #FFFFCC; padding: 0px; margin: 0px 20px;">
       <h4 class="set-goal text-left">長期目標（5～10年後）</h4>
@@ -128,4 +132,5 @@
 </div>
 
 <!--モーダルウインドウ表示-->
-<div id="goalset-edit" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+<div id="goalset-editm" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+<div id="goalset-editg" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>

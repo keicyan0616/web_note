@@ -9,17 +9,31 @@ class GoalsetController < ApplicationController
     end
   end
   
-  def edit
+  # ミッション登録・編集
+  def editm
     @goalData = Goalset.find_by(user_id: current_user.id)
     
     if !@goalData.present?
       @goalData = Goalset.new
     end
   end
-  
+
+  # 目標設定・編集
+  def editg
+    @goalData = Goalset.find_by(user_id: current_user.id)
+    
+    if !@goalData.present?
+      @goalData = Goalset.new
+    end
+  end
+
   def update
     @goalData = Goalset.find_by(user_id: current_user.id)
-    @goalData.update(goalset_params)
+    if params[:mission]
+      @goalData.update(goalsetm_params)
+    else
+      @goalData.update(goalsetg_params)
+    end
     redirect_to goalset_show_path
   end
   
@@ -31,11 +45,20 @@ class GoalsetController < ApplicationController
   end
 
 private
-  def goalset_params
+  def goalsetm_params
     params.require(:goalset).permit(:mission, \
                                     :l_goal_deadline_at, :long_goal, \
                                     :m_goal_deadline_at, :middle_goal, \
                                     :s_goal_deadline_at, :short_goal)
   end
 
+  def goalsetm_params
+    params.require(:goalset).permit(:mission)
+  end
+  
+  def goalsetg_params
+    params.require(:goalset).permit(:l_goal_deadline_at, :long_goal, \
+                                    :m_goal_deadline_at, :middle_goal, \
+                                    :s_goal_deadline_at, :short_goal)
+  end
 end

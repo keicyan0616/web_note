@@ -13,12 +13,12 @@
   <% end %>
 
 
-  <div class="field" style="padding-right: 30px;">
+  <div class="field mb-1" style="padding-right: 0px;">
     <%= form.label :ToDo %>
     <%= form.text_field :todo, id: :todo, size: "30" %>
   </div>
   
-  <div class="field" style="padding-right: 30px;">
+  <div class="field" style="padding-right: 0px;">
     <%= form.label :日時 %>
     <%# if year == nil || month == nil || day == nil %>
       <%= form.datetime_select :start_date, {:use_month_numbers => true}, id: :start_date %>

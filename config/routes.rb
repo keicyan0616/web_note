@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   # ＜ユーザー一覧関係＞
   get 'pages/editusers', to: 'pages#editusers', as: :users_show
+  get 'pages/:id/editprofile', to: 'pages#editprofile', as: :profile_show
   delete 'pages/:id/destroy', to: 'pages#destroy', as: :users_delete
 
   # ＜スケジュール関係＞
@@ -34,7 +35,8 @@ Rails.application.routes.draw do
 
   # ＜目標設定関係＞
   get 'goalset/show', to: 'goalset#show', as: :goalset_show
-  get 'goalset/edit', to: 'goalset#edit', as: :goalset_edit
+  get 'goalset/editm', to: 'goalset#editm', as: :goalset_editm
+  get 'goalset/editg', to: 'goalset#editg', as: :goalset_editg
   patch 'goalset/update', to: 'goalset#update', as: :goalset
   post 'goalset/create', to: 'goalset#create', as: :goalsets
   

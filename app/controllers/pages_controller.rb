@@ -46,6 +46,11 @@ class PagesController < ApplicationController
     @users = User.paginate(page: params[:page], per_page: 5).search(params[:search]).order(id: :asc)
   end
   
+  #ユーザー一覧(対象ユーザー編集)
+  def editprofile
+    @profile = User.find(params[:id])
+  end
+  
   #ユーザー一覧(対象ユーザー削除)
   def destroy
     if current_user.id.to_s != params[:id]
