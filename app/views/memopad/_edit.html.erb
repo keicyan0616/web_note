@@ -1,0 +1,48 @@
+<div class="modal-dialog modal-dialog-center">
+  <div class="modal-content">
+    <div class="modal-body" style="background-color: #FFFFCC; padding-bottom: 0px;">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      
+      <h2 class="memo-new">メモ編集</h2>
+      <div class="center jumbotron jumbotron-fluid border" style="background-color: #FFFFFF; padding: 20px 0px;">
+
+        <!-- メモ登録ページ(パーシャル) -->
+        <%= form_with(model: @memoData, url: memopad_update_path(id: @memoData.id), local: true) do |form| %>
+          <% if @memoData.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@memoData.errors.count, "error") %>メモの登録に失敗しました:</h2>
+        
+              <ul>
+              <% @memoData.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="field" style="padding-right: 232px;">
+            <%= form.label :項番 %>
+            <%= form.number_field :orderno, id: :memopad_orderno, min: 1, max: 150 %>
+          </div>
+
+          <div class="field" style="padding-right: 143px;">
+            <%= form.label :タイトル %>
+            <%= form.text_field :title, id: :memopad_title %>
+          </div>
+          
+          <div class="field">
+            <span style="vertical-align: top;"><%= form.label :メモ本文 %></span>
+            <%= form.text_area :memo, id: :memopad_memo, size: "40x2" %>
+          </div>
+        
+          <div class="actions">
+            <%= form.submit class: "btn btn-primary mt-3" %>
+          </div>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>

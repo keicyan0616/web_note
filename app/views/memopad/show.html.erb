@@ -1,3 +1,4 @@
+<% provide(:title, 'メモ帳') %>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 		<style>
@@ -31,7 +32,7 @@
   <%= form_with(model: @memoData, url: memopad_delete_path, local: true) do |f| %>
     <div class="text-left">
       <%= link_to 'メモ追加', memopad_new_path, remote: true, class: "btn ml-4 mb-1 mt-2 btn-outline-primary rounded-pill btn-sm" %>
-      <%= f.submit "メモ削除", class: "btn btn-outline-danger rounded-pill ml-2 mb-1 mt-2 btn-sm", data: { confirm: '「レ」チェックを入れたメモを削除してもよろしいですか？'} %>
+      <%= f.submit "メモ削除", class: "btn btn-outline-danger rounded-pill ml-2 mb-1 mt-2 btn-sm", data: { confirm: 'チェック「レ」を入れたメモを削除してもよろしいですか？'} %>
     </div>
     
     <% @memoData.each do |memolist| %>
@@ -39,24 +40,24 @@
         <div class="panel-group">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <% orderNo = memolist.orderno %>
+              <% id = memolist.id %>
               <div class="mt-3 ml-4 mr-3" style="float: left; transform: scale(2.0);">
-                <%= check_box_tag :"del_chk#{orderNo}", true, false, {class: "bg-primary"} %>
+                <%= check_box_tag :"del_chk#{id}", true, false, {class: "bg-primary"} %>
               </div>
               <h4 class="panel-title">
-                <a data-toggle="collapse" href="#collapse<%= memolist.orderno %>" style="display: block; text-decoration: none; color: black; text-align: left; padding: 5px 25px">
+                <a data-toggle="collapse" href="#collapse<%= memolist.id %>" style="display: block; text-decoration: none; color: black; text-align: left; padding: 5px 25px">
                   <div class="arrow1_1" style="float: right;"></div>
                   <div style="padding-top: 3px;">
-                    <%= memolist.orderno %>.
-                    <%= memolist.title %>
+                    <%= memolist.orderno %>.<%= memolist.title %>
                   </div>
                 </a>
               </h4>
             </div>
-            <div id="collapse<%= memolist.orderno %>" class="panel-collapse collapse">
-              <div class="panel-body text-left mt-3 mb-3">
+            <div id="collapse<%= memolist.id %>" class="panel-collapse collapse">
+              <div class="panel-body text-left mt-1 mb-2">
                 <!--<hr class="mr-3">-->
-                <div class="jumbotron jumbotron-fluid border" style="background-color: #FFFFFF; margin: 25px; padding: 20px 20px;">
+                <%= link_to 'メモ編集', memopad_edit_path(id: memolist.id), remote: true, class: "btn ml-4 btn-info rounded-pill btn-sm" %>
+                <div class="jumbotron jumbotron-fluid border" style="background-color: #FFFFFF; margin: 8px 15px; padding: 20px 20px;">
                   <h5><%= memolist.memo %></h5>
                 </div>
               </div>
@@ -71,6 +72,7 @@
 
 <!--モーダルウインドウ表示-->
 <div id="memopad-new" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+<div id="memopad-edit" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
 
 <script>
   $(document).ready(function(){

@@ -5,7 +5,7 @@
         <span aria-hidden="true">&times;</span>
       </button>
 
-      <h1 class="goal-new">ミッション設定</h1>
+      <h2 class="goal-new">ミッション設定</h2>
       <div class="center jumbotron jumbotron-fluid border" style="background-color: #FFFFFF; padding: 20px;">
           <%= form_with(model: @goalData, local: true) do |form| %>
             <% if @goalData.errors.any? %>
@@ -21,8 +21,8 @@
             <% end %>
           
             <div class="field mb-2">
-              <span style="vertical-align: top;"><%= form.label :ミッション %></span>
-              <%= form.text_area :mission, id: :goal_mission, size: "30" %>
+              <span style="vertical-align: top;"><%= form.label :マイミッション %></span>
+              <%= form.text_area :mission, id: :goal_mission, size: "40" %>
             </div>
 
             <div class="actions">

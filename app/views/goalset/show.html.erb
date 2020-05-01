@@ -1,3 +1,4 @@
+<% provide(:title, '目標設定') %>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 		<style>
@@ -50,7 +51,7 @@
     </div>
   
     <div class="center jumbotron border" style="background-color: #FFFFCC; padding: 0px; margin: 0px 20px;">
-      <h4 class="set-goal text-left">ミッション</h4>
+      <h4 class="set-goal text-left">マイミッション</h4>
       <h5 class="text-left ml-4">自分の軸となる考え・言葉</h5>
       <!--<h2 class="text-left ml-1">ミッション（テーマ・モットー・信条）</h2>-->
       <!--<h5 class="text-left ml-2">自分が行動する上で指針となる考え・言葉</h5>-->
@@ -64,7 +65,7 @@
         <tbody>
             <tr style="background-color: #FFFFFF;">
               <td class="text-left"><%= @goalData.mission %></td>
-              <td class="text-left w-25">設定日：<%= @goalData.updated_at.strftime('%Y-%m-%d') if @goalData.updated_at.present? %></td>
+              <td class="text-left w-25">設定日：<%= @goalData.mission_set_at.strftime('%Y-%m-%d') if @goalData.mission_set_at.present? %></td>
             </tr>
             <!--<tr>-->
             <!--  <td><%= params[:code] %></td>-->
@@ -87,7 +88,7 @@
         <tbody>
             <tr style="background-color: #FFFFFF;">
               <td class="text-left"><%= @goalData.long_goal %></td>
-              <td class="text-left w-25">設定日：<%= @goalData.updated_at.strftime('%Y-%m-%d') if @goalData.updated_at.present? %></td>
+              <td class="text-left w-25">設定日：<%= @goalData.l_goal_set_at.strftime('%Y-%m-%d') if @goalData.l_goal_set_at.present? %></td>
             </tr>
         </tbody>
       </table>
@@ -102,7 +103,7 @@
         <tbody>
             <tr style="background-color: #FFFFFF;">
               <td class="text-left"><%= @goalData.middle_goal %></td>
-              <td class="text-left w-25">設定日：<%= @goalData.updated_at.strftime('%Y-%m-%d') if @goalData.updated_at.present? %></td>
+              <td class="text-left w-25">設定日：<%= @goalData.m_goal_set_at.strftime('%Y-%m-%d') if @goalData.m_goal_set_at.present? %></td>
             </tr>
         </tbody>
       </table>
@@ -117,18 +118,18 @@
         <tbody>
             <tr style="background-color: #FFFFFF;">
               <td class="text-left"><%= @goalData.short_goal %></td>
-              <td class="text-left w-25">設定日：<%= @goalData.updated_at.strftime('%Y-%m-%d') if @goalData.updated_at.present? %></td>
+              <td class="text-left w-25">設定日：<%= @goalData.s_goal_set_at.strftime('%Y-%m-%d') if @goalData.s_goal_set_at.present? %></td>
             </tr>
         </tbody>
       </table>
     </div>
   <% end %>
   
-  <br></br>
-  <hr>
-  <div>
-   <h4 class="title-custom">目標設定履歴</h4>
-  </div>
+  <!--<br></br>-->
+  <!--<hr>-->
+  <!--<div>-->
+  <!-- <h4 class="title-custom">目標設定履歴</h4>-->
+  <!--</div>-->
 </div>
 
 <!--モーダルウインドウ表示-->

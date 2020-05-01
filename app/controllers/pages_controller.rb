@@ -9,11 +9,13 @@ class PagesController < ApplicationController
     end
   end
 
+  # スケジュールページ表示
   def show
     #flash.now[:success] = 'ログインしました。'
     # @user = User.find(params[:id])
   end
   
+  # schedule・ToDo一覧表示
   def all_event_list_class
     @id = current_user.id
     #対象期間(開始日)
@@ -31,7 +33,7 @@ class PagesController < ApplicationController
       @end_YMD = tmp_end_YMD.in_time_zone("UTC")
     end
 
-    union_sql = Event.select("id", "title", "'スケジュール' AS _category", "description", "start_date", "end_date")
+    union_sql = Event.select("id", "title", "'スケジュール' AS _category", "description", "start_date", "end_date").where('user_id = ?', current_user.id)
                 .union(
                   Todolist.select("id", "'' AS title", "'ToDo' AS _category", "todo AS description", "start_date", "'9999-12-31 23:59:59' AS end_date")
                     .where('user_id = ?', current_user.id).where('delflag = ?', 0)
@@ -51,6 +53,15 @@ class PagesController < ApplicationController
     @profile = User.find(params[:id])
   end
   
+  def update
+    @profile = User.find(params[:id])
+    # @profile.username = params[:username]
+    # @profile.email = params[:email]
+    @profile.update(profile_params)
+    # @profile.save
+    redirect_to users_show_path
+  end
+  
   #ユーザー一覧(対象ユーザー削除)
   def destroy
     if current_user.id.to_s != params[:id]
@@ -61,5 +72,10 @@ class PagesController < ApplicationController
       flash.alert = 'ユーザー一覧からは自分のアカウントを削除できません。プロフィール変更から行ってください。'
     end
     redirect_to users_show_path
+  end
+
+private
+  def profile_params
+    params.require(:user).permit(:username, :email)
   end
 end

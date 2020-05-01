@@ -11,6 +11,7 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
+    redirect_to schdule_show_path
   end
 
   # GET /events/new
@@ -34,7 +35,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'イベントを新規登録しました。' }
+        format.html { redirect_to @event, notice: '予定を新規登録しました。' }
         format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new }
@@ -48,7 +49,7 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'イベントを更新しました。' }
+        format.html { redirect_to @event, notice: '予定を更新しました。' }
         format.json { render :show, status: :ok, location: @event }
       else
         format.html { render :edit }
@@ -62,7 +63,7 @@ class EventsController < ApplicationController
   def destroy
     @event.destroy
     respond_to do |format|
-      format.html { redirect_to events_url, notice: 'イベントを削除しました。' }
+      format.html { redirect_to events_url, notice: '予定を削除しました。' }
       format.json { head :no_content }
     end
   end

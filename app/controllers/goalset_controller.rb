@@ -2,14 +2,19 @@ class GoalsetController < ApplicationController
   
   # 目標設定画面
   def show
-    @goalData = Goalset.find_by(user_id: current_user.id)
-    
-    if !@goalData.present?
-      @goalData = Goalset.new
+    if user_signed_in?
+      @goalData = Goalset.find_by(user_id: current_user.id)
+      
+      if !@goalData.present?
+        @goalData = Goalset.new
+      end
+    else
+      #セッションタイムアウトした場合の処理(idがnullのため落ちないように)
+      redirect_to new_user_session_path
     end
   end
   
-  # ミッション登録・編集
+  # マイミッション登録・編集
   def editm
     @goalData = Goalset.find_by(user_id: current_user.id)
     
@@ -29,10 +34,37 @@ class GoalsetController < ApplicationController
 
   def update
     @goalData = Goalset.find_by(user_id: current_user.id)
+    missionData = @goalData.mission
+    l_goalData = @goalData.long_goal
+    m_goalData = @goalData.middle_goal
+    s_goalData = @goalData.short_goal
+
+    # ミッションを更新し、変更されていたら設定日も更新
     if params[:mission]
       @goalData.update(goalsetm_params)
+      if @goalData.mission != missionData
+        @goalData.mission_set_at = Time.zone.now
+        @goalData.save
+      end
+    # 目標を更新し、変更されていたら設定日も更新
     else
       @goalData.update(goalsetg_params)
+      setCnt = 0
+      if @goalData.long_goal != l_goalData
+        @goalData.l_goal_set_at = Time.zone.now
+        setCnt += 1
+      end
+      if @goalData.middle_goal != m_goalData
+        @goalData.m_goal_set_at = Time.zone.now
+        setCnt += 1
+      end
+      if @goalData.short_goal != s_goalData
+        @goalData.s_goal_set_at = Time.zone.now
+        setCnt += 1
+      end
+      if setCnt >= 1
+        @goalData.save
+      end
     end
     redirect_to goalset_show_path
   end
@@ -40,6 +72,10 @@ class GoalsetController < ApplicationController
   def create
     @goalData = Goalset.new(goalset_params)
     @goalData.user_id = current_user.id
+    # @goalData.mission_set_at = Time.zone.now
+    # @goalData.l_goal_set_at = Time.zone.now
+    # @goalData.m_goal_set_at = Time.zone.now
+    # @goalData.s_goal_set_at = Time.zone.now
     @goalData.save
     redirect_to goalset_show_path
   end

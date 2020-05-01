@@ -2,7 +2,7 @@
   <table class="table table-bordered table-striped bg-white ml-3 mr-3" style="width: 95%;">
     <!--text-nowrap-->
     <thead class="thead-color lead">
-      <tr style="background-color: #FFFFCC;">
+      <tr style="background-color: #FFFFCC; font-size: 16px;">
         <th>カテゴリ</th>
         <th>日時</th>
         <th>タイトル</th>
@@ -14,8 +14,14 @@
     <tbody>
       <% @events.each do |event| %>
         <tr>
-          <td><%= event._category %></td>
-          <td>
+          <td style="width: 10%; font-size: 12px;">
+            <% if event._category == "スケジュール" %>
+              <div class="card" style="background-color: navy; color:white;"><%= event._category %></div>
+            <% else %>
+              <div class="card" style="background-color: green; color:white;"><%= event._category %></div>
+            <% end %>
+          </td>
+          <td style="width: 12%; font-size: 14px;">
             <!-- 開始日時の表示内容を調整 -->
             <% if event.start_date.present? %>
               <%= event.start_date.strftime('%Y/%m/%d') %>
@@ -38,8 +44,8 @@
               <% end %>
             <% end %>
           </td>
-          <td align="left"><%= event.title %></td>
-          <td align="left"><%= event.description %></td>
+          <td align="left" style="width: 15%; font-size: 14px;"><%= event.title %></td>
+          <td align="left" style="font-size: 14px;"><%= event.description %></td>
           <!--<td><%#= link_to 'Show', event %></td>-->
           <!--<td><%#= link_to 'Edit', edit_event_path(event) %></td>-->
           <!--<td><%#= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->

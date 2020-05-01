@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   # ＜ユーザー一覧関係＞
   get 'pages/editusers', to: 'pages#editusers', as: :users_show
   get 'pages/:id/editprofile', to: 'pages#editprofile', as: :profile_show
+  patch 'pages/update', to: 'pages#update', as: :profile_update
   delete 'pages/:id/destroy', to: 'pages#destroy', as: :users_delete
 
   # ＜スケジュール関係＞
@@ -43,7 +44,9 @@ Rails.application.routes.draw do
   # ＜メモ帳＞
   get 'memopad/show', to: 'memopad#show', as: :memopad_show
   get 'memopad/new', to: 'memopad#new', as: :memopad_new
+  get 'memopad/edit', to: 'memopad#edit', as: :memopad_edit
   post 'memopad/create', to: 'memopad#create', as: :memopad_create
+  patch 'memopad/update', to: 'memopad#update', as: :memopad_update
   post 'memopad/delete', to: 'memopad#delete', as: :memopad_delete
 
   devise_for :users, :controllers => {

@@ -2,10 +2,15 @@ class MemopadController < ApplicationController
   
   #メモ帳表示
   def show
-    @memoData = Memopad.where(user_id: current_user.id).where.not(delflag: 1).order(:orderno).order(:orderno)
-    #セッションタイムアウトして、idがnullの時の処理をここに入れる
+    if user_signed_in?
+      @memoData = Memopad.where(user_id: current_user.id).where.not(delflag: 1).order(:orderno).order(created_at: :desc)
+    else
+      #セッションタイムアウトした場合の処理(idがnullのため落ちないように)
+      redirect_to new_user_session_path
+    end
   end
 
+  # メモ登録（画面表示）
   def new
     @memoData = Memopad.new
   end
@@ -19,13 +24,25 @@ class MemopadController < ApplicationController
     redirect_to memopad_show_path
   end
   
+  # メモ編集（画面表示）
+  def edit
+    @memoData = Memopad.find(params[:id])
+  end
+  
+  # メモ編集処理
+  def update
+    @memoData = Memopad.find(params[:id])
+    @memoData.update(memopad_params)
+    @memoData.save
+    redirect_to memopad_show_path
+  end
+
   # メモ削除処理
-  # debugger
   def delete
-    @memoData = Memopad.where(user_id: current_user.id).where.not(delflag: 1).order(:orderno) #必ずshowメソッドと合わせること
+    @memoData = Memopad.where(user_id: current_user.id).where.not(delflag: 1).order(:orderno).order(created_at: :desc) #必ずshowメソッドと合わせること
     listCnt = 0
     @memoData.each do |memolist|
-      checkFlag = params[:"del_chk#{memolist.orderno}"]
+      checkFlag = params[:"del_chk#{memolist.id}"]
       if checkFlag == "true"
         memolist.delflag = 1
         memolist.save
@@ -34,6 +51,8 @@ class MemopadController < ApplicationController
     end
     if listCnt >= 1
       flash.notice = "チェック「レ」を入れたメモを削除しました。"
+    else  
+      flash.alert = "削除したいメモにチェック「レ」を入れてください。"
     end
     redirect_to memopad_show_path
   end

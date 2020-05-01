@@ -2,10 +2,15 @@ class TodolistController < ApplicationController
   
   # ToDoリスト画面
   def show
-    @todoData = Todolist.where(user_id: current_user.id, delflag: 0).order(start_date: :asc)
-    @todoFinishData = Todolist.where(user_id: current_user.id, delflag: 1).order(start_date: :asc)
+    if user_signed_in?
+      @todoData = Todolist.where(user_id: current_user.id, delflag: 0).order(start_date: :asc)
+      @todoFinishData = Todolist.where(user_id: current_user.id, delflag: 1).order(start_date: :asc)
+    else
+      #セッションタイムアウトした場合の処理(idがnullのため落ちないように)
+      redirect_to new_user_session_path
+    end
   end
-  
+
   # ToDo登録画面
   def new
     @todoNewData = Todolist.new
