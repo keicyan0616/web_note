@@ -11,7 +11,7 @@
       <div class="center jumbotron jumbotron-fluid border" style="background-color: #FFFFFF; padding: 20px; margin-top: 0px;">
         <div class="container text-center">
       
-          <%= form_with(model: @profile, url: registration_path(@profile), local: true) do |f| %>
+          <%= form_with(model: @profile, url: profile_update_path(id: @profile.id), local: true) do |f| %>
             <%= render "devise/shared/error_messages", resource: @profile %>
       
             <div class="field mb-3">

@@ -6,15 +6,16 @@ class User < ActiveRecord::Base
          #:confirmable, :lockable, :timeoutable, :omniauthable, omniauth_providers: [:twitter]
          :lockable, :timeoutable, :omniauthable, omniauth_providers: [:twitter]
 
+  attr_accessor :current_password
   # validates :name, presence: true, length: { maximum: 50 }
   
   before_save { self.email = email.downcase }
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, length: { maximum: 100 },
-                    format: { with: VALID_EMAIL_REGEX },
-                    uniqueness: true
+  # VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  # validates :email, presence: true, length: { maximum: 100 },
+  #                   format: { with: VALID_EMAIL_REGEX },
+  #                   uniqueness: true
   #has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }
+  #validates :password, presence: true, on: :create, length: { minimum: 6 }
 
   def self.from_omniauth(auth)
     where(provider: auth["provider"], uid: auth["uid"]).first_or_create do |user|
@@ -43,5 +44,18 @@ class User < ActiveRecord::Base
     else
       all
     end
+  end
+  
+  def update_without_current_password(params, *options)
+    params.delete(:current_password)
+
+    if params[:password].blank? && params[:password_confirmation].blank?
+      params.delete(:password)
+      params.delete(:password_confirmation)
+    end
+
+    result = update_attributes(params, *options)
+    clean_up_passwords
+    result
   end
 end

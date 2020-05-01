@@ -23,25 +23,24 @@
       <% end %>
     
       <div class="field mb-3">
-        <strong><%= f.label :password %></strong><br />
+        <strong><%= f.label :password %></strong>
+        <% if @minimum_password_length %>
+          <em>（<%= @minimum_password_length %> 文字以上）</em>
+        <% end %><br />
         <%= f.password_field :password, autocomplete: "new-password" %>
         <!--<i>変更したくない場合は空欄のままにしてください。</i>-->
-        <% if @minimum_password_length %>
-          <br />
-          <em><%= @minimum_password_length %> 文字以上</em>
-        <% end %>
       </div>
     
-      <div class="field mb-3">
+      <div class="field mb-5">
         <strong><%= f.label :password_confirmation %></strong><br />
         <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
       </div>
     
-      <div class="field mb-3">
-        <strong><%= f.label :current_password %></strong><br />
-        <%= f.password_field :current_password, autocomplete: "current-password" %><br>
-        <i>パスワードを変更するには、現在のパスワードが必要です。</i>
-      </div>
+      <!--<div class="field mb-3">-->
+      <!--  <strong><%#= f.label :current_password %></strong><br />-->
+      <!--  <%#= f.password_field :current_password, autocomplete: "current-password" %><br>-->
+      <!--  <i>パスワードを変更するには、現在のパスワードが必要です。</i>-->
+      <!--</div>-->
     
       <div class="actions mb-3">
         <%= f.submit "更新", class:"btn btn-primary mr-2" %>
