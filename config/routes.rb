@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   get 'todolist/show', to: 'todolist#show', as: :todolist_show
   get 'todolist/new', to: 'todolist#new', as: :todolist_new
   post 'todolist/create', to: 'todolist#create', as: :todolist_create
+  patch 'todolist/update', to: 'todolist#update', as: :todolist_update
   get 'todolist/:id/finish', to: 'todolist#finish', as: :todolist_finish
   get 'todolist/:id/edit', to: 'todolist#edit', as: :todolist_edit
   get 'todolist/:id/delete', to: 'todolist#delete', as: :todolist_delete

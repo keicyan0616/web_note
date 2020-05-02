@@ -1,11 +1,11 @@
 <!-- 全イベント一覧表(部分表示部) -->
-  <table class="table table-bordered table-striped bg-white ml-3 mr-3" style="width: 95%;">
+  <table class="table table-bordered table-striped bg-white ml-3 mr-3 table-wd-response">
     <!--text-nowrap-->
     <thead class="thead-color lead">
       <tr style="background-color: #FFFFCC; font-size: 16px;">
         <th>カテゴリ</th>
         <th>日時</th>
-        <th>タイトル</th>
+        <th style="word-break: break-all;">タイトル</th>
         <th>内容</th>
         <!--<th colspan="3"></th>-->
       </tr>
@@ -14,7 +14,7 @@
     <tbody>
       <% @events.each do |event| %>
         <tr>
-          <td style="width: 10%; font-size: 12px;">
+          <td style="width: 10%; font-size: 12px; word-break: break-all;">
             <% if event._category == "スケジュール" %>
               <div class="card" style="background-color: navy; color:white;"><%= event._category %></div>
             <% else %>
@@ -44,8 +44,8 @@
               <% end %>
             <% end %>
           </td>
-          <td align="left" style="width: 15%; font-size: 14px;"><%= event.title %></td>
-          <td align="left" style="font-size: 14px;"><%= event.description %></td>
+          <td align="left" style="width: 20%; font-size: 14px; word-break: break-all;"><%= event.title %></td>
+          <td align="left" style="font-size: 14px; word-break: break-all;"><%= event.description %></td>
           <!--<td><%#= link_to 'Show', event %></td>-->
           <!--<td><%#= link_to 'Edit', edit_event_path(event) %></td>-->
           <!--<td><%#= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->

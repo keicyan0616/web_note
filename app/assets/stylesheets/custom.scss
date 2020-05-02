@@ -376,12 +376,18 @@ th, td, tr {
     left: -8.5%;
     width: 117%;
   }
+  .table-wd-response {
+    width: 94% !important;
+  }
 }
 @media (min-width: 415px) {
   .jumbotron-extend {
     position: relative;
     left:  0%;
     width: 100%;
+  }
+  .table-wd-response {
+    width: 92% !important;
   }
 }
 @media (min-width: 576px) {
@@ -390,12 +396,23 @@ th, td, tr {
     left:  -2%;
     width: 100%;
   }
+  .table-wd-response {
+    width: 95% !important;
+  }
+}
+@media (min-width: 768px) {
+   .table-wd-response {
+    width: 96% !important;
+  }
 }
 @media (min-width: 1480px) {
   .jumbotron-extend {
     position: relative;
     left: -5%;
     width: 100%;
+  }
+  .table-wd-response {
+    width: 97% !important;
   }
 }
 @media (min-width: 1555px) {
@@ -404,12 +421,18 @@ th, td, tr {
     left: -7%;
     width: 100%;
   }
+  .table-wd-response {
+    width: 97% !important;
+  }
 }
 @media (min-width: 1625px) {
   .jumbotron-extend {
     position: relative;
     left: -10%;
     width: 100%;
+  }
+  .table-wd-response {
+    width: 97% !important;
   }
 }
 .jumbotron-schdule {

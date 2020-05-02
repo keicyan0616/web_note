@@ -53,7 +53,7 @@
             <div class="center"><%= todolist.start_date.strftime('%H:%M') if todolist.start_date.present? %></div>
           </td>
           <!--<td><%#= todolist.start_date.strftime('%H:%M') if todolist.start_date.present? %></td>-->
-          <td class="text-left"><%= todolist.todo %></td>
+          <td class="text-left"><%= raw(h(todolist.todo).gsub(/\R/, "<br>")) %></td>
           <!--<td><%#= link_to 'Show', event %></td>-->
           <!--<td><%#= link_to 'Edit', edit_event_path(event) %></td>-->
           <td>
@@ -102,7 +102,7 @@
               <div class="center"><%= todofinishlist.start_date.strftime('%H:%M') if todofinishlist.start_date.present? %></div>
             </s></td>
             <!--<td><s><%#= todofinishlist.start_date.strftime('%H:%M') if todofinishlist.start_date.present? %></s></td>-->
-            <td class="text-left"><s><%= todofinishlist.todo %></s></td>
+            <td class="text-left"><s><%= raw(h(todofinishlist.todo).gsub(/\R/, "<br>")) %></s></td>
             <td>
               <%= link_to(todolist_delete_path(id: todofinishlist.id), class: "btn btn-danger d-block d-md-inline-block rounded-circle mr-1", data: { confirm: 'ToDoを削除してもよろしいですか？' }) do %>
                 <i class="fas fa-trash-alt"></i>

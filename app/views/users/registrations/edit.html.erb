@@ -6,7 +6,7 @@
     <!--<h2>Edit <%#= resource_name.to_s.humanize %></h2>-->
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
+      <%= render "users/shared/error_messages", resource: resource %>
 
       <div class="field mb-3">
         <strong><%= f.label '名前' %></strong><br />
@@ -50,7 +50,7 @@
     
     
     <!--<h3>アカウントの削除</h3>-->
-    <%= button_to "アカウント削除", registration_path(resource_name), data: { confirm: "アカウントを削除しますか？" }, method: :delete, class:"btn btn-danger" %>
+    <%= button_to "アカウント削除", registration_path(resource_name), data: { confirm: "アカウントを削除しますか？" }, method: :delete, class:"btn btn-danger btn-sm" %>
     
     <%#= link_to "Back", :back %>
 

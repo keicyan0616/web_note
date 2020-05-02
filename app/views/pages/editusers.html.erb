@@ -29,7 +29,7 @@
           <% @users.each do |user| %>
             <tr style="border-bottom:solid 1px silver;">
               <td class="center"><%= user.username %></td>
-              <td class="center"><%= user.email %></td>
+              <td class="center" style="word-break: break-all;"><%= user.email %></td>
               <td class="center">
               <!--  <%# if current_user.admin? && !current_user?(user) %>-->
                 <%= link_to(profile_show_path(id: user.id), remote: true, class: "btn btn-outline-info d-block d-md-inline-block rounded-circle px-2 py-1 mx-2") do %>

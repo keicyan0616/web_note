@@ -58,7 +58,7 @@
                 <!--<hr class="mr-3">-->
                 <%= link_to 'メモ編集', memopad_edit_path(id: memolist.id), remote: true, class: "btn ml-4 btn-info rounded-pill btn-sm" %>
                 <div class="jumbotron jumbotron-fluid border" style="background-color: #FFFFFF; margin: 8px 15px; padding: 20px 20px;">
-                  <h5><%= memolist.memo %></h5>
+                  <div style="word-break: break-all;"><%= raw(h(memolist.memo).gsub(/\R/, "<br>")) %></div>
                 </div>
               </div>
             </div>

@@ -33,7 +33,6 @@ class MemopadController < ApplicationController
   def update
     @memoData = Memopad.find(params[:id])
     @memoData.update(memopad_params)
-    @memoData.save
     redirect_to memopad_show_path
   end
 

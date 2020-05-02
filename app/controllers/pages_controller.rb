@@ -55,10 +55,7 @@ class PagesController < ApplicationController
   
   def update
     @profile = User.find(params[:id])
-    # @profile.username = params[:username]
-    # @profile.email = params[:email]
     @profile.update(profile_params)
-    # @profile.save
     redirect_to users_show_path
   end
   
