@@ -27,8 +27,8 @@
         <% if @minimum_password_length %>
           <em>（<%= @minimum_password_length %> 文字以上）</em>
         <% end %><br />
-        <%= f.password_field :password, autocomplete: "new-password" %>
-        <!--<i>変更したくない場合は空欄のままにしてください。</i>-->
+        <%= f.password_field :password, autocomplete: "new-password" %><br />
+        <i>変更したくない場合は空欄のままにしてください。</i>
       </div>
     
       <div class="field mb-5">
