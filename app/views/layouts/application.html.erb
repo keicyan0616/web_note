@@ -75,7 +75,7 @@
       <div class="container-fluid">
         <div class="row">
           <!--<div class="col-sm-3 col-md-2 sidebar" style="background-color: powderblue;">-->
-          <div class="col-sm-3 col-md-2 sidebar" style="background-color: powderblue; padding-bottom: 5000px; margin-bottom: -5000px;">
+          <div class="col-sm-3 col-md-2 sidebar under-extension" style="background-color: powderblue;">
             <ul class="nav nav-sidebar">
               <!-- PC用のメニュー部分 -->
               <%= sidebar_list_items("pc") %>
@@ -128,10 +128,12 @@
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>-->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     
-    <div id="scroll_to_top">
-      <!--<p>TOPに戻る</p>-->
-      <!--<img src="./totop.png" width="64" height="64" alt="TOPに戻る" />-->
-      <i class="fas fa-chevron-circle-up fa-2x"></i>
-    </div>
+    <% if user_signed_in? %>
+      <div id="scroll_to_top">
+        <!--<p>TOPに戻る</p>-->
+        <!--<img src="./totop.png" width="64" height="64" alt="TOPに戻る" />-->
+        <i class="fas fa-chevron-circle-up fa-2x"></i>
+      </div>
+    <% end %>
   </body>
 </html>
