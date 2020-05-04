@@ -7,7 +7,7 @@
         <h2 class="d-inline-block border-bottom border-dark my-5">LINE通知設定</h2>
       </div>
       
-      <h3>1.スマートWeb手帳Botを友だち追加</h3>
+      <h3>1.「スマートWeb手帳Bot」を友だち追加</h3>
       <!-- QRコード -->
       <img class="ml-3" src="https://qr-official.line.me/sid/M/610yamgf.png">
       <!-- 友だち追加 -->
@@ -18,23 +18,36 @@
       <!--<a href="https://lin.ee/3MsrUCs"><img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="友だち追加" height="36" border="0"></a>-->
       
       <br></br>
-      
       <hr></hr>
+
       <h3>2.LINEアカウント連携</h3>
       <div class="text-left">
-        <%= link_to 'LINE連携', line_relation_path, class: "btn mt-2 ml-2 mb-4 btn-outline-primary btn-sm" %>
+        <%= link_to 'LINE連携', line_relation_path, class: "btn mt-2 ml-2 mb-3 btn-outline-primary btn-sm" %>
       </div>
+      <% if @relateFlag == 1 %>
+        <div class="card ml-2 pl-1 center" style="width: 300px; font-size: 20px; background-color: #66FFFF;">LINEと連携済みです。</div>
+      <% else %>
+        <div class="card ml-2 pl-1 center" style="width: 300px; font-size: 20px; background-color: #DDDDDD;">LINEと連携できていません。</div>
+      <% end %>
       
       <br></br>
-      
       <hr></hr>
+
       <h3>3.詳細設定</h3>
       
       <p>3-1.フォローメッセージ通知</p>
-      <div class="mb-2">目標設定： ON / OFF </div>
+      <div class="ml-2 mb-4">
+        目標設定： 
+        <%= form_with(model: @lineLoginUser, url: notice_update_path, local: true) do |form| %>
+          <%= form.radio_button :valid_flag, 1 %>
+          <%= form.label :valid_flag, "ON" %>
+          <%= form.radio_button :valid_flag, 0 %>
+          <%= form.label :valid_flag, "OFF" %>
+        <% end %>
+       </div>
       
       <p>3-2.送信タイミング設定</p>
-      <div>目標設定： 月 ～ 金 午前12時（正午）のみ</div>
+      <div class="ml-2">目標設定： 月 ～ 金　午前12時（正午）のみ</div>
 
     </div>
   </div>

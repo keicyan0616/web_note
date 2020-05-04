@@ -74,7 +74,7 @@ class LinebotController < ApplicationController
       # @goalSendData = Goalset.find_by(user_id: current_user.id)
       @goalSendData = Goalset.find_by(user_id: lineDatalist.user_id)
   
-      # LINE通知設定をONにしているユーザーの目標設定データが存在する場合
+      # LINE通知設定をONにしているユーザーの目標設定データ��存在する場合
       if @goalSendData
         message = {
           type: 'text',
@@ -139,7 +139,9 @@ class LinebotController < ApplicationController
       req = Net::HTTP::Post.new(uri.request_uri, initheader = {'Content-Type' =>'application/x-www-form-urlencoded'})
   
       @clientId = ENV["LINE_CLIENT_ID"]
-      req.set_form_data({'grant_type' => 'authorization_code', 'code' => @code, 'redirect_uri' => 'https://rocky-oasis-44209.herokuapp.com/relateback', 'client_id' => @clientId, 'client_secret' => '15b56c13ec0fa190259ae9d22b393aae'})
+      @clientSecret = ENV["LINE_CLIENT_SECRET"]
+      req.set_form_data({'grant_type' => 'authorization_code', 'code' => @code, 'redirect_uri' => 'https://rocky-oasis-44209.herokuapp.com/relateback', 'client_id' => @clientId, 'client_secret' => @clientSecret})
+      # req.set_form_data({'grant_type' => 'authorization_code', 'code' => @code, 'redirect_uri' => 'https://rocky-oasis-44209.herokuapp.com/relateback', 'client_id' => @clientId, 'client_secret' => '15b56c13ec0fa190259ae9d22b393aae'})
       # req.set_form_data({'grant_type' => 'authorization_code', 'code' => @code, 'redirect_uri' => goalset_show_path(code: 2), 'client_id' => '1654058944', 'client_secret' => '15b56c13ec0fa190259ae9d22b393aae'})
       # req.body = {name: "web", config: {url: "hogehogehogehoge"}}.to_json
   
@@ -163,20 +165,45 @@ class LinebotController < ApplicationController
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
   
       req = Net::HTTP::Post.new(uri.request_uri)
-      req.set_form_data({'id_token' => @idToken, 'client_id' => '1654058944'})
+      req.set_form_data({'id_token' => @idToken, 'client_id' => @clientId})
    
       res = http.request(req)
       result = ActiveSupport::JSON.decode(res.body)
   
       @userId = result["sub"]
       @displayName = result["name"]
+      
+      # LinebotテーブルにUIDを書き込み
+      @lineLoginUser = Linebot.find_by(user_id: current_user.id)
+      if @lineLoginUser 
+        @lineLoginUser.line_uid = @userId
+        @lineLoginUser.save
+      else
+        @lineLoginUser = Linebot.new(user_id: current_user.id, line_uid: @userId, \
+          valid_flag: 1, week1_flag: 0, week2_flag: 0, week3_flag: 0, week4_flg: 0, week5_flag: 0, week6_flag: 0, week7_flag: 0)
+        @lineLoginUser.save
+      end
+      
       flash.notice = "LINE連携が成功しました。"
     else
       flash.alert = "LINE連携の処理が失敗しました。"
       redirect_to line_setnotice_path
     end
   end
+  
+  def setnotice
+    @relateFlag = 0
+    @lineLoginUser = Linebot.find_by(user_id: current_user.id)
+    if @lineLoginUser 
+      if @lineLoginUser.line_uid != nil
+        @relateFlag = 1
+      end
+    end
+  end
+  
+  def noticeupdate
 
+  end
 end
 
   # #アクセストークンからプロフィール情報（UserID）を取得
