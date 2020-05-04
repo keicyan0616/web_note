@@ -3,6 +3,7 @@ class LinebotController < ApplicationController
   require 'line/bot'  # gem 'line-bot-api'
   require "net/https"
   require 'uri'
+  require 'securerandom'
 
   # callbackアクションのCSRFトークン認証を無効
   protect_from_forgery :except => [:callback]
@@ -65,15 +66,13 @@ class LinebotController < ApplicationController
   end
 
 
-  # 能動的メッセージ送信
+  # LINEメッセージ送信ボタン（能動的メッセージ送信）
   def line_test
     @goalSendData = Goalset.find_by(user_id: current_user.id)
-    
-    # aaa = "k.kawasaki"
+
     message = {
       type: 'text',
-      text: "
-### 目標フォローメッセージ送信テスト(Fromローカル) ###
+      text: "### 目標設定フォローメッセージ（送信テストFromローカル）###
 
 【マイミッション】
   #{@goalSendData.mission}
@@ -90,8 +89,8 @@ class LinebotController < ApplicationController
       # text: "SmartWebNoteからLINE Botへのテスト送信(from ローカル)です！(#{aaa})"
     }
     client = Line::Bot::Client.new { |config|
-      # config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
-      config.channel_secret = "6369bc43d02546586a420d568fe55de8"
+      config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
+      # config.channel_secret = "6369bc43d02546586a420d568fe55de8"
       config.channel_token = ENV["LINE_CHANNEL_TOKEN"]
       # config.channel_token = "6MEEzyQDZZfFMU/oeABzqg1OpDO29JOZc42Mm+i8G8KpzG6D+V8n+yqBzC3JIC34l8vT5+7YP88PsvdwxikPK9l6EFDclWNdsYWHlfMzIXqzYjl6KTJSKbRvdsTnV4qeOW72NC8OLe0zsynTYkwfEwdB04t89/1O/w1cDnyilFU="
     }
@@ -102,6 +101,7 @@ class LinebotController < ApplicationController
   
   #LINE連携関係
   def relation
+    $randomState = SecureRandom.hex(8)
     redirect_to 'https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1654058944&redirect_uri=https%3A%2F%2Frocky-oasis-44209.herokuapp.com%2Frelateback&state=12345abcde&scope=profile%20openid'
     # redirect_to 'https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1654058944&redirect_uri=https%3A%2F%2Frocky-oasis-44209.herokuapp.com&state=12345abcde&scope=openid'
   end
