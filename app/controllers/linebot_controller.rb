@@ -68,11 +68,17 @@ class LinebotController < ApplicationController
 
   # LINEメッセージ送信ボタン（能動的メッセージ送信）
   def line_test
-    @goalSendData = Goalset.find_by(user_id: current_user.id)
-
-    message = {
-      type: 'text',
-      text: "### 目標設定フォローメッセージ（送信テストFromローカル）###
+    @lineBotDatas = Linebot.where(valid_flag: 1)
+    
+    @lineBotDatas.each do |lineDatalist|
+      # @goalSendData = Goalset.find_by(user_id: current_user.id)
+      @goalSendData = Goalset.find_by(user_id: lineDatalist.user_id)
+  
+      # LINE通知設定をONにしているユーザーの目標設定データが存在する場合
+      if @goalSendData
+        message = {
+          type: 'text',
+          text: "### 目標設定フォローメッセージ（送信テストat手動）###
 
 【マイミッション】
   #{@goalSendData.mission}
@@ -86,23 +92,31 @@ class LinebotController < ApplicationController
 【短期目標】（#{@goalSendData.s_goal_deadline_at.strftime('%Y-%m-%d')}）
   #{@goalSendData.short_goal}
 "
-      # text: "SmartWebNoteからLINE Botへのテスト送信(from ローカル)です！(#{aaa})"
-    }
-    client = Line::Bot::Client.new { |config|
-      config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
-      # config.channel_secret = "6369bc43d02546586a420d568fe55de8"
-      config.channel_token = ENV["LINE_CHANNEL_TOKEN"]
-      # config.channel_token = "6MEEzyQDZZfFMU/oeABzqg1OpDO29JOZc42Mm+i8G8KpzG6D+V8n+yqBzC3JIC34l8vT5+7YP88PsvdwxikPK9l6EFDclWNdsYWHlfMzIXqzYjl6KTJSKbRvdsTnV4qeOW72NC8OLe0zsynTYkwfEwdB04t89/1O/w1cDnyilFU="
-    }
-    response = client.push_message("U213bcd37c159e91d56615331a1446953", message)
-    p response
+        }
+    
+        client = Line::Bot::Client.new { |config|
+          config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
+          # config.channel_secret = "6369bc43d02546586a420d568fe55de8"
+          config.channel_token = ENV["LINE_CHANNEL_TOKEN"]
+          # config.channel_token = "6MEEzyQDZZfFMU/oeABzqg1OpDO29JOZc42Mm+i8G8KpzG6D+V8n+yqBzC3JIC34l8vT5+7YP88PsvdwxikPK9l6EFDclWNdsYWHlfMzIXqzYjl6KTJSKbRvdsTnV4qeOW72NC8OLe0zsynTYkwfEwdB04t89/1O/w1cDnyilFU="
+        }
+    
+        # @lineBotData = Linebot.find_by(user_id: current_user.id)
+        # response = client.push_message(@lineBotData.line_uid, message)
+        response = client.push_message(lineDatalist.line_uid, message)
+        p response
+      end
+    end
+
     redirect_to goalset_show_path
   end
   
   #LINE連携関係
   def relation
     $randomState = SecureRandom.hex(8)
-    redirect_to 'https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1654058944&redirect_uri=https%3A%2F%2Frocky-oasis-44209.herokuapp.com%2Frelateback&state=12345abcde&scope=profile%20openid'
+    clientId = ENV["LINE_CLIENT_ID"]
+    redirect_to "https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=#{clientId}&redirect_uri=https%3A%2F%2Frocky-oasis-44209.herokuapp.com%2Frelateback&state=#{$randomState}&scope=profile%20openid"
+    # redirect_to 'https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1654058944&redirect_uri=https%3A%2F%2Frocky-oasis-44209.herokuapp.com%2Frelateback&state=12345abcde&scope=profile%20openid'
     # redirect_to 'https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1654058944&redirect_uri=https%3A%2F%2Frocky-oasis-44209.herokuapp.com&state=12345abcde&scope=openid'
   end
   
@@ -110,50 +124,57 @@ class LinebotController < ApplicationController
   def relateback
     # 認可コード取得
     @code = params[:code]
+    @cbState = params[:state]
     
-
-    #アクセストークン取得（POSTリクエスト（https））
-    uri = URI.parse("https://api.line.me/oauth2/v2.1/token")
-    http = Net::HTTP.new(uri.host, uri.port)
-
-    http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-
-    # req = Net::HTTP::Post.new(uri.path)
-    # req["Content-Type"] = 'application/x-www-form-urlencoded'
-    req = Net::HTTP::Post.new(uri.request_uri, initheader = {'Content-Type' =>'application/x-www-form-urlencoded'})
-
-    req.set_form_data({'grant_type' => 'authorization_code', 'code' => @code, 'redirect_uri' => 'https://rocky-oasis-44209.herokuapp.com/relateback', 'client_id' => '1654058944', 'client_secret' => '15b56c13ec0fa190259ae9d22b393aae'})
-    # req.set_form_data({'grant_type' => 'authorization_code', 'code' => @code, 'redirect_uri' => goalset_show_path(code: 2), 'client_id' => '1654058944', 'client_secret' => '15b56c13ec0fa190259ae9d22b393aae'})
-    # req.body = {name: "web", config: {url: "hogehogehogehoge"}}.to_json
-
-    res = http.request(req)
-    
-    # http.set_debug_output $stderr
-    
-    result = ActiveSupport::JSON.decode(res.body)
-    
-    @acsToken = result["access_token"]
-    @expIn = result["expires_in"]
-    @idToken = result["id_token"]
-    @scope = result["scope"]
-
-
-    #アクセストークンからプロフィール情報（UserID）を取得
-    uri = URI.parse("https://api.line.me/oauth2/v2.1/verify")
-    http = Net::HTTP.new(uri.host, uri.port)
-
-    http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-
-    req = Net::HTTP::Post.new(uri.request_uri)
-    req.set_form_data({'id_token' => @idToken, 'client_id' => '1654058944'})
- 
-    res = http.request(req)
-    result = ActiveSupport::JSON.decode(res.body)
-
-    @userId = result["sub"]
-    @displayName = result["name"]
+    if @code != "" && @cbState == $randomState
+      #アクセストークン取得（POSTリクエスト（https））
+      uri = URI.parse("https://api.line.me/oauth2/v2.1/token")
+      http = Net::HTTP.new(uri.host, uri.port)
+  
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+  
+      # req = Net::HTTP::Post.new(uri.path)
+      # req["Content-Type"] = 'application/x-www-form-urlencoded'
+      req = Net::HTTP::Post.new(uri.request_uri, initheader = {'Content-Type' =>'application/x-www-form-urlencoded'})
+  
+      @clientId = ENV["LINE_CLIENT_ID"]
+      req.set_form_data({'grant_type' => 'authorization_code', 'code' => @code, 'redirect_uri' => 'https://rocky-oasis-44209.herokuapp.com/relateback', 'client_id' => @clientId, 'client_secret' => '15b56c13ec0fa190259ae9d22b393aae'})
+      # req.set_form_data({'grant_type' => 'authorization_code', 'code' => @code, 'redirect_uri' => goalset_show_path(code: 2), 'client_id' => '1654058944', 'client_secret' => '15b56c13ec0fa190259ae9d22b393aae'})
+      # req.body = {name: "web", config: {url: "hogehogehogehoge"}}.to_json
+  
+      res = http.request(req)
+      
+      # http.set_debug_output $stderr
+      
+      result = ActiveSupport::JSON.decode(res.body)
+      
+      @acsToken = result["access_token"]
+      @expIn = result["expires_in"]
+      @idToken = result["id_token"]
+      @scope = result["scope"]
+  
+  
+      #アクセストークンからプロフィール情報（UserID）を取得
+      uri = URI.parse("https://api.line.me/oauth2/v2.1/verify")
+      http = Net::HTTP.new(uri.host, uri.port)
+  
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+  
+      req = Net::HTTP::Post.new(uri.request_uri)
+      req.set_form_data({'id_token' => @idToken, 'client_id' => '1654058944'})
+   
+      res = http.request(req)
+      result = ActiveSupport::JSON.decode(res.body)
+  
+      @userId = result["sub"]
+      @displayName = result["name"]
+      flash.notice = "LINE連携が成功しました。"
+    else
+      flash.alert = "LINE連携の処理が失敗しました。"
+      redirect_to line_setnotice_path
+    end
   end
 
 end

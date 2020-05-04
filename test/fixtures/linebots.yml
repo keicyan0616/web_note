@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  line_uid: MyString
+  valid_flag: 1
+  week1_flag: 1
+  week2_flag: 1
+  week3_flag: 1
+  week4_flag: 1
+  week5_flag: 1
+  week6_flag: 1
+  week7_flag: 1
+  dotime_at: 2020-05-04 08:02:46
+
+two:
+  user: two
+  line_uid: MyString
+  valid_flag: 1
+  week1_flag: 1
+  week2_flag: 1
+  week3_flag: 1
+  week4_flag: 1
+  week5_flag: 1
+  week6_flag: 1
+  week7_flag: 1
+  dotime_at: 2020-05-04 08:02:46

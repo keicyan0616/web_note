@@ -72,16 +72,12 @@ class GoalsetController < ApplicationController
   def create
     @goalData = Goalset.new(goalset_params)
     @goalData.user_id = current_user.id
-    # @goalData.mission_set_at = Time.zone.now
-    # @goalData.l_goal_set_at = Time.zone.now
-    # @goalData.m_goal_set_at = Time.zone.now
-    # @goalData.s_goal_set_at = Time.zone.now
     @goalData.save
     redirect_to goalset_show_path
   end
 
 private
-  def goalsetm_params
+  def goalset_params
     params.require(:goalset).permit(:mission, \
                                     :l_goal_deadline_at, :long_goal, \
                                     :m_goal_deadline_at, :middle_goal, \

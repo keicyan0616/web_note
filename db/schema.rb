@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200430133343) do
+ActiveRecord::Schema.define(version: 20200504080246) do
 
   create_table "events", force: :cascade do |t|
     t.string "title"
@@ -39,6 +39,23 @@ ActiveRecord::Schema.define(version: 20200430133343) do
     t.datetime "m_goal_set_at"
     t.datetime "l_goal_set_at"
     t.index ["user_id"], name: "index_goalsets_on_user_id"
+  end
+
+  create_table "linebots", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "line_uid"
+    t.integer "valid_flag"
+    t.integer "week1_flag"
+    t.integer "week2_flag"
+    t.integer "week3_flag"
+    t.integer "week4_flag"
+    t.integer "week5_flag"
+    t.integer "week6_flag"
+    t.integer "week7_flag"
+    t.datetime "dotime_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_linebots_on_user_id"
   end
 
   create_table "memopads", force: :cascade do |t|
