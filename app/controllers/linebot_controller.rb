@@ -180,7 +180,7 @@ class LinebotController < ApplicationController
         @lineLoginUser.save
       else
         @lineLoginUser = Linebot.new(user_id: current_user.id, line_uid: @userId, \
-          valid_flag: 1, week1_flag: 0, week2_flag: 0, week3_flag: 0, week4_flg: 0, week5_flag: 0, week6_flag: 0, week7_flag: 0)
+          valid_flag: 1, week1_flag: 0, week2_flag: 0, week3_flag: 0, week4_flag: 0, week5_flag: 0, week6_flag: 0, week7_flag: 0)
         @lineLoginUser.save
       end
       
