@@ -8,6 +8,8 @@
       </div>
       
       <h3>1.「スマートWeb手帳Bot」を友だち追加</h3>
+      <div class="ml-2">下記の「QRコード」を読み取るか、「友だち追加」ボタンをクリックして、友だち追加をしてください。</div>
+
       <!-- QRコード -->
       <img class="ml-3" src="https://qr-official.line.me/sid/M/610yamgf.png">
       <!-- 友だち追加 -->
@@ -17,10 +19,12 @@
       </div>
       <!--<a href="https://lin.ee/3MsrUCs"><img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="友だち追加" height="36" border="0"></a>-->
       
-      <br></br>
-      <hr></hr>
+      <br>
+      <hr class="mt-4">
 
-      <h3>2.LINEアカウント連携</h3>
+      <h3>2. LINEアカウント連携</h3>
+      <div class="ml-2 mb-2">下記の「LINE連携」ボタンをクリックして、LINEアカウントと結びつけてください。</div>
+      
       <div class="text-left">
         <%= link_to 'LINE連携', line_relation_path, class: "btn mt-2 ml-2 mb-3 btn-outline-primary btn-sm" %>
       </div>
@@ -30,24 +34,57 @@
         <div class="card ml-2 pl-1 center" style="width: 300px; font-size: 20px; background-color: #DDDDDD;">LINEと連携できていません。</div>
       <% end %>
       
-      <br></br>
-      <hr></hr>
+      <br>
+      <hr>
 
-      <h3>3.詳細設定</h3>
+      <h3>3. 詳細設定</h3>
+      <div class="ml-2 mb-3">通知設定を「ON」にすると、指定した曜日の午前12時（正午）に「目標設定のフォローメッセージ」が通知されます。</div>
       
-      <p>3-1.フォローメッセージ通知</p>
-      <div class="ml-2 mb-4">
-        目標設定： 
+      <p class="ml-2">3-1. 目標設定メッセージ通知</p>
+      <div class="ml-4 mb-3">
         <%= form_with(model: @lineLoginUser, url: notice_update_path, local: true) do |form| %>
           <%= form.radio_button :valid_flag, 1 %>
           <%= form.label :valid_flag, "ON" %>
-          <%= form.radio_button :valid_flag, 0 %>
+          <%= form.radio_button :valid_flag, 0, class: "ml-3" %>
           <%= form.label :valid_flag, "OFF" %>
+          <%= form.submit '設定', class: "btn btn-outline-primary btn-sm ml-4" %>
         <% end %>
        </div>
+      <% if @noticeFlag == 1 %>
+        <div class="card ml-2 mb-4 pl-2 center" style="width: 300px; font-size: 20px; background-color: #66FFFF;">LINE通知：「ON」設定です。</div>
+      <% else %>
+        <div class="card ml-2 mb-4 pl-2 center" style="width: 300px; font-size: 20px; background-color: #DDDDDD;">LINE通知：「OFF」設定です。</div>
+      <% end %>
       
-      <p>3-2.送信タイミング設定</p>
-      <div class="ml-2">目標設定： 月 ～ 金　午前12時（正午）のみ</div>
+      <p class="ml-2">3-2. 送信タイミング設定</p>
+      <%= form_with(model: @lineLoginUser, url: timing_update_path, local: true) do |form| %>
+        <div class="ml-4 mb-4">
+          <%= form.check_box :week1_flag, {}, 1, 0 %>
+          <%= form.label :月 %>
+          <%= form.check_box :week2_flag, {class: "ml-2"}, 1, 0 %>
+          <%= form.label :火 %>
+          <%= form.check_box :week3_flag, {class: "ml-2"}, 1, 0 %>
+          <%= form.label :水 %>
+          <%= form.check_box :week4_flag, {class: "ml-2"}, 1, 0 %>
+          <%= form.label :木 %>
+          <%= form.check_box :week5_flag, {class: "ml-2"}, 1, 0 %>
+          <%= form.label :金 %>
+          <%= form.check_box :week6_flag, {class: "ml-2"}, 1, 0 %>
+          <%= form.label :土 %>
+          <%= form.check_box :week7_flag, {class: "ml-2"}, 1, 0 %>
+          <%= form.label :日 %>
+          <%= form.submit '設定', class: "btn btn-outline-primary btn-sm ml-md-4" %>
+        </div>
+        <!--<div class="ml-4 mb-4">-->
+        <!--  <%#= form.time_field :dotime_at, disabled: true %>-->
+        <!--  ← 現在WEBサービスの稼働時間を無料利用枠内に抑えるため、午前12時（正午）のみの通知に制限させていただいております。-->
+        <!--</div>-->
+      <% end %>
+      <% if @timingFlag == 1 %>
+        <div class="card ml-2 pl-2 center" style="width: 300px; font-size: 20px; background-color: #66FFFF;">送信タイミング設定済みです。</div>
+      <% else %>
+        <div class="card ml-2 pl-2 center" style="width: 300px; font-size: 20px; background-color: #DDDDDD;">送信タイミングが未設定です。</div>
+      <% end %>
 
     </div>
   </div>

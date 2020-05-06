@@ -17,8 +17,6 @@ class LinebotController < ApplicationController
 
   # イベント発生時
   def callback
-    # Postモデルの中身をランダムで@postに格納する
-    # @post=Post.offset( rand(Post.count) ).first
     body = request.body.read
 
     signature = request.env['HTTP_X_LINE_SIGNATURE']
@@ -45,7 +43,6 @@ class LinebotController < ApplicationController
       elsif event.message['text'].include?("ユーザーID")
         response = "あなたのユーザーIDは、[" +  userId + "]です。"
       else
-        # response = @post.name
         response = "else処理です"
       end
 
@@ -68,17 +65,35 @@ class LinebotController < ApplicationController
 
   # LINEメッセージ送信ボタン（能動的メッセージ送信）
   def line_test
-    @lineBotDatas = Linebot.where(valid_flag: 1)
+    # メッセージ送信対象情報の取得
+    weekDay = Time.zone.now.wday
+    if weekDay == 1
+      @lineBotDatas = Linebot.where(valid_flag: 1, week1_flag: 1)
+    elsif weekDay == 2
+      @lineBotDatas = Linebot.where(valid_flag: 1, week2_flag: 1)
+    elsif weekDay == 3
+      @lineBotDatas = Linebot.where(valid_flag: 1, week3_flag: 1)
+    elsif weekDay == 4
+      @lineBotDatas = Linebot.where(valid_flag: 1, week4_flag: 1)
+    elsif weekDay == 5
+      @lineBotDatas = Linebot.where(valid_flag: 1, week5_flag: 1)
+    elsif weekDay == 6
+      @lineBotDatas = Linebot.where(valid_flag: 1, week6_flag: 1)
+    elsif weekDay == 0
+      @lineBotDatas = Linebot.where(valid_flag: 1, week7_flag: 1)      
+    end  
+    # @lineBotDatas = Linebot.where(valid_flag: 1)
     
-    @lineBotDatas.each do |lineDatalist|
-      # @goalSendData = Goalset.find_by(user_id: current_user.id)
-      @goalSendData = Goalset.find_by(user_id: lineDatalist.user_id)
-  
-      # LINE通知設定をONにしているユーザーの目標設定データ��存在する場合
-      if @goalSendData
-        message = {
-          type: 'text',
-          text: "### 目標設定フォローメッセージ（送信テストat手動）###
+    if @lineBotDatas != nil
+      @lineBotDatas.each do |lineDatalist|
+        # @goalSendData = Goalset.find_by(user_id: current_user.id)
+        @goalSendData = Goalset.find_by(user_id: lineDatalist.user_id)
+    
+        # LINE通知設定をONにしているユーザーの目標設定データが存在する場合
+        if @goalSendData != nil
+          message = {
+            type: 'text',
+            text: "### 目標設定フォローメッセージ（送信テストat手動）###
 
 【マイミッション】
   #{@goalSendData.mission}
@@ -92,19 +107,20 @@ class LinebotController < ApplicationController
 【短期目標】（#{@goalSendData.s_goal_deadline_at.strftime('%Y-%m-%d')}）
   #{@goalSendData.short_goal}
 "
-        }
-    
-        client = Line::Bot::Client.new { |config|
-          config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
-          # config.channel_secret = "6369bc43d02546586a420d568fe55de8"
-          config.channel_token = ENV["LINE_CHANNEL_TOKEN"]
-          # config.channel_token = "6MEEzyQDZZfFMU/oeABzqg1OpDO29JOZc42Mm+i8G8KpzG6D+V8n+yqBzC3JIC34l8vT5+7YP88PsvdwxikPK9l6EFDclWNdsYWHlfMzIXqzYjl6KTJSKbRvdsTnV4qeOW72NC8OLe0zsynTYkwfEwdB04t89/1O/w1cDnyilFU="
-        }
-    
-        # @lineBotData = Linebot.find_by(user_id: current_user.id)
-        # response = client.push_message(@lineBotData.line_uid, message)
-        response = client.push_message(lineDatalist.line_uid, message)
-        p response
+          }
+      
+          client = Line::Bot::Client.new { |config|
+            config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
+            # config.channel_secret = "6369bc43d02546586a420d568fe55de8"
+            config.channel_token = ENV["LINE_CHANNEL_TOKEN"]
+            # config.channel_token = "6MEEzyQDZZfFMU/oeABzqg1OpDO29JOZc42Mm+i8G8KpzG6D+V8n+yqBzC3JIC34l8vT5+7YP88PsvdwxikPK9l6EFDclWNdsYWHlfMzIXqzYjl6KTJSKbRvdsTnV4qeOW72NC8OLe0zsynTYkwfEwdB04t89/1O/w1cDnyilFU="
+          }
+      
+          # @lineBotData = Linebot.find_by(user_id: current_user.id)
+          # response = client.push_message(@lineBotData.line_uid, message)
+          response = client.push_message(lineDatalist.line_uid, message)
+          p response
+        end
       end
     end
 
@@ -180,29 +196,88 @@ class LinebotController < ApplicationController
         @lineLoginUser.save
       else
         @lineLoginUser = Linebot.new(user_id: current_user.id, line_uid: @userId, \
-          valid_flag: 1, week1_flag: 0, week2_flag: 0, week3_flag: 0, week4_flag: 0, week5_flag: 0, week6_flag: 0, week7_flag: 0)
+          valid_flag: 1, week1_flag: 0, week2_flag: 0, week3_flag: 0, week4_flag: 0, week5_flag: 0, week6_flag: 0, week7_flag: 0, \
+          dotime: "2020-05-01 12:00:00")
         @lineLoginUser.save
       end
       
       flash.notice = "LINE連携が成功しました。"
     else
       flash.alert = "LINE連携の処理が失敗しました。"
-      redirect_to line_setnotice_path
     end
+    redirect_to line_setnotice_path
   end
   
   def setnotice
-    @relateFlag = 0
-    @lineLoginUser = Linebot.find_by(user_id: current_user.id)
-    if @lineLoginUser 
-      if @lineLoginUser.line_uid != nil
-        @relateFlag = 1
+    if user_signed_in?
+      # LINE連携済みフラグ
+      @relateFlag = 0
+      # LINE通知設定フラグ
+      @noticeFlag = 0
+      # 送信タイミング設定フラグ
+      @timingFlag = 0
+  
+      @lineLoginUser = Linebot.find_by(user_id: current_user.id)
+      if @lineLoginUser
+        if @lineLoginUser.line_uid != nil
+          @relateFlag = 1
+        end
+        if @lineLoginUser.valid_flag != nil
+          @noticeFlag = @lineLoginUser.valid_flag
+        end
+        if @lineLoginUser.valid_flag != nil
+          if @lineLoginUser.week1_flag == 1 || @lineLoginUser.week2_flag == 1 || @lineLoginUser.week3_flag == 1 || \
+             @lineLoginUser.week4_flag == 1 || @lineLoginUser.week5_flag == 1 || @lineLoginUser.week6_flag == 1 || \
+             @lineLoginUser.week7_flag == 1
+  
+            @timingFlag =1
+          end
+        end
       end
+    else
+      #セッションタイムアウトした場合の処理(idがnullのため落ちないように)
+      redirect_to new_user_session_path
     end
   end
   
+  # 通知「ON/OFF」の更新
   def noticeupdate
-
+    validValue = params[:linebot][:valid_flag]
+    @lineLoginUser = Linebot.find_by(user_id: current_user.id)
+    if @lineLoginUser
+      @lineLoginUser.valid_flag = validValue
+      @lineLoginUser.save
+      flash.notice = "通知設定を変更しました。"
+    else
+      flash.alert = "通知設定を変更できませんでした。LINEアカウントとの連携が完了しているか確認してください。"
+    end
+    redirect_to line_setnotice_path
+  end
+  
+  # 送信タイミング更新
+  def timingupdate
+    week1Value = params[:linebot][:week1_flag]
+    week2Value = params[:linebot][:week2_flag]
+    week3Value = params[:linebot][:week3_flag]
+    week4Value = params[:linebot][:week4_flag]
+    week5Value = params[:linebot][:week5_flag]
+    week6Value = params[:linebot][:week6_flag]
+    week7Value = params[:linebot][:week7_flag]
+    @lineLoginUser = Linebot.find_by(user_id: current_user.id)
+    if @lineLoginUser
+      @lineLoginUser.week1_flag = week1Value
+      @lineLoginUser.week2_flag = week2Value
+      @lineLoginUser.week3_flag = week3Value
+      @lineLoginUser.week4_flag = week4Value
+      @lineLoginUser.week5_flag = week5Value
+      @lineLoginUser.week6_flag = week6Value
+      @lineLoginUser.week7_flag = week7Value
+      @lineLoginUser.save
+      flash.notice = "送信タイミングの設定を変更しました。"
+    else
+      flash.alert = "送信タイミングの設定を変更できませんでした。LINEアカウントとの連携が完了しているか確認してください。"
+    end
+    redirect_to line_setnotice_path
   end
 end
 

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   # post '/push' => 'linebot#line_test', as: :line_send_message
   get '/setnotice' => 'linebot#setnotice', as: :line_setnotice
   patch '/noticeupdate' => 'linebot#noticeupdate', as: :notice_update
+  patch '/timingupdate' => 'linebot#timingupdate', as: :timing_update
 
   # ＜ユーザー一覧関係＞
   get 'pages/editusers', to: 'pages#editusers', as: :users_show
