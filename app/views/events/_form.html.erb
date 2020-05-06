@@ -11,7 +11,7 @@
     </div>
   <% end %>
 
-  <div class="field mb-1" style="padding-right: 0px;">
+  <div class="field mb-2" style="padding-right: 0px;">
     <%= form.label :スケジュール名 %>
     <%= form.text_field :title, id: :event_title, size: "39" %>
   </div>
@@ -22,20 +22,21 @@
   </div>
 
   <div class="field mb-1" style="padding-right: 0px;">
-    <%= form.label :開始日時 %>
+    <span class="mr-1"><%= form.label :開始日時 %></span>
     <% if year == nil || month == nil || day == nil %>
-      <%= form.datetime_select :start_date, {:use_month_numbers => true}, id: :event_start_date %>
+      <%= form.datetime_field :start_date, id: :event_start_date %>
     <% else %>
-      <%= form.datetime_select :start_date, {:use_month_numbers => true, default: Date.new(year.to_i, month.to_i, day.to_i)}, id: :event_start_date %>
+      <%= form.datetime_field :start_date, value: Date.new(year.to_i, month.to_i, day.to_i).strftime("%Y-%m-%dT00:00:00"), id: :event_start_date %>
+      <!--{:use_month_numbers => true, default: Date.new(year.to_i, month.to_i, day.to_i)}-->
     <% end %>
   </div>
 
   <div class="field" style="padding-right: 0px;">
-    <%= form.label :終了日時 %>
+    <span class="mr-1"><%= form.label :終了日時 %></span>
     <% if year == nil || month == nil || day == nil %>
-      <%= form.datetime_select :end_date, {:use_month_numbers => true}, id: :event_end_date %>
+      <%= form.datetime_field :end_date, id: :event_end_date %>
     <% else %>
-      <%= form.datetime_select :end_date, {:use_month_numbers => true, default: Date.new(year.to_i, month.to_i, day.to_i)}, id: :event_end_date %>
+      <%= form.datetime_field :end_date, value: Date.new(year.to_i, month.to_i, day.to_i).strftime("%Y-%m-%dT00:00:00"), id: :event_end_date %>
     <% end %>
   </div>
 

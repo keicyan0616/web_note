@@ -224,18 +224,20 @@ class LinebotController < ApplicationController
         if @lineLoginUser.line_uid != nil
           @relateFlag = 1
         end
+        # LINE通知設定の状態表示フラグ設定・ボタン有効化
         if @lineLoginUser.valid_flag != nil
           @noticeFlag = @lineLoginUser.valid_flag
           @noticeSetFlag = false
         end
+        # 送信タイミング設定の状態表示フラグ設定・ボタン有効化
         if @lineLoginUser.valid_flag != nil
           if @lineLoginUser.week1_flag == 1 || @lineLoginUser.week2_flag == 1 || @lineLoginUser.week3_flag == 1 || \
              @lineLoginUser.week4_flag == 1 || @lineLoginUser.week5_flag == 1 || @lineLoginUser.week6_flag == 1 || \
              @lineLoginUser.week7_flag == 1
   
-            @timingFlag =1
-            @timingSetFlag = false
+            @timingFlag = 1
           end
+          @timingSetFlag = false
         end
       end
     else

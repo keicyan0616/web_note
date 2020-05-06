@@ -63,7 +63,7 @@ class EventsController < ApplicationController
   def destroy
     @event.destroy
     respond_to do |format|
-      format.html { redirect_to events_url, notice: '予定を削除しました。' }
+      format.html { redirect_to schdule_show_path, notice: '予定を削除しました。' }
       format.json { head :no_content }
     end
   end
