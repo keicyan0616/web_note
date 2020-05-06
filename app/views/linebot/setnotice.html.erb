@@ -47,7 +47,7 @@
           <%= form.label :valid_flag, "ON" %>
           <%= form.radio_button :valid_flag, 0, class: "ml-3" %>
           <%= form.label :valid_flag, "OFF" %>
-          <%= form.submit '設定', class: "btn btn-outline-primary btn-sm ml-4" %>
+          <%= form.submit '設定', disabled: @noticeSetFlag, class: "btn btn-outline-primary btn-sm ml-4" %>
         <% end %>
        </div>
       <% if @noticeFlag == 1 %>
@@ -73,7 +73,7 @@
           <%= form.label :土 %>
           <%= form.check_box :week7_flag, {class: "ml-2"}, 1, 0 %>
           <%= form.label :日 %>
-          <%= form.submit '設定', class: "btn btn-outline-primary btn-sm ml-md-4" %>
+          <%= form.submit '設定', disabled: @timingSetFlag, class: "btn btn-outline-primary btn-sm ml-md-4" %>
         </div>
         <!--<div class="ml-4 mb-4">-->
         <!--  <%#= form.time_field :dotime_at, disabled: true %>-->

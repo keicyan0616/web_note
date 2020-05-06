@@ -197,7 +197,7 @@ class LinebotController < ApplicationController
       else
         @lineLoginUser = Linebot.new(user_id: current_user.id, line_uid: @userId, \
           valid_flag: 1, week1_flag: 0, week2_flag: 0, week3_flag: 0, week4_flag: 0, week5_flag: 0, week6_flag: 0, week7_flag: 0, \
-          dotime: "2020-05-01 12:00:00")
+          dotime_at: "2020-05-01 12:00:00")
         @lineLoginUser.save
       end
       
@@ -214,8 +214,10 @@ class LinebotController < ApplicationController
       @relateFlag = 0
       # LINE通知設定フラグ
       @noticeFlag = 0
+      @noticeSetFlag = true
       # 送信タイミング設定フラグ
       @timingFlag = 0
+      @timingSetFlag = true
   
       @lineLoginUser = Linebot.find_by(user_id: current_user.id)
       if @lineLoginUser
@@ -224,6 +226,7 @@ class LinebotController < ApplicationController
         end
         if @lineLoginUser.valid_flag != nil
           @noticeFlag = @lineLoginUser.valid_flag
+          @noticeSetFlag = false
         end
         if @lineLoginUser.valid_flag != nil
           if @lineLoginUser.week1_flag == 1 || @lineLoginUser.week2_flag == 1 || @lineLoginUser.week3_flag == 1 || \
@@ -231,6 +234,7 @@ class LinebotController < ApplicationController
              @lineLoginUser.week7_flag == 1
   
             @timingFlag =1
+            @timingSetFlag = false
           end
         end
       end
