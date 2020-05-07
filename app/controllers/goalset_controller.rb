@@ -72,6 +72,18 @@ class GoalsetController < ApplicationController
   def create
     @goalData = Goalset.new(goalset_params)
     @goalData.user_id = current_user.id
+    if @goalData.mission != "" && @goalData.mission != nil
+      @goalData.mission_set_at = Time.zone.now
+    end
+    if @goalData.long_goal != "" && @goalData.long_goal != nil
+      @goalData.l_goal_set_at = Time.zone.now
+    end
+    if @goalData.middle_goal != "" && @goalData.middle_goal != nil
+      @goalData.m_goal_set_at = Time.zone.now
+    end
+    if @goalData.short_goal != "" && @goalData.short_goal != nil
+      @goalData.s_goal_set_at = Time.zone.now
+    end
     @goalData.save
     redirect_to goalset_show_path
   end

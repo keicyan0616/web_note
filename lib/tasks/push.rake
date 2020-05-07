@@ -29,7 +29,7 @@
         if @goalSendData != nil
           message = {
             type: 'text',
-            text: "### 目標設定フォローメッセージ（送信テストat自動）###
+            text: "### 目標設定フォローメッセージ（Bot自動送信）###
 
 【マイミッション】
   #{@goalSendData.mission}
