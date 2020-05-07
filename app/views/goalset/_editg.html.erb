@@ -20,8 +20,8 @@
               </div>
             <% end %>
 
-            <div class="field mt-2 ml-2 text-left">
-              <span class="mr-1"><%= form.label :'達成日(長期)' %></span>
+            <div class="field mt-2 ml-sm-2 text-left">
+              <span class="mr-sm-1"><%= form.label :'達成日(長期)' %></span>
               <%# if year == nil || month == nil || day == nil %>
                 <%= form.datetime_select :l_goal_deadline_at, {:use_month_numbers => true, :start_year => Time.now.year, :end_year => Time.now.year + 10, :discard_hour => true, :discard_minute => true}, id: :goal_l_deadline %>
               <%# else %>
@@ -33,8 +33,8 @@
               <%= form.text_area :long_goal, id: :goal_long_goal, size: "33" %>
             </div>
           
-            <div class="field ml-2 text-left">
-              <span class="mr-1"><%= form.label :'達成日(中期)' %></span>
+            <div class="field ml-sm-2 text-left">
+              <span class="mr-sm-1"><%= form.label :'達成日(中期)' %></span>
               <%# if year == nil || month == nil || day == nil %>
                 <%= form.datetime_select :m_goal_deadline_at, {:use_month_numbers => true, :start_year => Time.now.year, :end_year => Time.now.year + 10, :discard_hour => true, :discard_minute => true}, id: :goal_m_deadline %>
               <%# else %>
@@ -46,8 +46,8 @@
               <%= form.text_area :middle_goal, id: :goal_middle_goal, size: "33" %>
             </div>
 
-            <div class="field ml-2 text-left">
-              <span class="mr-1"><%= form.label :'達成日(短期)' %></span>
+            <div class="field ml-sm-2 text-left">
+              <span class="mr-sm-1"><%= form.label :'達成日(短期)' %></span>
               <%# if year == nil || month == nil || day == nil %>
                 <%= form.datetime_select :s_goal_deadline_at, {:use_month_numbers => true, :start_year => Time.now.year, :end_year => Time.now.year + 10, :discard_hour => true, :discard_minute => true}, id: :goal_s_deadline %>
               <%# else %>

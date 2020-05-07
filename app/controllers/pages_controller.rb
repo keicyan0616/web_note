@@ -46,7 +46,7 @@ class PagesController < ApplicationController
   #ユーザー一覧表示
   def editusers
     if user_signed_in?
-      @users = User.paginate(page: params[:page], per_page: 10).search(params[:search]).order(id: :asc)
+      @users = User.paginate(page: params[:page], per_page: 5).search(params[:search]).order(id: :asc)
     else
       #セッションタイムアウトした場合の処理(idがnullのため落ちないように)
       redirect_to new_user_session_path

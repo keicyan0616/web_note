@@ -376,6 +376,16 @@ th, td, tr {
   margin-bottom: -25px;
 }
 
+// サークルボタン(ToDoリスト)
+.btn-circle-todo {
+  width: 42px;
+}
+
+// サークルボタン(ユーザー一覧)
+.btn-circle-user {
+  width: 36px;
+}
+
 // jumbotronレスポンシブ
 @media (min-width: 10px) {
   .jumbotron-extend {

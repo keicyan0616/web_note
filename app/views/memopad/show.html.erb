@@ -34,7 +34,7 @@
       <%= link_to 'メモ追加', memopad_new_path, remote: true, class: "btn ml-4 mb-1 mt-2 btn-outline-primary rounded-pill btn-sm" %>
       <%= f.submit "メモ削除", class: "btn btn-outline-danger rounded-pill ml-2 mb-1 mt-2 btn-sm", data: { confirm: 'チェック「レ」を入れたメモを削除してもよろしいですか？'} %>
     </div>
-    
+
     <% @memoData.each do |memolist| %>
       <div class="center jumbotron border" style="background-color: #FFFFCC; margin: 10px; padding: 5px 0px 1px 0px;">
         <div class="panel-group">

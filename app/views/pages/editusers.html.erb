@@ -4,11 +4,11 @@
     <h2 class="d-inline-block border-bottom border-dark my-5">ユーザー一覧</h2>
     <!--<p class="mb-5">登録されているユーザーの検索・確認・更新・削除ができます。</p>-->
   
-  <!-- 検索機能 -->
+    <!-- 検索機能 -->
     <div>
       <%= form_tag(users_show_path, method: :get, class: "form-inline") do %>
         <div class="input-group mx-auto mb-5 w-50">
-          <%= text_field_tag :search, params[:search], placeholder: "キーワード検索", class: "form-control", 'aria-describedby': "button-addon" %>
+          <%= text_field_tag :search, params[:search], placeholder: "名前を入力して検索", class: "form-control", 'aria-describedby': "button-addon" %>
           <span class="input-group-append">
             <%= submit_tag '検索', username: :nil, class: "btn btn-primary", id: "button-addon" %>
           </span>
@@ -32,10 +32,10 @@
               <td class="center" style="word-break: break-all;"><%= user.email %></td>
               <td class="center">
               <!--  <%# if current_user.admin? && !current_user?(user) %>-->
-                <%= link_to(profile_show_path(id: user.id), remote: true, class: "btn btn-outline-info d-block d-md-inline-block rounded-circle px-2 py-1 mx-2") do %>
+                <%= link_to(profile_show_path(id: user.id), remote: true, class: "btn btn-outline-info d-block d-md-inline-block rounded-circle btn-circle-user px-2 py-1 mx-2") do %>
                   <i class="far fa-edit"></i>
                 <% end %>
-                <%= link_to(users_delete_path(id: user.id), class: "btn btn-danger d-block d-md-inline-block rounded-circle px-2 py-1 mx-2 mt-1 mt-md-0", method: :delete, data: { confirm: "削除してよろしいですか？" }) do %>
+                <%= link_to(users_delete_path(id: user.id), class: "btn btn-danger d-block d-md-inline-block rounded-circle btn-circle-user px-2 py-1 mx-2 mt-1 mt-md-0", method: :delete, data: { confirm: "削除してよろしいですか？" }) do %>
                   <i class="fas fa-trash-alt"></i>
                 <% end %>
               <!--  <%# end %>-->
@@ -45,7 +45,7 @@
         </tbody>
       </table>
     </div>
-    <%= will_paginate(@users, renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer, class: "pagination") %>
+    <%= will_paginate(@users, renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer, class: "pagination mt-2") %>
   </div>
 </div>
 <!-- ユーザー情報モーダル表示 -->

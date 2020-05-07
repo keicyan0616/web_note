@@ -52,7 +52,7 @@
   
     <div class="center jumbotron border" style="background-color: #FFFFCC; padding: 0px; margin: 0px 20px;">
       <h4 class="set-goal text-left">マイミッション</h4>
-      <h5 class="text-left ml-4">成し遂げたいことや、こう在りたいこと</h5>
+      <h5 class="text-left ml-2 ml-sm-4">成し遂げたいことや、こう在りたいと思うこと</h5>
       <!--<h5 class="text-left ml-4">自分の軸となる考え・言葉</h5>-->
       <!--<h2 class="text-left ml-1">ミッション（テーマ・モットー・信条）</h2>-->
       <!--<h5 class="text-left ml-2">自分が行動する上で指針となる考え・言葉</h5>-->
@@ -84,7 +84,7 @@
     
     <div class="center jumbotron border" style="background-color: #FFFFCC; padding: 0px; margin: 0px 20px;">
       <h4 class="set-goal text-left">長期目標（5～10年後）</h4>
-      <h5 class="text-left ml-4">目標達成日：<%= @goalData.l_goal_deadline_at.strftime('%Y-%m-%d') if @goalData.l_goal_deadline_at.present? %></h5>
+      <h5 class="text-left ml-2 ml-sm-4">目標達成日：<%= @goalData.l_goal_deadline_at.strftime('%Y-%m-%d') if @goalData.l_goal_deadline_at.present? %></h5>
       <table class="table table-bordered table-condensed bg-white ml-auto mr-auto" style="width: 97%">
         <tbody>
             <tr style="background-color: #FFFFFF;">
@@ -99,7 +99,7 @@
   
     <div class="center jumbotron border" style="background-color: #FFFFCC; padding: 0px; margin: 0px 20px;">
       <h4 class="set-goal text-left">中期目標（2～3年後）</h4>
-      <h5 class="text-left ml-4">目標達成日：<%= @goalData.m_goal_deadline_at.strftime('%Y-%m-%d') if @goalData.m_goal_deadline_at.present? %></h5>
+      <h5 class="text-left ml-2 ml-sm-4">目標達成日：<%= @goalData.m_goal_deadline_at.strftime('%Y-%m-%d') if @goalData.m_goal_deadline_at.present? %></h5>
       <table class="table table-bordered table-condensed bg-white ml-auto mr-auto" style="width: 97%">
         <tbody>
             <tr style="background-color: #FFFFFF;">
@@ -114,7 +114,7 @@
     
     <div class="center jumbotron border" style="background-color: #FFFFCC; padding: 0px; margin: 0px 20px;">
       <h4 class="set-goal text-left">短期目標（1年後）</h4>
-      <h5 class="text-left ml-4">目標達成日：<%= @goalData.s_goal_deadline_at.strftime('%Y-%m-%d') if @goalData.s_goal_deadline_at.present? %></h5>
+      <h5 class="text-left ml-2 ml-sm-4">目標達成日：<%= @goalData.s_goal_deadline_at.strftime('%Y-%m-%d') if @goalData.s_goal_deadline_at.present? %></h5>
       <table class="table table-bordered table-condensed bg-white ml-auto mr-auto" style="width: 97%">
         <tbody>
             <tr style="background-color: #FFFFFF;">
