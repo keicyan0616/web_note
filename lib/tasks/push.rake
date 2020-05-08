@@ -54,21 +54,6 @@
           p response
         end
       end
-    end    
-
-    # aaa = "k.kawasaki(#{Date.today})"
-    # message = {
-    #   type: 'text',
-    #   text: "SmartWebNoteからLINE Botへの自動テスト送信です！(#{aaa})"
-    # }
-    # client = Line::Bot::Client.new { |config|
-    #     config.channel_secret = "6369bc43d02546586a420d568fe55de8"
-    #     config.channel_token = "6MEEzyQDZZfFMU/oeABzqg1OpDO29JOZc42Mm+i8G8KpzG6D+V8n+yqBzC3JIC34l8vT5+7YP88PsvdwxikPK9l6EFDclWNdsYWHlfMzIXqzYjl6KTJSKbRvdsTnV4qeOW72NC8OLe0zsynTYkwfEwdB04t89/1O/w1cDnyilFU="
-    # }
-    # response = client.push_message("U213bcd37c159e91d56615331a1446953", message)
-    # # response = client.push_message(ENV["LINE_CHANNEL_USER_ID"], message)
-    # p response
-    # # redirect_to goalset_show_path
+    end
   end
-  
 # end
