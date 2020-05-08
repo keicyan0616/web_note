@@ -131,9 +131,9 @@ class LinebotController < ApplicationController
   def relation
     $randomState = SecureRandom.hex(8)
     clientId = ENV["LINE_CLIENT_ID"]
-    redirect_to "https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=#{clientId}&redirect_uri=https%3A%2F%2Frocky-oasis-44209.herokuapp.com%2Frelateback&state=#{$randomState}&scope=profile%20openid"
-    # redirect_to 'https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1654058944&redirect_uri=https%3A%2F%2Frocky-oasis-44209.herokuapp.com%2Frelateback&state=12345abcde&scope=profile%20openid'
-    # redirect_to 'https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1654058944&redirect_uri=https%3A%2F%2Frocky-oasis-44209.herokuapp.com&state=12345abcde&scope=openid'
+    redirect_to "https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=#{clientId}&redirect_uri=https%3A%2F%2Fsmart-web-notebook.herokuapp.com%2Frelateback&state=#{$randomState}&scope=profile%20openid"
+    # redirect_to 'https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1654058944&redirect_uri=https%3A%2F%2Fsmart-web-notebook.herokuapp.com%2Frelateback&state=12345abcde&scope=profile%20openid'
+    # redirect_to 'https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1654058944&redirect_uri=https%3A%2F%2Fsmart-web-notebook.herokuapp.com&state=12345abcde&scope=openid'
   end
   
   #LINE連携（コールバック（レスポンス）処理）
@@ -156,8 +156,8 @@ class LinebotController < ApplicationController
   
       @clientId = ENV["LINE_CLIENT_ID"]
       @clientSecret = ENV["LINE_CLIENT_SECRET"]
-      req.set_form_data({'grant_type' => 'authorization_code', 'code' => @code, 'redirect_uri' => 'https://rocky-oasis-44209.herokuapp.com/relateback', 'client_id' => @clientId, 'client_secret' => @clientSecret})
-      # req.set_form_data({'grant_type' => 'authorization_code', 'code' => @code, 'redirect_uri' => 'https://rocky-oasis-44209.herokuapp.com/relateback', 'client_id' => @clientId, 'client_secret' => '15b56c13ec0fa190259ae9d22b393aae'})
+      req.set_form_data({'grant_type' => 'authorization_code', 'code' => @code, 'redirect_uri' => 'https://smart-web-notebook.herokuapp.com/relateback', 'client_id' => @clientId, 'client_secret' => @clientSecret})
+      # req.set_form_data({'grant_type' => 'authorization_code', 'code' => @code, 'redirect_uri' => 'https://smart-web-notebook.herokuapp.com/relateback', 'client_id' => @clientId, 'client_secret' => '15b56c13ec0fa190259ae9d22b393aae'})
       # req.set_form_data({'grant_type' => 'authorization_code', 'code' => @code, 'redirect_uri' => goalset_show_path(code: 2), 'client_id' => '1654058944', 'client_secret' => '15b56c13ec0fa190259ae9d22b393aae'})
       # req.body = {name: "web", config: {url: "hogehogehogehoge"}}.to_json
   
