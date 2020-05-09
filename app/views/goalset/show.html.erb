@@ -44,7 +44,9 @@
     <div class="text-left">
       <%= link_to 'ミッション登録', goalset_editm_path, remote: true, class: "btn mt-2 ml-4 mb-4 btn-outline-primary rounded-pill btn-sm" %>
       <!-- デバック用送信ボタン -->
-      <%#= form.submit 'LINEメッセージ送信',class: "btn mt-2 ml-2 mb-4 btn-outline-primary rounded-pill btn-sm" %>
+      <% if current_user.admin_flag == 1 %>
+        <%= form.submit 'LINEメッセージ送信',class: "btn mt-2 ml-2 mb-4 btn-outline-primary rounded-pill btn-sm" %>
+      <% end %>
     </div>
   
     <div class="center jumbotron border" style="background-color: #FFFFCC; padding: 0px; margin: 0px 20px;">
