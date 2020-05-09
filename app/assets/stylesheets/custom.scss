@@ -364,6 +364,19 @@ th, td, tr {
   width: 36px;
 }
 
+// モーダル画面のテキスト入力エリア制限
+@media (max-width: 576px) {
+  .text-area-sm {
+    max-width: 270px;
+  }
+  .memotitle-pr-sm-adjust {
+    padding-right: 70px !important;
+  }
+  .memono-pr-sm-adjust {
+    padding-right: 210px !important;
+  }
+}
+
 // jumbotronレスポンシブ
 @media (min-width: 10px) {
   .jumbotron-extend {

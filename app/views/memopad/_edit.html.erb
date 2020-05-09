@@ -22,19 +22,19 @@
             </div>
           <% end %>
 
-          <div class="field" style="padding-right: 247px;">
+          <div class="field memono-pr-sm-adjust" style="padding-right: 247px;">
             <%= form.label :"　項番" %>
             <%= form.number_field :orderno, id: :memopad_orderno, min: 1, max: 100 %>
           </div>
 
-          <div class="field" style="padding-right: 143px;">
+          <div class="field  memotitle-pr-sm-adjust" style="padding-right: 143px;">
             <%= form.label :タイトル %>
-            <%= form.text_field :title, id: :memopad_title %>
+            <%= form.text_field :title, class: "text-area-sm", id: :memopad_title %>
           </div>
           
           <div class="field">
             <span style="vertical-align: top;"><%= form.label :メモ本文 %></span>
-            <%= form.text_area :memo, id: :memopad_memo, size: "40x2" %>
+            <%= form.text_area :memo, class: "text-area-sm", id: :memopad_memo, size: "40x2" %>
           </div>
         
           <div class="actions">

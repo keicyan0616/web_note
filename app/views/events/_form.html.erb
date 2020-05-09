@@ -13,12 +13,12 @@
 
   <div class="field mb-2" style="padding-right: 0px;">
     <%= form.label :スケジュール名 %>
-    <%= form.text_field :title, id: :event_title, size: "39" %>
+    <%= form.text_field :title, class: "text-area-sm", id: :event_title, size: "39" %>
   </div>
 
   <div class="field form-group">
     <span style="vertical-align: top;"><%= form.label :スケジュール内容 %></span>
-    <%= form.text_area :description, id: :event_description, size: "40x2" %>
+    <%= form.text_area :description, class: "text-area-sm", id: :event_description, size: "40x2" %>
   </div>
 
   <div class="field mb-1" style="padding-right: 0px;">
