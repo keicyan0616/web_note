@@ -28,23 +28,23 @@ class LinebotController < ApplicationController
 
     events.each { |event|
       #userId取得
-      userId = event['source']['userId']
+      # userId = event['source']['userId']
     
       # if文でresponseに送るメッセージを格納
       # event.message['text']でLINEで送られてきた文書を取得
-      if event.message['text'].include?("好き")
-        response = "んほぉぉぉぉぉぉ！すきすきすきすきすきすきすきすきぃぃぃぃぃ"
-      elsif event.message["text"].include?("行ってきます")
-        response = "どこいくの？どこいくの？どこいくの？寂しい寂しい寂しい。。。"
-      elsif event.message['text'].include?("おはよう")
-        response = "おはよう。なんで今まで連絡くれなかったの？"
-      elsif event.message['text'].include?("みーくん")
-        response = "みーくん！？" * 50
-      elsif event.message['text'].include?("ユーザーID")
-        response = "あなたのユーザーIDは、[" +  userId + "]です。"
-      else
-        response = "else処理です"
-      end
+      # if event.message['text'].include?("好き")
+      #   response = "んほぉぉぉぉぉぉ！すきすきすきすきすきすきすきすきぃぃぃぃぃ"
+      # elsif event.message["text"].include?("行ってきます")
+      #   response = "どこいくの？どこいくの？どこいくの？寂しい寂しい寂しい。。。"
+      # elsif event.message['text'].include?("おはよう")
+      #   response = "おはよう。なんで今まで連絡くれなかったの？"
+      # elsif event.message['text'].include?("みーくん")
+      #   response = "みーくん！？" * 50
+      # elsif event.message['text'].include?("ユーザーID")
+      #   response = "あなたのユーザーIDは、[" +  userId + "]です。"
+      # else
+        response = "問い合わせありがとうございます。現在リプライ処理は何もありません。"
+      # end
 
       case event
       when Line::Bot::Event::Message
@@ -115,9 +115,7 @@ class LinebotController < ApplicationController
             config.channel_token = ENV["LINE_CHANNEL_TOKEN"]
             # config.channel_token = "6MEEzyQDZZfFMU/oeABzqg1OpDO29JOZc42Mm+i8G8KpzG6D+V8n+yqBzC3JIC34l8vT5+7YP88PsvdwxikPK9l6EFDclWNdsYWHlfMzIXqzYjl6KTJSKbRvdsTnV4qeOW72NC8OLe0zsynTYkwfEwdB04t89/1O/w1cDnyilFU="
           }
-      
-          # @lineBotData = Linebot.find_by(user_id: current_user.id)
-          # response = client.push_message(@lineBotData.line_uid, message)
+
           response = client.push_message(lineDatalist.line_uid, message)
           p response
         end

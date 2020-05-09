@@ -25,11 +25,11 @@
       }
       
       .title-custom {
-        padding: 0.2em 0.5em;/*文字の上下 左右の余白*/
-        color: #FFFFFF;/*文字色*/
-        background: #4F78A4;/*背景色*/
-        border-left: solid 5px #75A9FF; /*#7db4e6;左線*/
-        border-bottom: solid 3px #d7d7d7;/*下線*/
+        padding: 0.2em 0.5em;              /*文字の上下 左右の余白*/
+        color: #FFFFFF;                    /*文字色*/
+        background: #4F78A4;               /*背景色*/
+        border-left: solid 5px #75A9FF;    /*#7db4e6;左線*/
+        border-bottom: solid 3px #d7d7d7;  /*下線*/
       }
 	  </style>
 </head>
@@ -42,35 +42,21 @@
     <h4 class="title-custom">目標設定</h4>
     
     <div class="text-left">
-      <%#= link_to '目標登録', goalset_edit_path, class: "btn ml-4 mb-3 btn-primary" %>
-      <%#= link_to '目標登録', goalset_edit_path, remote: true, class: "btn mt-2 ml-4 mb-3 btn-sm btn-outline-primary" %>
       <%= link_to 'ミッション登録', goalset_editm_path, remote: true, class: "btn mt-2 ml-4 mb-4 btn-outline-primary rounded-pill btn-sm" %>
-      <%#= link_to 'LINE連携', line_relation_path, class: "btn mt-2 ml-2 mb-4 btn-outline-primary btn-sm" %>
-      <%= form.submit 'LINEメッセージ送信',class: "btn mt-2 ml-2 mb-4 btn-outline-primary rounded-pill btn-sm" %>
-      <%#= link_to 'LINE送信', line_send_message_path, class: "btn mt-2 ml-2 mb-4 btn-outline-primary btn-sm" %>
+      <!-- デバック用送信ボタン -->
+      <%#= form.submit 'LINEメッセージ送信',class: "btn mt-2 ml-2 mb-4 btn-outline-primary rounded-pill btn-sm" %>
     </div>
   
     <div class="center jumbotron border" style="background-color: #FFFFCC; padding: 0px; margin: 0px 20px;">
       <h4 class="set-goal text-left">マイミッション</h4>
       <h5 class="text-left ml-2 ml-sm-4">成し遂げたいことや、こう在りたいと思うこと</h5>
-      <!--<h5 class="text-left ml-4">自分の軸となる考え・言葉</h5>-->
-      <!--<h2 class="text-left ml-1">ミッション（テーマ・モットー・信条）</h2>-->
-      <!--<h5 class="text-left ml-2">自分が行動する上で指針となる考え・言葉</h5>-->
       <table class="table table-bordered table-condensed bg-white ml-auto mr-auto" style="width: 97%">
-        <!--<thead>-->
-        <!--  <tr>-->
-        <!--    <td colspan=2>  -->
-        <!--    </td>-->
-        <!--  </tr>-->
-        <!--</thead>-->
         <tbody>
             <tr style="background-color: #FFFFFF;">
               <td class="text-left" style="word-break: break-all;"><%= raw(h(@goalData.mission).gsub(/\R/, "<br>")) %></td>
               <td class="text-left w-25">設定日：<%= @goalData.mission_set_at.strftime('%Y-%m-%d') if @goalData.mission_set_at.present? %></td>
             </tr>
-            <!--<tr>-->
-            <!--  <td><%= params[:code] %></td>-->
-            <!--</tr>-->
+            <!--  <td><%#= params[:code] %></td>-->
         </tbody>
       </table>
     </div>
@@ -125,12 +111,6 @@
       </table>
     </div>
   <% end %>
-  
-  <!--<br></br>-->
-  <!--<hr>-->
-  <!--<div>-->
-  <!-- <h4 class="title-custom">目標設定履歴</h4>-->
-  <!--</div>-->
 </div>
 
 <!--モーダルウインドウ表示-->

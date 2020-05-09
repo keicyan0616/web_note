@@ -6,11 +6,9 @@ Rails.application.routes.draw do
   
   # ＜LINE処理関係＞
   post '/callback' => 'linebot#callback'
-  # get '/callback' => 'linebot#callback'
   get '/relation' => 'linebot#relation', as: :line_relation
   get '/relateback' => 'linebot#relateback', as: :line_relateback
   patch '/push' => 'linebot#line_test', as: :line_send_message
-  # post '/push' => 'linebot#line_test', as: :line_send_message
   get '/setnotice' => 'linebot#setnotice', as: :line_setnotice
   patch '/noticeupdate' => 'linebot#noticeupdate', as: :notice_update
   patch '/timingupdate' => 'linebot#timingupdate', as: :timing_update
@@ -22,7 +20,6 @@ Rails.application.routes.draw do
   delete 'pages/:id/destroy', to: 'pages#destroy', as: :users_delete
 
   # ＜スケジュール関係＞
-  #get 'pages/:id/show', to: 'pages#show', as: :schdule_show
   get 'pages/show', to: 'pages#show', as: :schdule_show
   get 'pages/all_event_list_class', to: 'pages#all_event_list_class', as: :all_event_list_class
 

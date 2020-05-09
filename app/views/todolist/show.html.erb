@@ -37,10 +37,8 @@
     <thead>
       <tr style="background-color: #FFFFCC;">
         <th style="width: 100px;">日時</th>
-        <!--<th style="width: 80px;">時間</th>-->
         <th class="text-left">ToDo</th>
         <th class="center" style="width: 130px;">編集・完了</th>
-        <!--<th colspan="3"></th>-->
       </tr>
     </thead>
   
@@ -52,7 +50,6 @@
             <%= todolist.start_date.strftime('%Y/%m/%d') if todolist.start_date.present? %><br>
             <div class="center"><%= todolist.start_date.strftime('%H:%M') if todolist.start_date.present? %></div>
           </td>
-          <!--<td><%#= todolist.start_date.strftime('%H:%M') if todolist.start_date.present? %></td>-->
           <td class="text-left"><%= raw(h(todolist.todo).gsub(/\R/, "<br>")) %></td>
           <!--<td><%#= link_to 'Show', event %></td>-->
           <!--<td><%#= link_to 'Edit', edit_event_path(event) %></td>-->
@@ -86,10 +83,8 @@
         <thead>
           <tr style="background-color: #FFFFCC;">
             <th style="width: 100px;">日時</th>
-            <!--<th style="width: 80px;">時間</th>-->
             <th class="text-left">ToDo</th>
             <th class="pl-3" style="width: 80px;">削除</th>
-            <!--<th colspan="3"></th>-->
           </tr>
         </thead>
         <tbody>
@@ -101,7 +96,6 @@
               <%= todofinishlist.start_date.strftime('%Y/%m/%d') if todofinishlist.start_date.present? %><br>
               <div class="center"><%= todofinishlist.start_date.strftime('%H:%M') if todofinishlist.start_date.present? %></div>
             </s></td>
-            <!--<td><s><%#= todofinishlist.start_date.strftime('%H:%M') if todofinishlist.start_date.present? %></s></td>-->
             <td class="text-left"><s><%= raw(h(todofinishlist.todo).gsub(/\R/, "<br>")) %></s></td>
             <td>
               <%= link_to(todolist_delete_path(id: todofinishlist.id), class: "btn btn-danger d-block d-md-inline-block rounded-circle btn-circle-todo mr-1", data: { confirm: 'ToDoを削除してもよろしいですか？' }) do %>

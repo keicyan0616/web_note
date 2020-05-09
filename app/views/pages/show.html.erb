@@ -2,10 +2,6 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 		<style>
-    	/*body {*/
-    	/*	margin: 0 auto;*/
-    	/*	font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;*/
-    	/*}*/
     	#calendar {
     		width: 100%;
     		margin: 0 auto;
@@ -36,49 +32,13 @@
     		.fc-center h2{
     			margin-top:10px;
     		}
-    		/*-- カレンダーヘッダ Sun to Sat --*/
-    		/*.fc-head{*/
-    		/*	position: -webkit-sticky;*/
-    		/*	position: sticky;*/
-    		/*	top: 86px;*/
-    		/*	z-index:10;*/
-    		/*--背景色--*/
-    		/*  background-color:#e9e9e9;*/
-    		/*}*/
     	}
-    	
-/*h1 {*/
-/*  position: relative;*/
-  /*padding: .25em 0 .5em .75em;*/
-/*  padding: 0;*/
-/*  border-left: 6px solid #3498db;*/
-/*}*/
-/*h1::after {*/
-/*  position: absolute;*/
-/*  left: 0;*/
-/*  bottom: 0;*/
-/*  content: '';*/
-/*  width: 100%;*/
-/*  height: 0;*/
-/*  border-bottom: 1px solid #ccc;*/
-/*}*/
-
-/*h1 {*/
-  /*padding: .5em .75em;*/
-/*  padding: 0;*/
-/*  background-color: #f6f6f6;*/
-/*  border-left: 6px solid #ccc;*/
-/*}*/
 
 h1 {
-  /*padding: .5em .75em;*/
   color: white;
   padding: 0;
   margin: -21px;
-  /*background-color: #f6f6f6;*/
-  /*background-color: #FFFFCC;*/
   background-color: #4F78A4;
-  /*background-color: #75A9FF;*/
   box-shadow: 0 2px 6px rgba(0, 0, 0, .15);
   position: relative;
   /*border-bottom: solid 3px #FFFFCC;*/
@@ -132,40 +92,11 @@ h1 {
   </div>
 </div>
 
-
-<!--<div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">-->
-<!--  <div class="card">-->
-<!--    <div class="card-header" role="tab" id="heading1">-->
-<!--      <h5 class="mb-0">-->
-<!--        <a class="collapsed text-body d-block p-3 m-n3" data-toggle="collapse" href="#collapse2" role="button" aria-expanded="true" aria-controls="collapse2">-->
-<!--          アイテム1-->
-<!--        </a>-->
-<!--      </h5>-->
-<!--    </div><!-- /.card-header -->
-<!--    <div id="collapse2" class="collapse" role="tabpanel" aria-labelledby="heading1" data-parent="#accordion">-->
-<!--      <div class="card-body">-->
-<!--        アイテム1のコンテンツ-->
-<!--      </div><!-- /.card-body -->
-<!--    </div><!-- /.collapse -->
-<!--  </div><!-- /.card -->
-<!--</div><!-- /#accordion -->
-
-<!--<div class="panel-heading">-->
-<!--  <div class="panel panel-default collaps">-->
-<!--    <div id= "link" class="collapse Event-acordion">-->
-<!--      <%#= render 'all_event_list' %>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
-
-
 <!-- スケジュール 表示ページ -->
 <div class="jumbotron-schdule jumbotron-extend" style="background-color: #FFFFFF;">
   <h4 class="title-custom">Schedule</h4>
-  <!--<h1>こんにちは、<%#= current_user.username %>さん</h1>-->
   
   <div class="text-left">
-    <!--<a href="#link" data-toggle="collapse" class="btn ml-4 mb-3 btn-primary">全イベント一覧</a>-->
     <%= link_to '予定登録', new_event_path, remote: true, class: "btn btn-outline-primary rounded-pill btn-sm ml-2 mt-1" %>
   </div>
 

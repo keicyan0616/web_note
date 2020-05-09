@@ -111,8 +111,6 @@ th, td, tr {
 
 // .main-container {
 .top {
-  /*background-image: url("<%= asset-path("images/notebook.jpg") %>");*/
-  // background-image: url("/images/notebook.jpg");
   background-image: image-url("notebook.jpg");
   // background-image: url("<%= asset-path("notebook.jpg") %>")
   // height: 800px;
@@ -139,12 +137,6 @@ th, td, tr {
 .jumbotron {
   margin-top: 35px;
 }
-
-// .schdule {
-//   margin-left: 20px;
-//   margin-right: 20px;
-//   padding: 10px 10px;
-// }
 
 // flashのバックカラー
 .notice {
@@ -182,7 +174,6 @@ th, td, tr {
 }
 #navbar-list-menu {
   display: block;
-  // top: 40px;
   margin-top: 4px;
 }
 @media (min-width: 576px) {
@@ -297,19 +288,6 @@ th, td, tr {
   display: inline-block;
   border-radius: 50%;
 }
-
-// #accordion .card-header a[data-toggle="collapse"].collapsed::after {
-//   font-family: 'Font Awesome 5 Free';
-//   font-weight: 900;
-//   content: "\f078";/* chevron-down */
-//   float: right;
-// }
-// #accordion .card-header a[data-toggle="collapse"]::after {
-//   font-family: 'Font Awesome 5 Free';
-//   font-weight: 900;
-//   content: "\f077";/* chevron-up */
-//   float: right;
-// }
 
 .arrow{
   width: 30px;
