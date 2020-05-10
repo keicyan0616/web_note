@@ -60,7 +60,11 @@ class PagesController < ApplicationController
   
   def update
     @profile = User.find(params[:id])
-    @profile.update(profile_params)
+    if @profile.update(profile_params)
+      flash.notice = 'プロフィール情報を更新しました。'
+    else
+      flash.alert = 'プロフィール情報を更新できませんでした。'
+    end
     redirect_to users_show_path
   end
   
