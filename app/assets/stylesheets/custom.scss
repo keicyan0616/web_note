@@ -369,11 +369,20 @@ th, td, tr {
   .text-area-sm {
     max-width: 270px;
   }
-  .memotitle-pr-sm-adjust {
-    padding-right: 70px !important;
+  .todosize-sm-adjust {
+    max-width: 250px;
+  }
+  .todo-pr-sm-adjust {
+    padding-right: 15px !important;
+  }
+  .memosize-sm-adjust {
+    max-width: 230px;
   }
   .memono-pr-sm-adjust {
-    padding-right: 210px !important;
+    padding-right: 150px !important;
+  }
+  .memotitle-pr-sm-adjust {
+    padding-right: 30px !important;
   }
 }
 

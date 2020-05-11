@@ -27,14 +27,14 @@
             <%= form.number_field :orderno, id: :memopad_orderno, min: 1, max: 100 %>
           </div>
 
-          <div class="field  memotitle-pr-sm-adjust" style="padding-right: 143px;">
+          <div class="field memotitle-pr-sm-adjust" style="padding-right: 143px;">
             <%= form.label :タイトル %>
-            <%= form.text_field :title, class: "text-area-sm", id: :memopad_title %>
+            <%= form.text_field :title, class: "memosize-sm-adjust", id: :memopad_title %>
           </div>
           
           <div class="field">
             <span style="vertical-align: top;"><%= form.label :メモ本文 %></span>
-            <%= form.text_area :memo, class: "text-area-sm", id: :memopad_memo, size: "40x2" %>
+            <%= form.text_area :memo, class: "memosize-sm-adjust", id: :memopad_memo, size: "40x2" %>
           </div>
         
           <div class="actions">
