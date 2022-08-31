@@ -90,7 +90,7 @@ GEM
       momentjs-rails (>= 2.9.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
-    hashie (3.6.0)
+    hashie (5.0.0)
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
     jbuilder (2.9.1)
@@ -125,13 +125,19 @@ GEM
     nio4r (2.5.2)
     nokogiri (1.10.7)
       mini_portile2 (~> 2.4.0)
-    oauth (0.5.4)
-    omniauth (1.9.0)
-      hashie (>= 3.4.6, < 3.7.0)
-      rack (>= 1.6.2, < 3)
-    omniauth-oauth (1.1.0)
+    oauth (1.1.0)
+      oauth-tty (~> 1.0, >= 1.0.1)
+      snaky_hash (~> 2.0)
+      version_gem (~> 1.1)
+    oauth-tty (1.0.2)
+      version_gem (~> 1.1)
+    omniauth (2.1.0)
+      hashie (>= 3.4.6)
+      rack (>= 2.2.3)
+      rack-protection
+    omniauth-oauth (1.2.0)
       oauth
-      omniauth (~> 1.0)
+      omniauth (>= 1.0, < 3)
     omniauth-twitter (1.4.0)
       omniauth-oauth (~> 1.1)
       rack
@@ -139,7 +145,9 @@ GEM
     pg (0.20.0)
     popper_js (1.16.0)
     puma (3.12.2)
-    rack (2.1.1)
+    rack (2.2.4)
+    rack-protection (2.2.2)
+      rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (5.1.7)
@@ -195,6 +203,9 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    snaky_hash (2.0.0)
+      hashie
+      version_gem (~> 1.1)
     spring (2.1.0)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -217,6 +228,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
+    version_gem (1.1.0)
     warden (1.2.8)
       rack (>= 2.0.6)
     web-console (3.7.0)
